@@ -1,111 +1,159 @@
 <template>
-  <div id="ordering">
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+  <!-- Main template div -->
+  <div>
+    <!-- Welcome view -->
+    <div class="welcome-container" v-if="location === undefined">
+      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
-    <h1>{{ uiLabels.ingredients }}</h1>
+      <h1>Welcome to Custom Burgers!</h1>
 
-    <Ingredient
-      ref="ingredient"
-      v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"  
-      :item="item" 
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
+      <div class="order-option-container">
+        <button v-on:click="setLocation('eatIn')">Eat here</button>
+        <button v-on:click="setLocation('takeout')">Take out</button>
+      </div>
+    </div>
 
-    <h1>{{ uiLabels.order }}</h1>
-    {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-    <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    <!-- Main view -->
+    <div class="main-container" v-if="location !== undefined">
+      <!-- TODO: Remember to add uiLabels, ask for help -->
+      <div class="category-buttons-container">
+        <button v-on:click="setCurrentCategory('bread')">Bread</button>
+        <button v-on:click="setCurrentCategory('protein')">Protein</button>
+        <button v-on:click="setCurrentCategory('toppings')">Toppings</button>
+        <button v-on:click="setCurrentCategory('dressing')">Dressing</button>
+        <button v-on:click="setCurrentCategory('sides')">Sides</button>
+        <button v-on:click="setCurrentCategory('drinks')">Drinks</button>
+      </div>
 
-    <h1>{{ uiLabels.ordersInQueue }}</h1>
-    <div>
-      <OrderItem 
-        v-for="(order, key) in orders"
-        v-if="order.status !== 'done'"
-        :order-id="key"
-        :order="order" 
-        :ui-labels="uiLabels"
-        :lang="lang"
-        :key="key">
-      </OrderItem>
+      <!-- Visible by default -->
+      <div class="category-container">
+        <Bread v-if="currentCategory === 'bread'" lang="en" :ingredients="this.ingredients"></Bread>
+        <Protein v-if="currentCategory === 'protein'" lang="en" :ingredients="this.ingredients"></Protein>
+      </div>
+
+      <div class="your-order-section">
+        Your order:
+        <button>Add a meal</button>
+      </div>
+
+      <div class="place-order">
+        <button>Place Order</button>
+      </div>
     </div>
   </div>
 </template>
 <script>
-
 //import the components that are used in the template, the name that you
 //use for importing will be used in the template above and also below in
 //components
-import Ingredient from '@/components/Ingredient.vue'
-import OrderItem from '@/components/OrderItem.vue'
+import Ingredient from "@/components/Ingredient.vue";
+import OrderItem from "@/components/OrderItem.vue";
+import Bread from "@/components/categories/Bread.vue";
+import Protein from "@/components/categories/Protein.vue";
+import Topping from "@/components/categories/Topping.vue";
+import Dressing from "@/components/categories/Dressing.vue";
+import Side from "@/components/categories/Side.vue";
+import Drink from "@/components/categories/Drink.vue";
 
 //import methods and data that are shared between ordering and kitchen views
-import sharedVueStuff from '@/components/sharedVueStuff.js'
+import sharedVueStuff from "@/components/sharedVueStuff.js";
 
 /* instead of defining a Vue instance, export default allows the only 
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
-  name: 'Ordering',
+  name: "Ordering",
   components: {
     Ingredient,
-    OrderItem
+    OrderItem,
+    Bread,
+    Protein
+    // Topping,
+    // Dressing,
+    // Side,
+    // Drink
   },
-  mixins: [sharedVueStuff], // include stuff that is used in both 
-                            // the ordering system and the kitchen
-  data: function() { //Not that data is a function!
+  mixins: [sharedVueStuff], // include stuff that is used in both
+  // the ordering system and the kitchen
+  data: function() {
+    //Not that data is a function!
     return {
+      location: undefined,
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-    }
+      currentCategory: "bread",
+      ingredients: this.ingredients
+    };
   },
-  created: function () {
-    this.$store.state.socket.on('orderNumber', function (data) {
-      this.orderNumber = data;
-    }.bind(this));
+  created: function() {
+    this.$store.state.socket.on(
+      "orderNumber",
+      function(data) {
+        this.orderNumber = data;
+      }.bind(this)
+    );
   },
   methods: {
-    addToOrder: function (item) {
+    addToOrder: function(item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
     },
-    placeOrder: function () {
+    placeOrder: function() {
       var i,
-      //Wrap the order in an object
+        //Wrap the order in an object
         order = {
           ingredients: this.chosenIngredients,
           price: this.price
         };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      this.$store.state.socket.emit('order', {order: order});
+      this.$store.state.socket.emit("order", { order: order });
       //set all counters to 0. Notice the use of $refs
       for (i = 0; i < this.$refs.ingredient.length; i += 1) {
         this.$refs.ingredient[i].resetCounter();
       }
       this.price = 0;
       this.chosenIngredients = [];
+    },
+
+    setLocation: function(location) {
+      this.location = location;
+    },
+
+    setCurrentCategory: function(category) {
+      this.currentCategory = category;
     }
   }
-}
+};
 </script>
 <style scoped>
-/* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
-#ordering {
-  margin:auto;
-  width: 40em;
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+}
+.order-option-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.example-panel {
-  position: fixed;
-  left:0;
-  top:0;
-  z-index: -2;
+.main-container {
+  display: flex;
 }
-.ingredient {
-  border: 1px solid #ccd;
-  padding: 1em;
-  background-image: url('~@/assets/exampleImage.jpg');
-  color: white;
+.category-container {
+  flex: 0.8;
+}
+.category-buttons-container {
+  flex: 0.2;
+  padding-right: 3em;
+  display: flex;
+  flex-direction: column;
+}
+
+.your-order-section {
+  border: 3px dashed;
+  position: right;
+}
+.place-or-add-order {
+  position: right;
 }
 </style>

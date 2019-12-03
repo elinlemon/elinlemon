@@ -16,5 +16,8 @@
   "ingredients" : "Ingredients",
   "ready" : "Done",
   "order" : "My burger",
-  "language" : "Svenska"
+  "language" : "Svenska",
+  "welcome": "Welcome to Crafty Burgers!",
+  "eatIn": "Eat here",
+  "eatOut": "Take away"
 }

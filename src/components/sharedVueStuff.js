@@ -36,7 +36,12 @@ var sharedVueStuff = {
         this.lang = "en";
       }
       this.$store.state.socket.emit('switchLang', this.lang);
-    }
+    },
+
+    // from all ingredients, get only the ones that match our categoryNumber
+    getRelevantIngredients: function(allIngredients, categoryNumber) {
+      return allIngredients.filter(i => i.category === categoryNumber);
+    },
   }
 };
 

@@ -16,5 +16,8 @@
   "ingredients" : "Ingredienser",
   "ready" : "Klart",
   "order" : "Min burgare",
-  "language" : "English"
+  "language" : "English",
+  "welcome": "Välkommen till Crafty Burgers!",
+  "eatIn:": "Ät här",
+  "eatOut": "Ta med"
 }
