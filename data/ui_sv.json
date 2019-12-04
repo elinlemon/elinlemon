@@ -18,6 +18,12 @@
   "order" : "Min burgare",
   "language" : "English",
   "welcome": "Välkommen till Crafty Burgers!",
-  "eatIn:": "Ät här",
-  "eatOut": "Ta med"
+  "eatIn": "Ät här",
+  "eatOut": "Ta med",
+  "bread": "Bröd",
+  "protein": "Protein",
+  "dressing": "Dressing",
+  "toppings": "Toppings",
+  "sides": "Tillbehör",
+  "drinks": "Dryck"
 }

@@ -5,11 +5,11 @@
     <div class="welcome-container" v-if="location === undefined">
       <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
-      <h1>Welcome to Custom Burgers!</h1>
+      <h1>{{uiLabels.welcome}}</h1>
 
       <div class="order-option-container">
-        <button v-on:click="setLocation('eatIn')">Eat here</button>
-        <button v-on:click="setLocation('takeout')">Take out</button>
+        <button v-on:click="setLocation('eatIn')">{{uiLabels.eatIn}}</button>
+        <button v-on:click="setLocation('takeout')">{{uiLabels.eatOut}}</button>
       </div>
     </div>
 
@@ -17,12 +17,12 @@
     <div class="main-container" v-if="location !== undefined">
       <!-- TODO: Remember to add uiLabels, ask for help -->
       <div class="category-buttons-container">
-        <button v-on:click="setCurrentCategory('bread')">Bread</button>
-        <button v-on:click="setCurrentCategory('protein')">Protein</button>
-        <button v-on:click="setCurrentCategory('toppings')">Toppings</button>
-        <button v-on:click="setCurrentCategory('dressing')">Dressing</button>
-        <button v-on:click="setCurrentCategory('sides')">Sides</button>
-        <button v-on:click="setCurrentCategory('drinks')">Drinks</button>
+        <button v-on:click="setCurrentCategory('bread')">{{uiLabels.bread}}</button>
+        <button v-on:click="setCurrentCategory('protein')">{{uiLabels.protein}}</button>
+        <button v-on:click="setCurrentCategory('toppings')">{{uiLabels.toppings}}</button>
+        <button v-on:click="setCurrentCategory('dressing')">{{uiLabels.dressing}}</button>
+        <button v-on:click="setCurrentCategory('sides')">{{uiLabels.sides}}</button>
+        <button v-on:click="setCurrentCategory('drinks')">{{uiLabels.drinks}}</button>
       </div>
 
       <!-- Visible by default -->
@@ -32,12 +32,12 @@
       </div>
 
       <div class="your-order-section">
-        Your order:
-        <button>Add a meal</button>
+        {{uiLabels.yourOrder}}
+        <button>{{uiLabels.newOrder}}</button>
       </div>
 
       <div class="place-order">
-        <button>Place Order</button>
+        <button>{{uiLabels.placeOrder}}</button>
       </div>
     </div>
   </div>

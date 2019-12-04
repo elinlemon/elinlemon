@@ -19,5 +19,11 @@
   "language" : "Svenska",
   "welcome": "Welcome to Crafty Burgers!",
   "eatIn": "Eat here",
-  "eatOut": "Take away"
+  "eatOut": "Take away",
+  "bread": "Bread",
+  "protein": "Protein",
+  "dressing": "Dressing",
+  "toppings": "Toppings",
+  "sides": "Sides",
+  "drinks": "Drinks"
 }
