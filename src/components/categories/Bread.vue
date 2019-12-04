@@ -17,8 +17,6 @@
 
 import IngredientGrid from "../IngredientGrid";
 
-const CATEGORY_NUMBER = 4;
-
 export default {
   name: 'Bread',
   components: {
@@ -27,7 +25,8 @@ export default {
   props: {
     item: Object,
     lang: String,
-    ingredients: Array
+    ingredients: Array,
+    categorynumber: Number
   },
   data: function () {
     return {
@@ -38,7 +37,7 @@ export default {
   methods: {
     // from all ingredients, get only the ones that match our categoryNumber
     getRelevantIngredients: function() {
-      return this.ingredients.filter(i => i.category === CATEGORY_NUMBER);
+      return this.ingredients.filter(i => i.category === this.categorynumber);
     },
     
     incrementCounter: function() {
