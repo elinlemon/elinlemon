@@ -25,9 +25,9 @@
         <button v-on:click="setCurrentCategory('drinks')">{{uiLabels.drinks}}</button>
       </div>
 
-      <!-- Visible by default -->
+      <!-- Visible by default, don't need the if -->
       <div class="category-container">
-        <Bread v-if="currentCategory === 'bread'" lang="en" :ingredients="this.ingredients"></Bread>
+        <Bread lang="en" :ingredients="this.ingredients" v-bind:categorynumber="5"></Bread>
         <Protein v-if="currentCategory === 'protein'" lang="en" :ingredients="this.ingredients"></Protein>
       </div>
 
@@ -118,9 +118,9 @@ export default {
     setLocation: function(location) {
       this.location = location;
     },
-
+//Ändra så det sätter nummer istället
     setCurrentCategory: function(category) {
-      this.currentCategory = category;
+      this.catergorynumber = category;
     }
   }
 };
