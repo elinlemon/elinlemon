@@ -14,45 +14,53 @@
     </div>
 
     <!-- Main view -->
-    <div class="main-container" v-if="location !== undefined">
+    <div class="ordering-container" v-if="location !== undefined">
 
-      <div class="category-buttons-container">
-        <button v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
-        <button v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
-        <button v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
-        <button v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
-        <button v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
-        <button v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
-      </div>
+      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
-      <!--Conacting component bread with the right categorynumber-->
-      <div class="category-container">
-        <Bread lang="en" :ingredients="this.ingredients" v-bind:categorynumber = this.categorynumber></Bread>
-      </div>
+      <div class="main-container">
+        <div class="category-buttons-container">
+          <button v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
+          <button v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
+          <button v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
+          <button v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
+          <button v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
+          <button v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
+        </div>
 
-      <div class="your-order-section">
-        {{uiLabels.yourOrder}}
-        <button>{{uiLabels.newOrder}}</button>
-      </div>
+        <!--Conacting component bread with the right categorynumber-->
+        <div class="category-container">
+          <Bread :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 4"></Bread>
+          <Protein :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 1"></Protein>
+          <Topping :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 2"></Topping>
+          <Dressing :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 3"></Dressing>
+          <Side :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 5"></Side>
+          <Drink :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 6"></Drink>
+        
+        </div>
 
-      <div class="place-order">
-        <button>{{uiLabels.placeOrder}}</button>
+        <div class="your-order-section">
+          {{uiLabels.yourOrder}}
+          <button>{{uiLabels.newOrder}}</button>
+        </div>
+
+        <div class="place-order">
+          <button>{{uiLabels.placeOrder}}</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-//import the components that are used in the template, the name that you
-//use for importing will be used in the template above and also below in
-//components
+
 import Ingredient from "@/components/Ingredient.vue";
 import OrderItem from "@/components/OrderItem.vue";
-// import Bread from "@/components/categories/Bread.vue";
-// import Protein from "@/components/categories/Protein.vue";
-// import Topping from "@/components/categories/Topping.vue";
-// import Dressing from "@/components/categories/Dressing.vue";
-// import Side from "@/components/categories/Side.vue";
-// import Drink from "@/components/categories/Drink.vue";
+import Bread from "@/components/categories/Bread.vue";
+import Protein from "@/components/categories/Protein.vue";
+import Topping from "@/components/categories/Topping.vue";
+import Dressing from "@/components/categories/Dressing.vue";
+import Side from "@/components/categories/Side.vue";
+import Drink from "@/components/categories/Drink.vue";
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from "@/components/sharedVueStuff.js";
@@ -63,13 +71,13 @@ export default {
   name: "Ordering",
   components: {
     Ingredient,
-    OrderItem
-    // Bread,
-    // Protein
-    // Topping,
-    // Dressing,
-    // Side,
-    // Drink
+    OrderItem,
+    Bread,
+    Protein,
+    Topping,
+    Dressing,
+    Side,
+    Drink
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
   // the ordering system and the kitchen
@@ -80,9 +88,8 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-      currentCategory: "bread",
-      ingredients: this.ingredients,
-      categorynumber: this.categorynumber
+      currentCategory: 4,   // == bread
+      ingredients: this.ingredients
     };
   },
   created: function() {
@@ -120,7 +127,7 @@ export default {
     },
 
     setCurrentCategory: function(category) {
-      this.categorynumber = category;
+      this.currentCategory = category;
     }
   }
 };
@@ -136,7 +143,12 @@ export default {
   justify-content: space-around;
 }
 
+.ordering-container {
+  display: flex;
+  flex-direction: column;
+}
 .main-container {
+  padding-top: 1em;
   display: flex;
 }
 .category-container {

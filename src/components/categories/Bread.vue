@@ -1,50 +1,36 @@
 <template>
-  <div v-if="relevantIngredients !== undefined">
-      <h1>{{uiLabels.chooseBread}}</h1>
-    {{this.categorynumber}}
-      <p>this category contains {{this.relevantIngredients.length}} items</p>
 
-      <IngredientGrid :ingredients="this.relevantIngredients"></IngredientGrid>
-
-      <!-- <label>
-      <button v-on:click="incrementCounter">{{ counter }}</button>
-      {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
-    </label> -->
+  <div>
+    <h1>Pick your bread</h1>
+    <IngredientGrid :ingredients="this.relevantIngredients"></IngredientGrid>
   </div>
 
-  
 </template>
 <script>
 
+import IngredientCategory from "./IngredientCategory.js";
 import IngredientGrid from "../IngredientGrid";
+
+const CATEGORY = 4;
 
 export default {
   name: 'Bread',
+  mixins: [IngredientCategory],
   components: {
     IngredientGrid
   },
   props: {
     item: Object,
     lang: String,
-    ingredients: Array,
-    categorynumber: Number
-
+    ingredients: Array
   },
   data: function () {
     return {
       counter: 0,
-      relevantIngredients: this.getRelevantIngredients()
-
+      relevantIngredients: this.getRelevantIngredients(CATEGORY, this.ingredients)
     };
   },
   methods: {
-    // from all ingredients, get only the ones that match our categoryNumber
-    getRelevantIngredients: function() {
-        console.log(this.categorynumber) //this i undefined
-      return this.ingredients.filter(i => i.category === 4); //we want to write this.categorynumber instead of 6, but is undefined
-
-    },
-    
     incrementCounter: function() {
       this.counter += 1;
       // sending 'increment' message to parent component or view so that it

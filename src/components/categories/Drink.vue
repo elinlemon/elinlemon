@@ -1,52 +1,35 @@
 <template>
-    <div v-if="relevantIngredients !== undefined">
-        <h1>{{uiLabels.chooseDrink}}</h1>
-        {{this.categorynumber}}
-        <p>this category contains {{this.relevantIngredients.length}} items</p>
 
-        <IngredientGrid :ingredients="this.relevantIngredients"></IngredientGrid>
+   <div>
+    <h1>Pick your drink</h1>
+    <IngredientGrid :ingredients="this.relevantIngredients"></IngredientGrid>
+  </div>
 
-    </div>
 </template>
 <script>
+    import IngredientCategory from "./IngredientCategory.js";
+import IngredientGrid from "../IngredientGrid";
 
-    import IngredientGrid from "../IngredientGrid";
+const CATEGORY = 6;
 
-    export default {
-        name: 'Drinks',
-        components: {
-            IngredientGrid
-        },
-        props: {
-            item: Object,
-            lang: String,
-            ingredients: Array,
-            categorynumber: Number
-
-        },
-        data: function () {
-            return {
-                counter: 0,
-                relevantIngredients: this.getRelevantIngredients()
-
-            };
-        },
-        methods: {
-            // from all ingredients, get only the ones that match our categoryNumber
-            getRelevantIngredients: function() {
-                console.log(this.categorynumber) //this i undefined
-                return this.ingredients.filter(i => i.category === 6); //we want to write this.categorynumber instead of 6, but is undefined
-
-            },
-
-            incrementCounter: function() {
-                this.counter += 1;
-                // sending 'increment' message to parent component or view so that it
-                // can catch it with v-on:increment in the component declaration
-                this.$emit('increment');
-            }
-        }
-    }
+export default {
+  name: 'Drink',
+  mixins: [IngredientCategory],
+  components: {
+    IngredientGrid
+  },
+  props: {
+    item: Object,
+    lang: String,
+    ingredients: Array
+  },
+  data: function () {
+    return {
+      counter: 0,
+      relevantIngredients: this.getRelevantIngredients(CATEGORY, this.ingredients)
+    };
+  }
+}
 </script>
 <style scoped>
   

@@ -1,23 +1,33 @@
 <template>
+
   <div>
-      hello from Toppings in {{lang}}
+    <h1>Pick your topping</h1>
+    <IngredientGrid :ingredients="this.relevantIngredients"></IngredientGrid>
   </div>
+
 </template>
 <script>
-const CATEGORY_NUMBER = 2;
+import IngredientCategory from "./IngredientCategory.js";
+import IngredientGrid from "../IngredientGrid";
+
+const CATEGORY = 2;
 
 export default {
-  name: 'Toppings',
+  name: 'Topping',
+  mixins: [IngredientCategory],
+  components: {
+    IngredientGrid
+  },
   props: {
     item: Object,
-    lang: String
+    lang: String,
+    ingredients: Array
   },
-    data: function () {
+  data: function () {
     return {
-      categoryNumber: 2
+      counter: 0,
+      relevantIngredients: this.getRelevantIngredients(CATEGORY, this.ingredients)
     };
-  },
-  methods: {
   }
 }
 </script>
