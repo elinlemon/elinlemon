@@ -47,12 +47,12 @@
 //components
 import Ingredient from "@/components/Ingredient.vue";
 import OrderItem from "@/components/OrderItem.vue";
-import Bread from "@/components/categories/Bread.vue";
-import Protein from "@/components/categories/Protein.vue";
-import Topping from "@/components/categories/Topping.vue";
-import Dressing from "@/components/categories/Dressing.vue";
-import Side from "@/components/categories/Side.vue";
-import Drink from "@/components/categories/Drink.vue";
+// import Bread from "@/components/categories/Bread.vue";
+// import Protein from "@/components/categories/Protein.vue";
+// import Topping from "@/components/categories/Topping.vue";
+// import Dressing from "@/components/categories/Dressing.vue";
+// import Side from "@/components/categories/Side.vue";
+// import Drink from "@/components/categories/Drink.vue";
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from "@/components/sharedVueStuff.js";
@@ -63,9 +63,9 @@ export default {
   name: "Ordering",
   components: {
     Ingredient,
-    OrderItem,
-    Bread,
-    Protein
+    OrderItem
+    // Bread,
+    // Protein
     // Topping,
     // Dressing,
     // Side,

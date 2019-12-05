@@ -7,7 +7,6 @@ var sharedVueStuff = {
       orders: {},
       uiLabels: {},
       ingredients: {},
-      categorynumber: {},
       lang: "en"
     }
   },
@@ -37,11 +36,6 @@ var sharedVueStuff = {
         this.lang = "en";
       }
       this.$store.state.socket.emit('switchLang', this.lang);
-    },
-
-    // from all ingredients, get only the ones that match our categoryNumber
-    getRelevantIngredients: function(allIngredients, categorynumber) {
-      return allIngredients.filter(i => i.category === categorynumber);
     },
   }
 };
