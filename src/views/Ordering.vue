@@ -1,6 +1,8 @@
 <template>
+  
   <!-- Main template div -->
-  <div>
+  <div class="root-container">
+
     <!-- Welcome view -->
     <div class="welcome-container" v-if="location === undefined">
       <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
@@ -15,8 +17,9 @@
 
     <!-- Main view -->
     <div class="ordering-container" v-if="location !== undefined">
-
-      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+      <div class="header-container">
+        <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+      </div>
 
       <div class="main-container">
         <div class="category-buttons-container">
@@ -39,15 +42,18 @@
         
         </div>
 
-        <div class="your-order-section">
-          {{uiLabels.yourOrder}}
-          <button>{{uiLabels.newOrder}}</button>
-        </div>
+        <div class="your-order-container">
+          <div class="ordered-items-container">
+            <span>{{uiLabels.yourOrder}}</span>
+            <button>{{uiLabels.newOrder}}</button>
+          </div>
 
-        <div class="place-order">
-          <button>{{uiLabels.placeOrder}}</button>
+          <div class="place-order-container">
+            <button>{{uiLabels.placeOrder}}</button>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -133,6 +139,10 @@ export default {
 };
 </script>
 <style scoped>
+.root-container {
+  height: 100%;
+}
+
 .welcome-container {
   display: flex;
   flex-direction: column;
@@ -144,11 +154,18 @@ export default {
 }
 
 .ordering-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+.header-container {
+  flex: 0.1;
+  max-height: 80px;
+  align-self: center;
 }
 .main-container {
-  padding-top: 1em;
+  flex: 0.9;
   display: flex;
 }
 .category-container {
@@ -156,17 +173,24 @@ export default {
 }
 .category-buttons-container {
   flex: 0.2;
+  max-width: 300px;
   padding-right: 3em;
   display: flex;
   flex-direction: column;
 }
 
-.your-order-section {
+.your-order-container {
+
   border: 3px dashed;
   position: right;
+  display: flex;
+  flex-direction: column;
 }
-.place-order {
-  position: right;
-  margin-top: 100px;
+.ordered-items-container {
+  flex: 0.5;
 }
+.place-order-container {
+  /* position: right; */
+}
+
 </style>
