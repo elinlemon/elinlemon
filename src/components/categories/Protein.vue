@@ -8,14 +8,14 @@
 </template>
 <script>
 
-import IngredientCategory from "./IngredientCategory.js";
+import CategoryMixin from "./CategoryMixin.js";
 import IngredientGrid from "../IngredientGrid";
 
 const CATEGORY = 1;
 
 export default {
   name: 'Protein',
-  mixins: [IngredientCategory],
+  mixins: [CategoryMixin],
   components: {
     IngredientGrid
   },
