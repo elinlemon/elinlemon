@@ -7,6 +7,7 @@ var sharedVueStuff = {
       orders: {},
       uiLabels: {},
       ingredients: {},
+      categorynumber: {},
       lang: "en"
     }
   },
@@ -39,8 +40,8 @@ var sharedVueStuff = {
     },
 
     // from all ingredients, get only the ones that match our categoryNumber
-    getRelevantIngredients: function(allIngredients, categoryNumber) {
-      return allIngredients.filter(i => i.category === categoryNumber);
+    getRelevantIngredients: function(allIngredients, categorynumber) {
+      return allIngredients.filter(i => i.category === categorynumber);
     },
   }
 };

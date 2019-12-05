@@ -1,6 +1,7 @@
 <template>
   <div v-if="relevantIngredients !== undefined">
       <p>Choose your bread {{this.lang}}</p>
+    {{this.categorynumber}}
       <p>this category contains {{this.relevantIngredients.length}} items</p>
 
       <IngredientGrid :ingredients="this.relevantIngredients"></IngredientGrid>
@@ -25,19 +26,23 @@ export default {
   props: {
     item: Object,
     lang: String,
-    ingredients: Array,
-    categorynumber: Number
+      categorynumber: Number,
+    ingredients: Array
+
   },
   data: function () {
     return {
       counter: 0,
       relevantIngredients: this.getRelevantIngredients()
+
     };
   },
   methods: {
     // from all ingredients, get only the ones that match our categoryNumber
     getRelevantIngredients: function() {
-      return this.ingredients.filter(i => i.category === this.categorynumber);
+        console.log(this.categorynumber) //this i undefined
+      return this.ingredients.filter(i => i.category === 6); //we want to write this.categorynumber instead of 6, but is undefined
+
     },
     
     incrementCounter: function() {

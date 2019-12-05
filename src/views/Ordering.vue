@@ -17,18 +17,17 @@
     <div class="main-container" v-if="location !== undefined">
       <!-- TODO: Remember to add uiLabels, ask for help -->
       <div class="category-buttons-container">
-        <button v-on:click="setCurrentCategory('bread')">{{uiLabels.bread}}</button>
-        <button v-on:click="setCurrentCategory('protein')">{{uiLabels.protein}}</button>
-        <button v-on:click="setCurrentCategory('toppings')">{{uiLabels.toppings}}</button>
-        <button v-on:click="setCurrentCategory('dressing')">{{uiLabels.dressing}}</button>
-        <button v-on:click="setCurrentCategory('sides')">{{uiLabels.sides}}</button>
-        <button v-on:click="setCurrentCategory('drinks')">{{uiLabels.drinks}}</button>
+        <button v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
+        <button v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
+        <button v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
+        <button v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
+        <button v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
+        <button v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
       </div>
 
-      <!-- Visible by default, don't need the if -->
+      <!--Conacting component bread with the right categorynumber-->
       <div class="category-container">
-        <Bread lang="en" :ingredients="this.ingredients" v-bind:categorynumber="5"></Bread>
-        <Protein v-if="currentCategory === 'protein'" lang="en" :ingredients="this.ingredients"></Protein>
+        <Bread lang="en" :ingredients="this.ingredients" v-bind:categorynumber = this.categorynumber></Bread>
       </div>
 
       <div class="your-order-section">
@@ -82,7 +81,8 @@ export default {
       price: 0,
       orderNumber: "",
       currentCategory: "bread",
-      ingredients: this.ingredients
+      ingredients: this.ingredients,
+        categorynumber: this.setCurrentCategory()
     };
   },
   created: function() {
@@ -118,9 +118,9 @@ export default {
     setLocation: function(location) {
       this.location = location;
     },
-//Ändra så det sätter nummer istället
+
     setCurrentCategory: function(category) {
-      this.catergorynumber = category;
+      this.categorynumber = category;
     }
   }
 };
