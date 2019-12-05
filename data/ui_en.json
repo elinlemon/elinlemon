@@ -25,5 +25,9 @@
   "dressing": "Dressing",
   "toppings": "Toppings",
   "sides": "Sides",
-  "drinks": "Drinks"
+  "drinks": "Drinks",
+  "chooseBread": "Choose your bread",
+  "chooseProtein": "Choose your proteins",
+  "chooseDrink": "Choose your drinks",
+  "chooseSides": "Choose your sides"
 }

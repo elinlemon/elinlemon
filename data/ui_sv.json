@@ -12,7 +12,6 @@
   "ordersInQueue" : "Beställningar att förbereda",
   "ordersTrending" : "Populära beställningar",
   "placeOrder" : "Beställ",
-  "sideorders" : "Tillbehör",
   "ingredients" : "Ingredienser",
   "ready" : "Klart",
   "order" : "Min burgare",
@@ -25,5 +24,9 @@
   "dressing": "Dressing",
   "toppings": "Toppings",
   "sides": "Tillbehör",
-  "drinks": "Dryck"
+  "drinks": "Dryck",
+  "chooseBread": "Välj bröd",
+  "chooseProtein": "Välj protein",
+  "chooseDrink": "Välj dryck",
+  "chooseSides": "Välj tillbehör"
 }

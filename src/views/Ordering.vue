@@ -15,7 +15,7 @@
 
     <!-- Main view -->
     <div class="main-container" v-if="location !== undefined">
-      <!-- TODO: Remember to add uiLabels, ask for help -->
+
       <div class="category-buttons-container">
         <button v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
         <button v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
@@ -82,7 +82,7 @@ export default {
       orderNumber: "",
       currentCategory: "bread",
       ingredients: this.ingredients,
-        categorynumber: this.setCurrentCategory()
+      categorynumber: this.categorynumber
     };
   },
   created: function() {
@@ -153,7 +153,8 @@ export default {
   border: 3px dashed;
   position: right;
 }
-.place-or-add-order {
+.place-order {
   position: right;
+  margin-top: 100px;
 }
 </style>

@@ -9,7 +9,7 @@ let router = new Router({
     {
       path: '/',
       meta: {
-        title: 'Kraft Burgers',
+        title: 'Crafty Burgers',
       },
       name: 'ordering',
       component: Ordering

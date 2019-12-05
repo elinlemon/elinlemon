@@ -1,6 +1,6 @@
 <template>
   <div v-if="relevantIngredients !== undefined">
-      <p>Choose your bread {{this.lang}}</p>
+      <h1>{{uiLabels.chooseBread}}</h1>
     {{this.categorynumber}}
       <p>this category contains {{this.relevantIngredients.length}} items</p>
 
@@ -26,8 +26,8 @@ export default {
   props: {
     item: Object,
     lang: String,
-      categorynumber: Number,
-    ingredients: Array
+    ingredients: Array,
+    categorynumber: Number
 
   },
   data: function () {
@@ -41,7 +41,7 @@ export default {
     // from all ingredients, get only the ones that match our categoryNumber
     getRelevantIngredients: function() {
         console.log(this.categorynumber) //this i undefined
-      return this.ingredients.filter(i => i.category === 6); //we want to write this.categorynumber instead of 6, but is undefined
+      return this.ingredients.filter(i => i.category === 4); //we want to write this.categorynumber instead of 6, but is undefined
 
     },
     
