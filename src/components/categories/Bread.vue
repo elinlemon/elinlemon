@@ -2,7 +2,10 @@
 
   <div>
     <h1>Pick your bread</h1>
-    <IngredientGrid :ingredients="this.relevantIngredients"></IngredientGrid>
+    <IngredientGrid :ingredients="this.relevantIngredients" 
+                    v-on:ingredientAdded="ingredientAdded(ingredientId)"
+                    v-on:ingredientRemoved="ingredientRemoved(ingredientId)">
+    </IngredientGrid>
   </div>
 
 </template>
@@ -31,6 +34,14 @@ export default {
     };
   },
   methods: {
+    ingredientAdded: function(ingredientId) {
+      console.log("increment");
+    },
+
+    ingredientRemoved: function(ingredientId) {
+
+    },
+
     incrementCounter: function() {
       this.counter += 1;
       // sending 'increment' message to parent component or view so that it
