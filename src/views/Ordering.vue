@@ -1,5 +1,5 @@
 <template>
-  
+
   <!-- Main template div -->
   <div class="root-container">
 
@@ -19,6 +19,7 @@
     <div class="ordering-container" v-if="location !== undefined">
       <div class="header-container">
         <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+        <button v-on:click="backtostartpage()">{{ uiLabels.exit }}</button>
       </div>
 
       <div class="main-container">
@@ -39,7 +40,7 @@
           <Dressing :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 3"></Dressing>
           <Side :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 5"></Side>
           <Drink :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 6"></Drink>
-        
+
         </div>
 
         <div class="your-order-container">
@@ -71,7 +72,7 @@ import Drink from "@/components/categories/Drink.vue";
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from "@/components/sharedVueStuff.js";
 
-/* instead of defining a Vue instance, export default allows the only 
+/* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
   name: "Ordering",
@@ -134,6 +135,9 @@ export default {
 
     setCurrentCategory: function(category) {
       this.currentCategory = category;
+    },
+    backtostartpage: function(){
+      this.location = undefined;
     }
   }
 };

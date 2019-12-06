@@ -28,5 +28,6 @@
   "chooseBread": "Välj bröd",
   "chooseProtein": "Välj protein",
   "chooseDrink": "Välj dryck",
-  "chooseSides": "Välj tillbehör"
+  "chooseSides": "Välj tillbehör",
+  "exit": "Tillbaka till startsidan"
 }
