@@ -1,38 +1,39 @@
 <template>
 
   <div>
-    <h1>Pick your bread</h1>
-    <IngredientGrid :ingredients="this.relevantIngredients" 
-                    v-on:ingredientAdded="ingredientAdded(ingredientId)"
-                    v-on:ingredientRemoved="ingredientRemoved(ingredientId)">
+    <IngredientGrid :ingredients="relevantIngredients">
     </IngredientGrid>
   </div>
 
 </template>
 <script>
 
-import CategoryMixin from "./CategoryMixin.js";
-import IngredientGrid from "../IngredientGrid";
+    import IngredientGrid from "../IngredientGrid";
 
-const CATEGORY = 4;
 
 export default {
   name: 'Bread',
-  mixins: [CategoryMixin],
+  //mixins: [CategoryMixin],
   components: {
     IngredientGrid
   },
   props: {
     item: Object,
-    lang: String,
-    ingredients: Array
+    ingredients: Array,
+      categoryNumber: Number,
+      uiLabels: Object
   },
   data: function () {
     return {
       counter: 0,
-      relevantIngredients: this.getRelevantIngredients(CATEGORY, this.ingredients)
     };
   },
+    computed: {
+        // from all ingredients, get only the ones that match our categoryNumber
+        relevantIngredients: function() {
+            return this.ingredients.filter(i => i.category === this.categoryNumber); //we want to write this.categorynumber instead of 6, but is undefined
+        }
+    },
   methods: {
     ingredientAdded: function(ingredientId) {
       console.log("increment");

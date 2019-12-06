@@ -1,5 +1,5 @@
 <template>
-  
+
   <!-- Main template div -->
   <div class="root-container">
 
@@ -16,9 +16,12 @@
     </div>
 
     <!-- Main view -->
-    <div class="ordering-container" v-if="location !== undefined">
-      <div class="header-container">
-        <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+    <div class="ordering-container" v-else>
+      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+      <button v-on:click="backtostartpage()">{{ uiLabels.cancelOrder }}</button>
+      <div class="category-container">
+        <Bread :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory"/>
+
       </div>
 
       <div class="main-container">
@@ -32,20 +35,13 @@
         </div>
 
         <!--Conacting component bread with the right categorynumber-->
-        <div class="category-container">
-          <Bread :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 4"></Bread>
-          <Protein :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 1"></Protein>
-          <Topping :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 2"></Topping>
-          <Dressing :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 3"></Dressing>
-          <Side :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 5"></Side>
-          <Drink :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 6"></Drink>
-        
-        </div>
+
 
         <div class="your-order-container">
           <div class="ordered-items-container">
             <span>{{uiLabels.yourOrder}}</span>
             <button>{{uiLabels.newOrder}}</button>
+            <span>{{chosenIngredients.map(item => item["ingredient_" + lang]).join(', ')}},{{ price}}</span>
           </div>
 
           <div class="place-order-container">
@@ -53,144 +49,143 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
 <script>
+    import Ingredient from "@/components/Ingredient.vue";
+    import OrderItem from "@/components/OrderItem.vue";
+    import Bread from "@/components/categories/Bread.vue";
 
-import Ingredient from "@/components/Ingredient.vue";
-import OrderItem from "@/components/OrderItem.vue";
-import Bread from "@/components/categories/Bread.vue";
-import Protein from "@/components/categories/Protein.vue";
-import Topping from "@/components/categories/Topping.vue";
-import Dressing from "@/components/categories/Dressing.vue";
-import Side from "@/components/categories/Side.vue";
-import Drink from "@/components/categories/Drink.vue";
+    //import methods and data that are shared between ordering and kitchen views
+    import sharedVueStuff from "@/components/sharedVueStuff.js";
 
-//import methods and data that are shared between ordering and kitchen views
-import sharedVueStuff from "@/components/sharedVueStuff.js";
 
-/* instead of defining a Vue instance, export default allows the only 
-necessary Vue instance (found in main.js) to import your data and methods */
-export default {
-  name: "Ordering",
-  components: {
-    Ingredient,
-    OrderItem,
-    Bread,
-    Protein,
-    Topping,
-    Dressing,
-    Side,
-    Drink
-  },
-  mixins: [sharedVueStuff], // include stuff that is used in both
-  // the ordering system and the kitchen
-  data: function() {
-    //Not that data is a function!
-    return {
-      location: undefined,
-      chosenIngredients: [],
-      price: 0,
-      orderNumber: "",
-      currentCategory: 4,   // == bread
-      ingredients: this.ingredients
+    /* instead of defining a Vue instance, export default allows the only
+    necessary Vue instance (found in main.js) to import your data and methods */
+    export default {
+        name: "Ordering",
+        components: {
+            Ingredient,
+            OrderItem,
+            Bread
+        },
+        mixins: [sharedVueStuff], // include stuff that is used in both
+        // the ordering system and the kitchen
+        data: function () {
+            //Not that data is a function!
+            return {
+                location: undefined,
+                chosenIngredients: [],
+                price: 0,
+                orderNumber: "",
+                currentCategory: 4,   // == bread
+                ingredients: this.ingredients
+            };
+        },
+        created: function () {
+            this.$store.state.socket.on(
+                "orderNumber",
+                function (data) {
+                    this.orderNumber = data;
+                }.bind(this)
+            );
+        },
+        methods: {
+            addToOrder: function (item) {
+                this.chosenIngredients.push(item);
+                this.price += +item.selling_price;
+            },
+            placeOrder: function () {
+                var i,
+                    //Wrap the order in an object
+                    order = {
+                        ingredients: this.chosenIngredients,
+                        price: this.price
+                    };
+                // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+                this.$store.state.socket.emit("order", {order: order});
+                //set all counters to 0. Notice the use of $refs
+                for (i = 0; i < this.$refs.ingredient.length; i += 1) {
+                    this.$refs.ingredient[i].resetCounter();
+                }
+                this.price = 0;
+                this.chosenIngredients = [];
+            },
+
+            setLocation: function (location) {
+                this.location = location;
+            },
+
+            setCurrentCategory: function (category) {
+                this.currentCategory = category;
+            },
+            backtostartpage: function(){
+                this.location = undefined;
+            }
+        }
     };
-  },
-  created: function() {
-    this.$store.state.socket.on(
-      "orderNumber",
-      function(data) {
-        this.orderNumber = data;
-      }.bind(this)
-    );
-  },
-  methods: {
-    addToOrder: function(item) {
-      this.chosenIngredients.push(item);
-      this.price += +item.selling_price;
-    },
-    placeOrder: function() {
-      var i,
-        //Wrap the order in an object
-        order = {
-          ingredients: this.chosenIngredients,
-          price: this.price
-        };
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      this.$store.state.socket.emit("order", { order: order });
-      //set all counters to 0. Notice the use of $refs
-      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
-      }
-      this.price = 0;
-      this.chosenIngredients = [];
-    },
-
-    setLocation: function(location) {
-      this.location = location;
-    },
-
-    setCurrentCategory: function(category) {
-      this.currentCategory = category;
-    }
-  }
-};
 </script>
 <style scoped>
-.root-container {
-  height: 100%;
-}
+  .root-container {
+    height: 100%;
+  }
 
-.welcome-container {
-  display: flex;
-  flex-direction: column;
-}
-.order-option-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+  }
 
-.ordering-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.header-container {
-  flex: 0.1;
-  max-height: 80px;
-  align-self: center;
-}
-.main-container {
-  flex: 0.9;
-  display: flex;
-}
-.category-container {
-  flex: 0.8;
-}
-.category-buttons-container {
-  flex: 0.2;
-  max-width: 300px;
-  padding-right: 3em;
-  display: flex;
-  flex-direction: column;
-}
+  .order-option-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 
-.your-order-container {
+  .ordering-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
-  border: 3px dashed;
-  position: right;
-  display: flex;
-  flex-direction: column;
-}
-.ordered-items-container {
-  flex: 0.5;
-}
-.place-order-container {
-  /* position: right; */
-}
+  .header-container {
+    flex: 0.1;
+    max-height: 80px;
+    align-self: center;
+  }
+
+  .main-container {
+    flex: 0.9;
+    display: flex;
+  }
+
+  .category-container {
+    flex: 0.8;
+  }
+
+  .category-buttons-container {
+    flex: 0.2;
+    max-width: 300px;
+    padding-right: 3em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .your-order-container {
+
+    border: 3px dashed;
+    position: right;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ordered-items-container {
+    flex: 0.5;
+  }
+
+  .place-order-container {
+    /* position: right; */
+  }
 
 </style>
