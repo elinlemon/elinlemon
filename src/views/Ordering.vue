@@ -33,7 +33,6 @@
           <button v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
         </div>
 
-        <!--Conacting component bread with the right categorynumber-->
 
         <div class="your-order-container">
           <div class="ordered-items-container">
@@ -81,7 +80,7 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-      currentCategory: 4,   // == bread
+      currentCategory: 4,   // == bread default
       ingredients: this.ingredients
     };
   },
@@ -122,7 +121,8 @@ export default {
     setCurrentCategory: function(category) {
       this.currentCategory = category;
     },
-    backtostartpage: function(){
+
+    backtostartpage: function () {
       this.location = undefined;
     }
   }
@@ -190,5 +190,19 @@ export default {
   .place-order-container {
     /* position: right; */
   }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+/*
+  @media (max-width: 420px) {
+    .wrapper {
+      grid-template-columns: 1fr;
+    }
+    .ingredient {
+      width: calc(100% - 2em);
+    }
+  }*/
 
 </style>

@@ -2,10 +2,6 @@
   <div>
     <!-- need to decide where the number 'counter' should be displayed -->
 
-    <!-- <div class="wrapper">
-        {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
-    </div>-->
-
     <div class="wrapper">
       <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
         {{ingredient["ingredient_" + lang ]}},{{ ingredient.selling_price}}:-
@@ -48,7 +44,7 @@ export default {
 .wrapper {
   display: grid;
   grid-gap: 1em;
-  grid-template-columns: repeat(auto-fit, calc(9em + 15px));
+  grid-template-columns: repeat(auto-fit, calc(7em + 12px));
   overflow: auto;
 }
 
