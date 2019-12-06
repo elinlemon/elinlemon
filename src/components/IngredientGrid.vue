@@ -8,10 +8,10 @@
 
     <div class="wrapper">
       <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
-        {{ingredient.ingredient_en}}
+        {{ingredient["ingredient_" + lang ]}},{{ ingredient.selling_price}}:-
         <dt>
-          <button class="wrapperButton" v-on:click="addIngredient(ingredient.id)">+</button>
-          <button class="wrapperButton" v-on:click="removeIngredient(ingredient.id)">-</button>
+          <button class="wrapperButton" v-on:click="addIngredient(ingredient)">+</button>
+          <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
         </dt>
       </div>
     </div>
@@ -32,13 +32,13 @@ export default {
     };
   },
   methods: {
-    addIngredient: function(ingredientId) {
+    addIngredient: function(ingredient) {
       this.counter += 1;
-      this.$emit('ingredientAdded', ingredientId);
+      this.$emit('ingredientAdded', ingredient);
     },
-    removeIngredient: function() {
+    removeIngredient: function(ingredient) {
       this.counter -= 1;
-      this.$emit('ingredientRemoved', ingredientId);
+      this.$emit('ingredientRemoved', ingredient);
     }
   }
 };

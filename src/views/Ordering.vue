@@ -35,18 +35,6 @@
 
         <!--Conacting component bread with the right categorynumber-->
 
-
-        <div class="category-container">
-          <Bread :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 4"></Bread>
-          <Protein :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 1"></Protein>
-          <Topping :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 2"></Topping>
-          <Dressing :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 3"></Dressing>
-          <Side :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 5"></Side>
-          <Drink :lang="this.lang" :ingredients="this.ingredients" v-if="this.currentCategory === 6"></Drink>
-
-        </div>
-
-
         <div class="your-order-container">
           <div class="ordered-items-container">
             <span>{{uiLabels.yourOrder}}</span>

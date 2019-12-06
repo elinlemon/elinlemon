@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <IngredientGrid :ingredients="relevantIngredients">
+    <IngredientGrid :ingredients="relevantIngredients" :lang="lang" v-on:ingredientAdded="ingredientAdded">
     </IngredientGrid>
   </div>
 
@@ -21,7 +21,8 @@ export default {
     item: Object,
     ingredients: Array,
       categoryNumber: Number,
-      uiLabels: Object
+      uiLabels: Object,
+      lang: String
   },
   data: function () {
     return {
@@ -35,12 +36,12 @@ export default {
         }
     },
   methods: {
-    ingredientAdded: function(ingredientId) {
-      console.log("increment");
+    ingredientAdded: function(ingredient) {
+      console.log(ingredient);
     },
 
-    ingredientRemoved: function(ingredientId) {
-
+    ingredientRemoved: function(ingredient) {
+        console.log(ingredient);
     },
 
     incrementCounter: function() {
