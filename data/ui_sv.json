@@ -25,8 +25,10 @@
   "toppings": "Toppings",
   "sides": "Tillbehör",
   "drinks": "Dryck",
-  "chooseBread": "Välj bröd",
-  "chooseProtein": "Välj protein",
-  "chooseDrink": "Välj dryck",
-  "chooseSides": "Välj tillbehör"
+  "choose_1": "Välj dina protein",
+  "choose_2": "Välj dina toppings",
+  "choose_3": "Välj dina dressingar",
+  "choose_4": "Välj dina bröd",
+  "choose_5": "Välj dina tillbehör",
+  "choose_6": "Välj din dryck"
 }

@@ -19,7 +19,7 @@
 
       <!--Contacting component bread with the right category-->
       <div class="category-container">
-        <Bread :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
+        <IngredientCategory :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
       </div>
 
 
@@ -59,7 +59,7 @@
 
 import Ingredient from "@/components/Ingredient.vue";
 import OrderItem from "@/components/OrderItem.vue";
-import Bread from "@/components/categories/Bread.vue";
+import IngredientCategory from "@/components/categories/IngredientCategory.vue";
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from "@/components/sharedVueStuff.js";
 
@@ -70,7 +70,7 @@ export default {
   components: {
     Ingredient,
     OrderItem,
-    Bread,
+    IngredientCategory,
 
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
@@ -140,6 +140,8 @@ export default {
 
     setLocation: function(location) {
       this.location = location;
+      this.uniqueIng = {};
+      this.price = 0;
     },
 
     setCurrentCategory: function(category) {
