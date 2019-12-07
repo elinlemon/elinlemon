@@ -19,7 +19,7 @@
 
       <!--Contacting component bread with the right category-->
       <div class="category-container">
-        <Bread :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory"/>
+        <Bread :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
       </div>
 
 
@@ -38,7 +38,9 @@
           <div class="ordered-items-container">
             <span>{{uiLabels.yourOrder}}</span>
             <button>{{uiLabels.newOrder}}</button>
-            <span>{{chosenIngredients.map(item => item["ingredient_" + lang]).join(', ')}},{{ price}}</span>
+            <span v-for="(key, value) in uniqueIng">
+              <dt>{{key}} {{value}}</dt></span>
+            <span>Tot: {{ price}} kr</span>
           </div>
 
           <div class="place-order-container">
@@ -78,6 +80,7 @@ export default {
     return {
       location: undefined,
       chosenIngredients: [],
+      uniqueIng: {},
       price: 0,
       orderNumber: "",
       currentCategory: 4,   // == bread default
@@ -93,10 +96,31 @@ export default {
     );
   },
   methods: {
-    addToOrder: function(item) {
-      this.chosenIngredients.push(item);
-      this.price += +item.selling_price;
+    ingredientAdded: function(ingredient) {
+      this.chosenIngredients.push(ingredient.ingredient_en);
+      this.price += +ingredient.selling_price;
+      this.countUniqueIngredients();
     },
+    ingredientRemoved: function(ingredient) {
+      for( var i = 0; i <this.chosenIngredients.length; i++){
+        if (this.chosenIngredients[i] === ingredient.ingredient_en) {
+          this.chosenIngredients.splice(i,1);
+          this.price += -ingredient.selling_price;
+          this.countUniqueIngredients();
+            break;
+        }
+        }
+    },
+    countUniqueIngredients: function () {
+      this.uniqueIng = this.chosenIngredients.reduce(function(acc, curr){
+        if(typeof acc[curr] == 'undefined') {
+          acc[curr] = 1; }
+        else { acc[curr] += 1;
+        }
+        return acc;
+      }, {})
+    },
+
     placeOrder: function() {
       var i,
         //Wrap the order in an object
