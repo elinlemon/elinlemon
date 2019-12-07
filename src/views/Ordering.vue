@@ -15,7 +15,7 @@
     <!-- Main view -->
     <div class="ordering-container" v-else>
       <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-      <button v-on:click="backtostartpage()">{{ uiLabels.cancelOrder }}</button>
+      <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
 
       <!--Contacting component bread with the right category-->
       <div class="category-container">
@@ -148,8 +148,9 @@ export default {
       this.currentCategory = category;
     },
 
-    backtostartpage: function () {
+    cancelOrder: function () {
       this.location = undefined;
+      this.currentCategory = 4;
     }
   }
 };
