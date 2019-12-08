@@ -53,9 +53,24 @@
             </div>
 
             <div class="added-items-container">
-              <span v-for="(key, value) in uniqueIng">
-                <dt>{{key}} {{value}}</dt>
-              </span>
+
+              <div class="previous-order-items-container">
+                <div v-for="item in this.allOrders">
+                  <strong>Order:</strong>
+
+                  <span v-for="key in item.ingredients">
+                    <dt>{{key}}</dt>
+                  </span>
+                </div>
+              </div>
+
+              <div class="current-order-items-container">
+                <strong>Current order:</strong>
+                <span v-for="(key, value) in uniqueIng">
+                  <dt>{{key}} {{value}}</dt>
+                </span>
+              </div>
+              
             </div>
           </div>
             
@@ -70,11 +85,7 @@
   </div>
 </template>
 <script>
-
-
-    //import methods and data that are shared between ordering and kitchen views
-
-
+//import methods and data that are shared between ordering and kitchen views
 import Ingredient from "@/components/Ingredient.vue";
 import OrderItem from "@/components/OrderItem.vue";
 import IngredientCategory from "@/components/categories/IngredientCategory.vue";
@@ -102,8 +113,7 @@ export default {
       orderNumber: "",
       currentCategory: 4,   // == bread default
       ingredients: this.ingredients,
-      
-      orders: []    // to store individual orders after clicking "add new order"
+      allOrders: []    // to store individual orders after clicking "add new order"
     };
   },
   created: function() {
@@ -145,10 +155,8 @@ export default {
         ingredients: this.chosenIngredients,
         price: this.price
       };
-      this.orders.push(currentOrder);
-
-      // this.chosenIngredients = [];
-      
+      this.allOrders.push(currentOrder);
+      this.chosenIngredients = [];
     },
 
     placeOrder: function() {
