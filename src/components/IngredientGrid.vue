@@ -4,8 +4,11 @@
 
     <div class="wrapper">
       <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
-        {{ingredient["ingredient_" + lang ]}},{{ ingredient.selling_price}}:-
-        <dt>
+        <center>
+          {{ingredient["ingredient_" + lang ]}},{{ ingredient.selling_price}}:-
+        </center>
+        
+        <dt class="ingredient-controls">
           <button class="wrapperButton" v-on:click="addIngredient(ingredient)">+</button>
           <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
         </dt>
@@ -44,10 +47,20 @@ export default {
 .wrapper {
   display: grid;
   grid-gap: 1em;
-  grid-template-columns: repeat(auto-fit, calc(7em + 12px));
+  grid-template-columns: repeat(auto-fit, calc(9em + 12px));
   overflow: auto;
 }
 
+.ingredItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ingredient-controls {
+  display: flex;
+  justify-content: center;
+}
 .wrapperButton {
   height: 20px;
   width: 20px;

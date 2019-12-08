@@ -3,12 +3,12 @@
     <!-- Welcome view -->
     <div class="welcome-container" v-if="location === undefined">
 
-      <div class="top-container">
+      <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
         <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
       </div>
 
-      <h1>{{uiLabels.welcome}}</h1>
+      <center><h1>{{uiLabels.welcome}}</h1></center>
 
       <div class="order-option-container">
         <button v-on:click="setLocation('eatIn')">{{uiLabels.eatIn}}</button>
@@ -19,7 +19,7 @@
     <!-- Main view -->
     <div class="ordering-container" v-else>
       
-      <div class="top-container">
+      <div class="top-container-2">
 
         <div class="language-container"> 
           <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
@@ -28,7 +28,6 @@
       
         <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
-      <!-- <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button> -->
 
       <div class="main-container">
         <div class="category-buttons-container">
@@ -47,17 +46,24 @@
 
         <div class="your-order-container">
           <div class="ordered-items-container">
-            <span>{{uiLabels.yourOrder}}</span>
-            <button v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
 
-            <span v-for="(key, value) in uniqueIng">
-              <dt>{{key}} {{value}}</dt></span>
+            <div class="top-line-container">
+              <span>{{uiLabels.yourOrder}}</span>
+              <button v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
+            </div>
+
+            <div class="added-items-container">
+              <span v-for="(key, value) in uniqueIng">
+                <dt>{{key}} {{value}}</dt>
+              </span>
+            </div>
+          </div>
+            
+          <div>
             <span>Tot: {{ price}} kr</span>
           </div>
 
-          <div class="place-order-container">
-            <button>{{uiLabels.placeOrder}}</button>
-          </div>
+          <button class="place-order-button">{{uiLabels.placeOrder}}</button>
         </div>
       </div>
     </div>
@@ -190,7 +196,16 @@ export default {
     flex-direction: column;
   }
 
-  .top-container {
+  /* first screen */
+  .top-container-1 {
+    display: flex;
+    padding-bottom: 1em;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* second screen */
+  .top-container-2 {
     display: flex;
     /* justify-content: center; */
     padding-bottom: 1em;
@@ -253,19 +268,26 @@ export default {
   }
 
   .your-order-container {
-
     border: 3px dashed;
-    position: right;
     display: flex;
     flex-direction: column;
+    min-height: 20em;
+    min-width: 10em;
   }
 
   .ordered-items-container {
-    flex: 0.5;
+    flex: 1;
   }
 
-  .place-order-container {
-    /* position: right; */
+  .top-line-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .added-items-container {
+    padding-top: 1em;
+  }
+  .place-order-button {
+    margin-top: 1em;
   }
 
   button:hover {
