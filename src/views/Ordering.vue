@@ -2,7 +2,11 @@
   <div>
     <!-- Welcome view -->
     <div class="welcome-container" v-if="location === undefined">
-      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+
+      <div class="top-container">
+        <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
+        <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
+      </div>
 
       <h1>{{uiLabels.welcome}}</h1>
 
@@ -14,14 +18,17 @@
 
     <!-- Main view -->
     <div class="ordering-container" v-else>
-      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-      <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
+      
+      <div class="top-container">
 
-      <!--Contacting component bread with the right category-->
-      <div class="category-container">
-        <IngredientCategory :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
+        <div class="language-container"> 
+          <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
+          <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
+        </div>
+      
+        <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
-
+      <!-- <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button> -->
 
       <div class="main-container">
         <div class="category-buttons-container">
@@ -33,11 +40,16 @@
           <button v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
         </div>
 
+        <!--Contacting component bread with the right category-->
+        <div class="category-container">
+          <IngredientCategory :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
+        </div>
 
         <div class="your-order-container">
           <div class="ordered-items-container">
             <span>{{uiLabels.yourOrder}}</span>
-            <button>{{uiLabels.newOrder}}</button>
+            <button v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
+
             <span v-for="(key, value) in uniqueIng">
               <dt>{{key}} {{value}}</dt></span>
             <span>Tot: {{ price}} kr</span>
@@ -70,8 +82,7 @@ export default {
   components: {
     Ingredient,
     OrderItem,
-    IngredientCategory,
-
+    IngredientCategory
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
   // the ordering system and the kitchen
@@ -84,7 +95,9 @@ export default {
       price: 0,
       orderNumber: "",
       currentCategory: 4,   // == bread default
-      ingredients: this.ingredients
+      ingredients: this.ingredients,
+      
+      orders: []    // to store individual orders after clicking "add new order"
     };
   },
   created: function() {
@@ -121,6 +134,17 @@ export default {
       }, {})
     },
 
+    addNewOrder: function() {
+      let currentOrder = {
+        ingredients: this.chosenIngredients,
+        price: this.price
+      };
+      this.orders.push(currentOrder);
+
+      // this.chosenIngredients = [];
+      
+    },
+
     placeOrder: function() {
       var i,
         //Wrap the order in an object
@@ -150,7 +174,7 @@ export default {
 
     cancelOrder: function () {
       this.location = undefined;
-      this.currentCategory = 4;
+      this.currentCategory = 4;   
     }
   }
 };
@@ -166,9 +190,34 @@ export default {
     flex-direction: column;
   }
 
+  .top-container {
+    display: flex;
+    /* justify-content: center; */
+    padding-bottom: 1em;
+    justify-content: space-between;
+  } 
+
+  .language-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .swedish-icon {
+    padding-right: 0.5em;
+  }
+
+  .language-icon {
+    opacity: 0.7;
+  }
+
+  .language-icon:hover {
+    opacity: 1;
+
+  }
+
   .order-option-container {
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
   }
 
@@ -186,6 +235,7 @@ export default {
   }
 
   .main-container {
+    padding-top: 3em;
     flex: 0.9;
     display: flex;
   }

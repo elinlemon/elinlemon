@@ -37,6 +37,10 @@ var sharedVueStuff = {
       }
       this.$store.state.socket.emit('switchLang', this.lang);
     },
+    selectLang: function(language) {
+      this.lang = language;
+      this.$store.state.socket.emit('switchLang', this.lang);
+    }
   }
 };
 
