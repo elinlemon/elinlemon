@@ -61,6 +61,7 @@
                 <div v-for="item in this.allOrders">
                   <strong>{{uiLabels.order}}</strong>
 
+                  <!-- this.allOrders needs to be made unique exactly like for the current order items -->
                   <span v-for="key in item.ingredients">
                     <dt>{{key}}</dt>
                   </span>
@@ -200,6 +201,7 @@ export default {
     cancelOrder: function () {
       this.location = undefined;
       this.currentCategory = 4;
+      this.allOrders = [];
     },
     // I am not sure this is te best solution so i have commeted all places that effects this solution
     final_page: function () {
