@@ -16,21 +16,23 @@
       </div>
     </div>
 
+
     <!-- Main view -->
     <div class="ordering-container" v-else>
-      
+
       <div class="top-container-2">
 
-        <div class="language-container"> 
+        <div class="language-container">
           <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
           <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
         </div>
-      
+
         <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
 
-      <div class="main-container">
-        <div class="category-buttons-container">
+      <div class="main-container" >
+                <!-- Is conected to the final_page -->
+        <div class="category-buttons-container" v-show="showmenue">
           <button v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
           <button v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
           <button v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
@@ -40,7 +42,8 @@
         </div>
 
         <!--Contacting component bread with the right category-->
-        <div class="category-container">
+        <!-- Is conected to the final_page -->
+        <div class="category-container" v-show="showmenue">
           <IngredientCategory :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
         </div>
 
@@ -56,7 +59,7 @@
 
               <div class="previous-order-items-container">
                 <div v-for="item in this.allOrders">
-                  <strong>Order:</strong>
+                  <strong>{{uiLabels.order}}</strong>
 
                   <span v-for="key in item.ingredients">
                     <dt>{{key}}</dt>
@@ -65,23 +68,28 @@
               </div>
 
               <div class="current-order-items-container">
-                <strong>Current order:</strong>
+                <strong>{{uiLabels.current_order}}</strong>
                 <span v-for="(key, value) in uniqueIng">
                   <dt>{{key}} {{value}}</dt>
                 </span>
               </div>
-              
+
             </div>
           </div>
-            
+
           <div>
             <span>Tot: {{ price}} kr</span>
           </div>
 
-          <button class="place-order-button">{{uiLabels.placeOrder}}</button>
+<!-- Is conected to the final_page -->
+          <button class="place-order-button" v-on:click="final_page()">{{uiLabels.placeOrder}} </button>
         </div>
       </div>
     </div>
+    <!-- Payment page -->
+        <div class="final-order" >
+
+      </div>
   </div>
 </template>
 <script>
@@ -113,7 +121,8 @@ export default {
       orderNumber: "",
       currentCategory: 4,   // == bread default
       ingredients: this.ingredients,
-      allOrders: []    // to store individual orders after clicking "add new order"
+      allOrders: [],    // to store individual orders after clicking "add new order"
+      showmenue: false,  //Is conected to the final_page
     };
   },
   created: function() {
@@ -180,6 +189,8 @@ export default {
       this.location = location;
       this.uniqueIng = {};
       this.price = 0;
+               // Is conected to the final_page 
+      this.showmenue = true;
     },
 
     setCurrentCategory: function(category) {
@@ -188,10 +199,19 @@ export default {
 
     cancelOrder: function () {
       this.location = undefined;
-      this.currentCategory = 4;   
+      this.currentCategory = 4;
+    },
+    // I am not sure this is te best solution so i have commeted all places that effects this solution
+    final_page: function () {
+    this.showmenue = false;
     }
   }
 };
+
+
+
+
+
 
 </script>
 <style scoped>
@@ -218,7 +238,7 @@ export default {
     /* justify-content: center; */
     padding-bottom: 1em;
     justify-content: space-between;
-  } 
+  }
 
   .language-container {
     flex: 1;
