@@ -1,15 +1,30 @@
-import { isEqual } from "lodash";
+import {
+    isEqual
+} from "lodash";
 
 export class ShoppingCart {
 
-    constructor() { 
-        this.menuItems = []; 
+    constructor() {
+        this.menuItems = [];
+        this.totalPrice = 0;
     }
 
     addMenuItem(menuItem) {
         menuItem.order = this.menuItems.length + 1;
         this.menuItems.push(menuItem);
-        console.log(this);
+        this.totalPrice += menuItem.totalPrice;
+    }
+
+    removeMenuItem(menuItem) {
+        for (let i = 0; i < this.menu.length; i++) {
+            let current = this.ingredients[i];
+
+            if (isEqual(current, menuItem)) {
+                this.menuItems.splice(i, 1);
+                this.totalPrice -= menuItem.totalPrice;
+                break;
+            }
+        }
     }
 }
 
@@ -34,7 +49,7 @@ export class MenuItem {
                 this.ingredients.splice(i, 1);
                 this.totalPrice -= ingredient.selling_price;
                 break
-            }   
+            }
         }
     }
 
@@ -42,7 +57,7 @@ export class MenuItem {
         let uniqueIngredients = _.uniqBy(this.ingredients, 'ingredient_id');
 
         for (let uq in uniqueIngredients) {
-            
+
             console.log(uq);
 
         }
@@ -54,8 +69,6 @@ export class MenuItem {
         /*
         return initial ingredient object but add "count" attribute
         */
-    
+
     }
 }
-
-
