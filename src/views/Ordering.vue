@@ -149,13 +149,13 @@ export default {
   },
   methods: {
     ingredientAdded: function(ingredient) {
-      this.chosenIngredients.push(ingredient.ingredient_en);
+      this.chosenIngredients.push(ingredient['ingredient_' + this.lang]);
       this.price += +ingredient.selling_price;
       this.countUniqueIngredients();
     },
     ingredientRemoved: function(ingredient) {
       for( var i = 0; i <this.chosenIngredients.length; i++){
-        if (this.chosenIngredients[i] === ingredient.ingredient_en) {
+        if (this.chosenIngredients[i] === ingredient['ingredient_' + this.lang]) {
           this.chosenIngredients.splice(i,1);
           this.price += -ingredient.selling_price;
           this.countUniqueIngredients();
@@ -321,6 +321,8 @@ export default {
     flex: 0.2;
     max-width: 300px;
     padding-right: 3em;
+    padding-left: 2em;
+    padding-top: 5em;
     display: flex;
     flex-direction: column;
   }
