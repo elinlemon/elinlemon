@@ -54,7 +54,6 @@
 
             <div class="top-line-container">
               <span>{{uiLabels.yourOrder}}</span>
-              <button v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
             </div>
 
             <div class="added-items-container">
@@ -90,10 +89,12 @@
             <span>Tot: {{ price}} kr</span>
           </div>
 
-<!-- Is conected to the final_page -->
-          <div v-if ="showmenue ===true">
-          <button class="place-order-button" v-on:click="final_page()">{{uiLabels.placeOrder}} </button>
-        </div>
+          <!-- Is conected to the final_page -->
+          <div v-if="showmenue" class="checkout-controls-container">
+            <button class="checkout-buttons" v-on:click="final_page()">{{uiLabels.placeOrder}} </button>
+            <button class="checkout-buttons" v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -351,8 +352,13 @@ export default {
   .added-items-container {
     padding-top: 1em;
   }
-  .place-order-button {
+  .checkout-controls-container {
+    display: flex;
+    justify-content: space-between;
     margin-top: 1em;
+  }
+  .checkout-buttons {
+    font-size: 1em;
   }
 
   button:hover {
