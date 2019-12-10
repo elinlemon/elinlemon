@@ -8,11 +8,11 @@
         <center>
 
           <div class="allergy-icons-container">
-            <div v-if = "ingredient.milk_free"> <img class="milkfree-icon" src="milk-free-symbol.png" height="20" width="auto" > </div>
-            <div v-if = "ingredient.gluten_free"> <img class="glutenfree-icon" src="gluten-free-symbol.jpg" height="20" width="auto"> </div>
-            <div v-if = "ingredient.vegan"> <img class="vegan-icon" src="vegan-symbol.png" height="20" width="auto"> </div>
+            <div v-if = "ingredient.milk_free"> <img class="allergy-icons-pic" src="milk-free-symbol.png"> </div>
+            <div v-if = "ingredient.gluten_free"> <img class="allergy-icons-pic" src="gluten-free-symbol.jpg"> </div>
+            <div v-if = "ingredient.vegan"> <img class="allergy-icons-pic" src="vegan-symbol.png"> </div>
           </div>
-          
+
           {{ingredient["ingredient_" + lang ]}},{{ ingredient.selling_price}}:-
         </center>
 
@@ -81,5 +81,11 @@ export default {
   display: flex;
   justify-content: center;
   height: 25px;
+}
+
+.allergy-icons-pic {
+  height: 20px;
+  width: auto;
+
 }
 </style>
