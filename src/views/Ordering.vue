@@ -99,7 +99,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'"></Checkout>
+    <Checkout v-if="state === 'checkout'" @goBack="goBackFromCheckout()"></Checkout>
 
   </div>
 </template>

@@ -1,7 +1,13 @@
 <template>
   <div class="main-container">
+    
+    <center><h1>Checkout</h1></center>
 
-      this is the checkout page
+    <button v-on:click="goBack()">Go back</button>
+    
+    <!-- {{uiLabels.pay}} -->
+    <button v-on:click="goToPaymentPage()">Pay</button>
+
   </div>
 </template>
 
@@ -17,9 +23,18 @@ export default {
     };
   },
   methods: {
+    goBack: function() {
+        this.$emit('goBack');
+    }
   }
 }
 </script>
 <style scoped>
+.main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
   
 </style>
