@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- Welcome view -->
+
     <div class="welcome-container" v-if="location === undefined">
+
 
       <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
@@ -47,7 +49,7 @@
           <IngredientCategory :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
         </div>
 
-        <div class="your-order-container">
+        <div class="your-order-container" v-show="showNothing" >
           <div class="ordered-items-container">
 
             <div class="top-line-container">
@@ -58,13 +60,19 @@
             <div class="added-items-container">
 
               <div class="previous-order-items-container">
-                <div v-for="item in this.allOrders">
-                  <strong>{{uiLabels.order}}</strong>
 
-                  <!-- this.allOrders needs to be made unique exactly like for the current order items -->
+                <div v-for="item in this.allOrders">
+                  <div v-for="(key,value) in item">
+                  <strong> {{uiLabels.order}}</strong>
+                  <dt>{{key}}{{value}}</dt>
+
+
+
+                  <!-- this.allOrders needs to be made unique exactly like for the current order items
                   <span v-for="key in item.ingredients">
                     <dt>{{key}}</dt>
-                  </span>
+                  </span>-->
+                </div>
                 </div>
               </div>
 
@@ -83,12 +91,15 @@
           </div>
 
 <!-- Is conected to the final_page -->
+          <div v-if ="showmenue ===true">
           <button class="place-order-button" v-on:click="final_page()">{{uiLabels.placeOrder}} </button>
+        </div>
         </div>
       </div>
     </div>
     <!-- Payment page -->
-        <div class="final-order" >
+        <div class="final-order" v-show="showAll">
+          <button class="Pay" v-on:click="pay_page()">{{uiLabels.pay}} </button>
 
       </div>
   </div>
@@ -119,11 +130,13 @@ export default {
       chosenIngredients: [],
       uniqueIng: {},
       price: 0,
-      orderNumber: "",
+      orderNumber: 0,
       currentCategory: 4,   // == bread default
       ingredients: this.ingredients,
       allOrders: [],    // to store individual orders after clicking "add new order"
-      showmenue: false,  //Is conected to the final_page
+      showmenue: false, //Is conected to the final_page
+        showAll: false,
+        showNothing: true
     };
   },
   created: function() {
@@ -161,12 +174,12 @@ export default {
     },
 
     addNewOrder: function() {
-      let currentOrder = {
-        ingredients: this.chosenIngredients,
-        price: this.price
-      };
-      this.allOrders.push(currentOrder);
+      this.allOrders[this.orderNumber] = [this.uniqueIng];
+      this.orderNumber +=1;
       this.chosenIngredients = [];
+      this.uniqueIng = {};
+      this.currentCategory = 4;
+      this.showmenue = true;
     },
 
     placeOrder: function() {
@@ -202,10 +215,24 @@ export default {
       this.location = undefined;
       this.currentCategory = 4;
       this.allOrders = [];
+      this.uniqueIng = {};
+      this.chosenIngredients = [];
+      this.price = 0;
+
     },
     // I am not sure this is te best solution so i have commeted all places that effects this solution
     final_page: function () {
     this.showmenue = false;
+    this.showAll = true;
+
+    },
+
+    pay_page: function (){
+        this.showmenue = false;
+        this.showAll = false;
+        this.showNothing = false;
+
+
     }
   }
 };
