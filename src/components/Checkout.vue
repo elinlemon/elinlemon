@@ -1,29 +1,27 @@
 <template>
   <div>
     <div class="main-container" v-if="!this.paid">
-  
+
       <div class="language-container">
-          <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
-          <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
-        </div>
+        <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
+        <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto"
+             v-on:click="selectLang('en')">
+      </div>
 
       <center><h1>Checkout</h1></center>
 
 
       <div class="shopping-cart-container">
 
-        <div v-for="menuItem of this.shoppingCart.menuItems">
+        <div v-for="menuItem of this.shoppingCart.menuItems" class="stylemenu">
 
-          <div v-for="ingredient of menuItem.getPrintableIngredientList()" class="stylemenu">
-            <h3> {{ingredient.count}} {{ingredient.ingredient_en}} </h3>
-    
+          <div v-for="ingredient of menuItem.getPrintableIngredientList()">
+            <h3> {{ingredient.count}} {{ingredient.ingredient_en}} {{ingredient.selling_price}}:- </h3>
           </div>
-
-          <hr>
+          <h4> Tot: {{menuItem.totalPrice}}:- </h4>
         </div>
 
       </div>
-
 
       <div class="controls-container">
         <button class="control-buttons" v-on:click="goBack()">Go back</button>
@@ -31,17 +29,12 @@
 
       </div>
 
+      <div class="thank-you-container" v-if="this.paid">
+        Thank you for your order!
+        <!-- {{uiLabels.thanks}} -->
+      </div>
 
-
-
-      
     </div>
-
-    <div class="thank-you-container" v-if="this.paid">
-      Thank you for your order!
-      <!-- {{uiLabels.thanks}} -->
-    </div>
-
   </div>
 </template>
 
@@ -88,8 +81,10 @@ export default {
 }
 
 .shopping-cart-container {
-  flex: 1;
+  display: flex;
+  flex: 2;
 }
+
 
 .controls-container {
   height: 80px;
@@ -99,10 +94,16 @@ export default {
 
 .control-buttons {
   font-size: 1.2em;
+  margin-top: 1em;
 }
 
 .stylemenu {
-  
+  padding: 10px;
+  border: 3px dashed;
+  display: flex;
+  flex-direction: column;
+  height: 20em;
+  width: 10em;
 }
   
 </style>
