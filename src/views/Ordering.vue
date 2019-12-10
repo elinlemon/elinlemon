@@ -20,7 +20,7 @@
 
 
     <!-- Main view -->
-    <div class="ordering-container" v-else>
+    <div class="ordering-container" v-if="location !== undefined && state === 'ordering'">
 
       <div class="top-container-2">
 
@@ -34,7 +34,7 @@
 
       <div class="main-container" >
                 <!-- Is conected to the final_page -->
-        <div class="category-buttons-container" v-show="showmenue">
+        <div class="category-buttons-container">
           <button class="category-button" v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
           <button class="category-button" v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
           <button class="category-button" v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
@@ -45,11 +45,11 @@
 
         <!--Contacting component bread with the right category-->
         <!-- Is conected to the final_page -->
-        <div class="category-container" v-show="showmenue">
+        <div class="category-container">
           <IngredientCategory :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
         </div>
 
-        <div class="your-order-container" v-show="showNothing" >
+        <div class="your-order-container">
           <div class="ordered-items-container">
 
             <div class="top-line-container">
@@ -90,19 +90,21 @@
           </div>
 
           <!-- Is conected to the final_page -->
-          <div v-if="showmenue" class="checkout-controls-container">
-            <button class="checkout-buttons" v-on:click="final_page()">{{uiLabels.placeOrder}} </button>
+          <div class="checkout-controls-container">
+            <button class="checkout-buttons" v-on:click="goToCheckout()">{{uiLabels.placeOrder}} </button>
             <button class="checkout-buttons" v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
           </div>
 
         </div>
       </div>
     </div>
-    <!-- Payment page -->
-        <div class="final-order" v-show="showAll">
-          <button class="Pay" v-on:click="pay_page()">{{uiLabels.pay}} </button>
 
-      </div>
+    <div class="checkout-container" v-if="state === 'checkout'">
+      this is the checkout page
+      <button class="Pay" v-on:click="goBackFromCheckout()">Go back</button>
+      <button class="Pay" v-on:click="goToPaymentPage()">{{uiLabels.pay}}</button>
+    </div>
+
   </div>
 </template>
 <script>
@@ -133,11 +135,9 @@ export default {
       price: 0,
       orderNumber: 0,
       currentCategory: 4,   // == bread default
+      state: "ordering",    // can be "ordering", "checkout" and "payment"
       ingredients: this.ingredients,
       allOrders: [],    // to store individual orders after clicking "add new order"
-      showmenue: false, //Is conected to the final_page
-        showAll: false,
-        showNothing: true
     };
   },
   created: function() {
@@ -180,7 +180,6 @@ export default {
       this.chosenIngredients = [];
       this.uniqueIng = {};
       this.currentCategory = 4;
-      this.showmenue = true;
     },
 
     placeOrder: function() {
@@ -205,7 +204,6 @@ export default {
       this.uniqueIng = {};
       this.price = 0;
                // Is conected to the final_page 
-      this.showmenue = true;
     },
 
     setCurrentCategory: function(category) {
@@ -219,29 +217,17 @@ export default {
       this.uniqueIng = {};
       this.chosenIngredients = [];
       this.price = 0;
-      this.showNothing = true;
-
-    },
-    // I am not sure this is te best solution so i have commeted all places that effects this solution
-    final_page: function () {
-    this.showmenue = false;
-    this.showAll = true;
-
     },
 
-    pay_page: function (){
-        this.showmenue = false;
-        this.showAll = false;
-        this.showNothing = false;
+    goToCheckout: function() {
+      this.state = "checkout";
+    },
 
-
+    goBackFromCheckout: function() {
+      this.state = "ordering";
     }
   }
 };
-
-
-
-
 
 
 </script>
