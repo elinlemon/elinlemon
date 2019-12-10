@@ -64,14 +64,10 @@
                   <strong> {{uiLabels.order}}</strong>
                   <div v-for="(key,value) in item">
                   <dt>{{key}} {{value}}</dt>
-
-
-
-                  <!-- this.allOrders needs to be made unique exactly like for the current order items
-                  <span v-for="key in item.ingredients">
-                    <dt>{{key}}</dt>
-                  </span>-->
+                  </span>
                 </div>
+
+                
                 </div>
               </div>
 
@@ -99,7 +95,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" @goBack="goBackFromCheckout()"></Checkout>
+    <Checkout v-if="state === 'checkout'" :shoppingCart="shoppingCart" @goBack="goBackFromCheckout()"></Checkout>
 
   </div>
 </template>
@@ -111,6 +107,8 @@ import IngredientCategory from "@/components/categories/IngredientCategory.vue";
 import Checkout from "@/components/Checkout.vue";
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from "@/components/sharedVueStuff.js";
+
+import { ShoppingCart, MenuItem } from "../ShoppingCart";
 
 /* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
@@ -135,7 +133,11 @@ export default {
       currentCategory: 4,   // == bread default
       state: "ordering",    // can be "ordering", "checkout" and "payment"
       ingredients: this.ingredients,
-      allOrders: [],    // to store individual orders after clicking "add new order"
+      allOrders: [],    // to store individual orders after clicking "add new order",
+
+      // a shopping cart is a list of individual orders
+      shoppingCart: new ShoppingCart(),
+      currentMenuItem: new MenuItem()
     };
   },
   created: function() {
@@ -148,20 +150,17 @@ export default {
   },
   methods: {
     ingredientAdded: function(ingredient) {
-      this.chosenIngredients.push(ingredient['ingredient_' + this.lang]);
-      this.price += +ingredient.selling_price;
-      this.countUniqueIngredients();
+      // this.chosenIngredients.push(ingredient['ingredient_' + this.lang]);
+      // this.price += +ingredient.selling_price;
+      // this.countUniqueIngredients();
+
+      this.currentMenuItem.addIngredient(ingredient)
     },
+
     ingredientRemoved: function(ingredient) {
-      for( var i = 0; i <this.chosenIngredients.length; i++){
-        if (this.chosenIngredients[i] === ingredient['ingredient_' + this.lang]) {
-          this.chosenIngredients.splice(i,1);
-          this.price += -ingredient.selling_price;
-          this.countUniqueIngredients();
-            break;
-        }
-        }
+      this.currentMenuItem.removeIngredient(ingredient);
     },
+    
     countUniqueIngredients: function () {
       this.uniqueIng = this.chosenIngredients.reduce(function(acc, curr){
         if(typeof acc[curr] == 'undefined') {
@@ -173,6 +172,11 @@ export default {
     },
 
     addNewOrder: function() {
+      this.shoppingCart.addMenuItem(this.currentMenuItem);
+      this.currentMenuItem = new MenuItem();
+      this.currentCategory = 4;
+
+
       this.allOrders.push(this.uniqueIng);
       this.orderNumber +=1;
       this.chosenIngredients = [];
@@ -181,6 +185,9 @@ export default {
     },
 
     placeOrder: function() {
+
+      
+
       var i,
         //Wrap the order in an object
         order = {

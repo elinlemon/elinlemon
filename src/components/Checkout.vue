@@ -3,6 +3,8 @@
     
     <center><h1>Checkout</h1></center>
 
+    {{shoppingCart}}
+
     <button v-on:click="goBack()">Go back</button>
     
     <!-- {{uiLabels.pay}} -->
@@ -12,11 +14,12 @@
 </template>
 
 <script>
+import { ShoppingCart } from '../ShoppingCart';
 export default {
   name: 'Checkout',
   props: {
     lang: String,
-    shoppingBasket: Array
+    shoppingCart: ShoppingCart
   },
     data: function () {
     return {
