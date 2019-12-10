@@ -209,9 +209,10 @@ export default {
     cancelOrder: function () {
       this.location = undefined;
       this.currentCategory = 4;
-      this.allOrders = [];
-      this.uniqueIng = {};
-      this.price = 0;
+
+      this.shoppingCart = new ShoppingCart();
+      this.currentMenuItem = new MenuItem();
+    
     },
 
     goToCheckout: function() {
