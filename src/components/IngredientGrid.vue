@@ -5,9 +5,9 @@
     <div class="wrapper">
       <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
         <center>
-          <div v-if = "ingredient.milk_free"> <img class="milkfree-icon" src="milk_free_symbol.png" height="20" width="auto" > </div>
+          <div v-if = "ingredient.milk_free"> <img class="milkfree-icon" src="milk-free-symbol.png" height="20" width="auto" > </div>
           <div v-if = "ingredient.gluten_free"> <img class="glutenfree-icon" src="gluten-free-symbol.jpg" height="20" width="auto"> </div>
-          <div v-if = "ingredient.vegan"> <img class="vegan-icon" src="vegan_symbol.png" height="20" width="auto"> </div>
+          <div v-if = "ingredient.vegan"> <img class="vegan-icon" src="vegan-symbol.png" height="20" width="auto"> </div>
           {{ingredient["ingredient_" + lang ]}},{{ ingredient.selling_price}}:-
         </center>
 
