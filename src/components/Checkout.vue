@@ -2,12 +2,15 @@
   <div>
     <div class="main-container" v-if="!this.paid">
   
-      <div class="language-container">
+      <div class="top-container">
+
+        <div class="language-container">
           <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
           <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
         </div>
 
-      <center><h1>Checkout</h1></center>
+        <button v-on:click="cancelOrder()">Cancel</button>
+      </div>
 
 
       <div class="shopping-cart-container">
@@ -66,6 +69,10 @@ export default {
 
     goToPaymentPage: function() {
       this.paid = true;
+    },
+
+    cancelOrder: function() {
+      this.$emit("cancelOrder");
     }
   }
 }
@@ -77,9 +84,34 @@ export default {
     flex-direction: column;
 }
 
-.language-container {
-  display: flex;
-  justify-content: center;
+.top-container {
+    display: flex;
+    /* justify-content: center; */
+    padding-bottom: 1em;
+    justify-content: space-between;
+  }
+
+  .language-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .swedish-icon {
+    padding-right: 0.5em;
+  }
+
+  .language-icon {
+    opacity: 0.7;
+  }
+
+  .language-icon:hover {
+    opacity: 1;
+
+  }
+
+.cancel-order-button {
+  margin-left: auto;
 }
 
 .thank-you-container {

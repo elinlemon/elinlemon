@@ -29,7 +29,7 @@
           <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
         </div>
 
-        <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
+        <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
 
       <div class="main-container" >
@@ -97,7 +97,7 @@
       </div>
     </div>
 
-    <Checkout :lang="lang" v-if="state === 'checkout'" @goBack="goBackFromCheckout()" :shoppingCart="this.shoppingCart"></Checkout>
+    <Checkout v-if="state === 'checkout'" @goBack="goBackFromCheckout()" @cancelOrder="cancelOrder()" :lang="lang" :shoppingCart="this.shoppingCart"></Checkout>
 
   </div>
 </template>
@@ -207,6 +207,7 @@ export default {
     },
 
     cancelOrder: function () {
+      this.state = "ordering"
       this.location = undefined;
       this.currentCategory = 4;
 
