@@ -218,6 +218,7 @@ export default {
       this.uniqueIng = {};
       this.chosenIngredients = [];
       this.price = 0;
+      this.showNothing = true;
 
     },
     // I am not sure this is te best solution so i have commeted all places that effects this solution
