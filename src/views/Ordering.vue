@@ -99,11 +99,7 @@
       </div>
     </div>
 
-    <div class="checkout-container" v-if="state === 'checkout'">
-      this is the checkout page
-      <button class="Pay" v-on:click="goBackFromCheckout()">Go back</button>
-      <button class="Pay" v-on:click="goToPaymentPage()">{{uiLabels.pay}}</button>
-    </div>
+    <Checkout v-if="state === 'checkout'"></Checkout>
 
   </div>
 </template>
@@ -112,6 +108,7 @@
 import Ingredient from "@/components/Ingredient.vue";
 import OrderItem from "@/components/OrderItem.vue";
 import IngredientCategory from "@/components/categories/IngredientCategory.vue";
+import Checkout from "@/components/Checkout.vue";
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from "@/components/sharedVueStuff.js";
 
@@ -122,7 +119,8 @@ export default {
   components: {
     Ingredient,
     OrderItem,
-    IngredientCategory
+    IngredientCategory,
+    Checkout
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
   // the ordering system and the kitchen
