@@ -60,7 +60,6 @@
 
               <div class="previous-order-items-container">
 
-
                 <!-- Everything that is already in the shopping card (= previous orders) are displayed here -->
                 <div v-for="menuItem in this.shoppingCart.menuItems">
                   <div v-for="ingredient in menuItem.getPrintableIngredientList()">
@@ -98,7 +97,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" @goBack="goBackFromCheckout()"></Checkout>
+    <Checkout :lang="lang" v-if="state === 'checkout'" @goBack="goBackFromCheckout()" :shoppingCart="this.shoppingCart"></Checkout>
 
   </div>
 </template>
@@ -129,14 +128,11 @@ export default {
     //Not that data is a function!
     return {
       location: undefined,
-      chosenIngredients: [],
-      uniqueIng: {},
       price: 0,
       orderNumber: 0,
       currentCategory: 4,   // == bread default
       state: "ordering",    // can be "ordering", "checkout" and "payment"
       ingredients: this.ingredients,
-      allOrders: [],    // to store individual orders after clicking "add new order",
 
       // a shopping cart is a list of individual orders
       shoppingCart: new ShoppingCart(),
@@ -183,6 +179,7 @@ export default {
       this.shoppingCart = new ShoppingCart();
       this.currentMenuItem = new MenuItem();
 
+      /*
       var i,
         //Wrap the order in an object
         order = {
@@ -195,6 +192,7 @@ export default {
       for (i = 0; i < this.$refs.ingredient.length; i += 1) {
         this.$refs.ingredient[i].resetCounter();
       }
+      */
     },
 
     setLocation: function(location) {
@@ -218,6 +216,8 @@ export default {
     },
 
     goToCheckout: function() {
+      this.shoppingCart.addMenuItem(this.currentMenuItem);
+      this.currentMenuItem = new MenuItem();
       this.state = "checkout";
     },
 
