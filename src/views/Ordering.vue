@@ -60,29 +60,30 @@
 
               <div class="previous-order-items-container">
 
-                <div v-for="item in this.allOrders">
-                  <strong> {{uiLabels.order}}</strong>
-                  <div v-for="(key,value) in item">
-                  <dt>{{key}} {{value}}</dt>
-                  </span>
-                </div>
 
-                
+                <!-- Everything that is already in the shopping card (= previous orders) are displayed here -->
+                <div v-for="menuItem in this.shoppingCart.menuItems">
+                  <div v-for="ingredient in menuItem.getPrintableIngredientList()">
+                    <!-- TODO: account for language change here -->
+                    {{ingredient.count}} {{ingredient.ingredient_en}}
+                  </div>
+
+                  <hr>
                 </div>
+                
               </div>
 
-              <div class="current-order-items-container">
-                <strong>{{uiLabels.current_order}}</strong>
-                <span v-for="(key, value) in uniqueIng">
-                  <dt>{{key}} {{value}}</dt>
-                </span>
+              <!-- The current menu item and all of its ingredients are displayed here -->
+              <div class="current-order-items-container" v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()">
+                <!-- TODO: account for language change here -->
+                {{ingredient.count}} {{ingredient.ingredient_en}}
               </div>
 
             </div>
           </div>
 
           <div>
-            <span>Tot: {{ price}} kr</span>
+            <span>Tot: {{ totalPrice }} kr</span>
           </div>
 
           <!-- Is conected to the final_page -->
@@ -95,7 +96,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" :shoppingCart="shoppingCart" @goBack="goBackFromCheckout()"></Checkout>
+    <Checkout v-if="state === 'checkout'" @goBack="goBackFromCheckout()"></Checkout>
 
   </div>
 </template>
@@ -140,6 +141,15 @@ export default {
       currentMenuItem: new MenuItem()
     };
   },
+
+  computed: {
+    totalPrice: function() {
+      // we only place the currentMenuItem into the shoppingCart at checkout or when clicking "new order"
+      // this is why we need to dynamically compute the total price here
+      return this.shoppingCart.totalPrice + this.currentMenuItem.totalPrice;
+    }
+  },
+
   created: function() {
     this.$store.state.socket.on(
       "orderNumber",
@@ -150,43 +160,26 @@ export default {
   },
   methods: {
     ingredientAdded: function(ingredient) {
-      // this.chosenIngredients.push(ingredient['ingredient_' + this.lang]);
-      // this.price += +ingredient.selling_price;
-      // this.countUniqueIngredients();
-
       this.currentMenuItem.addIngredient(ingredient)
     },
 
     ingredientRemoved: function(ingredient) {
       this.currentMenuItem.removeIngredient(ingredient);
     },
-    
-    countUniqueIngredients: function () {
-      this.uniqueIng = this.chosenIngredients.reduce(function(acc, curr){
-        if(typeof acc[curr] == 'undefined') {
-          acc[curr] = 1; }
-        else { acc[curr] += 1;
-        }
-        return acc;
-      }, {})
-    },
 
     addNewOrder: function() {
+      this.currentMenuItem.ingredients.forEach(i => delete i.count);
       this.shoppingCart.addMenuItem(this.currentMenuItem);
       this.currentMenuItem = new MenuItem();
       this.currentCategory = 4;
 
-
-      this.allOrders.push(this.uniqueIng);
+      // TODO: do we need this?
       this.orderNumber +=1;
-      this.chosenIngredients = [];
-      this.uniqueIng = {};
-      this.currentCategory = 4;
     },
 
     placeOrder: function() {
-
-      
+      this.shoppingCart = new ShoppingCart();
+      this.currentMenuItem = new MenuItem();
 
       var i,
         //Wrap the order in an object
@@ -200,8 +193,6 @@ export default {
       for (i = 0; i < this.$refs.ingredient.length; i += 1) {
         this.$refs.ingredient[i].resetCounter();
       }
-      this.price = 0;
-      this.chosenIngredients = [];
     },
 
     setLocation: function(location) {
@@ -220,7 +211,6 @@ export default {
       this.currentCategory = 4;
       this.allOrders = [];
       this.uniqueIng = {};
-      this.chosenIngredients = [];
       this.price = 0;
     },
 
