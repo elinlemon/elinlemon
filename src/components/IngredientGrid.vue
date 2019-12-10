@@ -4,10 +4,15 @@
 
     <div class="wrapper">
       <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
+
         <center>
-          <div v-if = "ingredient.milk_free"> <img class="milkfree-icon" src="milk-free-symbol.png" height="20" width="auto" > </div>
-          <div v-if = "ingredient.gluten_free"> <img class="glutenfree-icon" src="gluten-free-symbol.jpg" height="20" width="auto"> </div>
-          <div v-if = "ingredient.vegan"> <img class="vegan-icon" src="vegan-symbol.png" height="20" width="auto"> </div>
+
+          <div class="allergy-icons-container">
+            <div v-if = "ingredient.milk_free"> <img class="milkfree-icon" src="milk-free-symbol.png" height="20" width="auto" > </div>
+            <div v-if = "ingredient.gluten_free"> <img class="glutenfree-icon" src="gluten-free-symbol.jpg" height="20" width="auto"> </div>
+            <div v-if = "ingredient.vegan"> <img class="vegan-icon" src="vegan-symbol.png" height="20" width="auto"> </div>
+          </div>
+          
           {{ingredient["ingredient_" + lang ]}},{{ ingredient.selling_price}}:-
         </center>
 
@@ -70,5 +75,11 @@ export default {
   height: 20px;
   width: 20px;
   background-color: blueviolet;
+}
+
+.allergy-icons-container {
+  display: flex;
+  justify-content: center;
+  height: 25px;
 }
 </style>
