@@ -65,7 +65,9 @@
                 <div v-for="menuItem in this.shoppingCart.menuItems">
                   <div v-for="ingredient in menuItem.getPrintableIngredientList()">
                     <!-- TODO: account for language change here -->
-                    {{ingredient.count}} {{ingredient.ingredient_en}}
+                    
+                    <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
+                    <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
                   </div>
 
                   <hr>
@@ -75,8 +77,8 @@
 
               <!-- The current menu item and all of its ingredients are displayed here -->
               <div class="current-order-items-container" v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()">
-                <!-- TODO: account for language change here -->
-                {{ingredient.count}} {{ingredient.ingredient_en}}
+                <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
+                <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
               </div>
 
             </div>
