@@ -35,12 +35,12 @@
       <div class="main-container" >
                 <!-- Is conected to the final_page -->
         <div class="category-buttons-container" v-show="showmenue">
-          <button v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
-          <button v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
-          <button v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
-          <button v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
-          <button v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
-          <button v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
+          <button class="category-button" v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
+          <button class="category-button" v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
+          <button class="category-button" v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
+          <button class="category-button" v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
+          <button class="category-button" v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
+          <button class="category-button" v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
         </div>
 
         <!--Contacting component bread with the right category-->
@@ -319,12 +319,17 @@ export default {
 
   .category-buttons-container {
     flex: 0.2;
+    justify-content: space-evenly;
     max-width: 300px;
     padding-right: 3em;
     padding-left: 2em;
     padding-top: 5em;
     display: flex;
     flex-direction: column;
+  }
+
+  .category-button {
+    font-size: 1.2em;
   }
 
   .your-order-container {
