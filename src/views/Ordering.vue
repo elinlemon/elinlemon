@@ -61,9 +61,9 @@
               <div class="previous-order-items-container">
 
                 <div v-for="item in this.allOrders">
-                  <div v-for="(key,value) in item">
                   <strong> {{uiLabels.order}}</strong>
-                  <dt>{{key}}{{value}}</dt>
+                  <div v-for="(key,value) in item">
+                  <dt>{{key}} {{value}}</dt>
 
 
 
@@ -173,7 +173,7 @@ export default {
     },
 
     addNewOrder: function() {
-      this.allOrders[this.orderNumber] = [this.uniqueIng];
+      this.allOrders.push(this.uniqueIng);
       this.orderNumber +=1;
       this.chosenIngredients = [];
       this.uniqueIng = {};
