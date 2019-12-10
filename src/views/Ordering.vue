@@ -318,6 +318,7 @@ export default {
   }
 
   .your-order-container {
+    padding: 10px;
     border: 3px dashed;
     display: flex;
     flex-direction: column;
