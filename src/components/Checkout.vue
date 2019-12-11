@@ -2,24 +2,16 @@
   <div>
     <div class="main-container" v-if="!this.paid">
 
-  
-      <div class="top-container">
-
-        <div class="language-container">
-          <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
-          <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
-        </div>
-
-        <button v-on:click="cancelOrder()">Cancel</button>
-      </div>
-
 
       <div class="shopping-cart-container">
 
         <div v-for="menuItem of this.shoppingCart.menuItems" class="stylemenu">
 
           <div v-for="ingredient of menuItem.getPrintableIngredientList()">
-            <h3> {{ingredient.count}} {{ingredient.ingredient_en}} {{ingredient.selling_price}}:- </h3>
+              <h3> {{ingredient.count}}
+            <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
+            <span v-if = "lang ==='sv'"> {{ingredient.ingredient_sv}} </span>
+            {{ingredient.selling_price}}:- </h3>
           </div>
           <h4> Tot: {{menuItem.totalPrice}}:- </h4>
         </div>
@@ -137,5 +129,5 @@ export default {
   height: 20em;
   width: 10em;
 }
-  
+
 </style>

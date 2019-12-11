@@ -7,7 +7,7 @@
       v-if="order.status !== 'done'"
       v-on:done="markDone(key)"
       :order-id="key"
-      :order="order" 
+      :order="order"
       :ui-labels="uiLabels"
       :lang="lang"
       :key="key">
@@ -25,22 +25,20 @@
       :key="key">
     </OrderItem>
   </div>
-</div>	
+</div>
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
-
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-
 export default {
   name: 'Ordering',
   components: {
     OrderItem,
     OrderItemToPrepare
   },
-  mixins: [sharedVueStuff], // include stuff that is used in both 
+  mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
   data: function(){
     return {
@@ -59,7 +57,6 @@ export default {
 	#orders {
     font-size:24pt;
   }
-
   h1 {
     text-transform: uppercase;
     font-size: 1.4em;

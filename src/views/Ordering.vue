@@ -20,9 +20,7 @@
 
 
     <!-- Main view -->
-    <div class="ordering-container" v-if="location !== undefined && state === 'ordering'">
-
-      <div class="top-container-2">
+      <div class="top-container-2" v-if="location !== undefined">
 
         <div class="language-container">
           <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
@@ -31,7 +29,7 @@
 
         <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
-
+    <div class="ordering-container" v-if="location !== undefined && state === 'ordering'">
       <div class="main-container" >
                 <!-- Is conected to the final_page -->
         <div class="category-buttons-container">
@@ -64,14 +62,14 @@
                 <div v-for="menuItem in this.shoppingCart.menuItems">
                   <div v-for="ingredient in menuItem.getPrintableIngredientList()">
                     <!-- TODO: account for language change here -->
-                    
+
                     <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
                     <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
                   </div>
 
                   <hr>
                 </div>
-                
+
               </div>
 
               <!-- The current menu item and all of its ingredients are displayed here -->
@@ -199,7 +197,7 @@ export default {
       this.location = location;
       this.uniqueIng = {};
       this.price = 0;
-               // Is conected to the final_page 
+               // Is conected to the final_page
     },
 
     setCurrentCategory: function(category) {
@@ -213,7 +211,7 @@ export default {
 
       this.shoppingCart = new ShoppingCart();
       this.currentMenuItem = new MenuItem();
-    
+
     },
 
     goToCheckout: function() {
