@@ -6,12 +6,12 @@
       <div class="shopping-cart-container">
 
         <div v-for="menuItem of this.shoppingCart.menuItems" class="stylemenu">
-
+          <button class="remove-buttons" v-on:click="removeOrder()">Remove</button>
           <div v-for="ingredient of menuItem.getPrintableIngredientList()">
               <h3> {{ingredient.count}}
             <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
             <span v-if = "lang ==='sv'"> {{ingredient.ingredient_sv}} </span>
-            {{ingredient.selling_price}}:- </h3>
+            x {{ingredient.selling_price}}:- </h3>
           </div>
           <h4> Tot: {{menuItem.totalPrice}}:- </h4>
         </div>
@@ -62,6 +62,9 @@ export default {
 
       // tell the Ordering view to reset and go back to the language selection
       this.$emit('orderPlaced', shoppingCart);
+    },
+
+    removeOrder: function() {
     },
 
     cancelOrder: function() {

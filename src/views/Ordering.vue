@@ -60,6 +60,7 @@
 
                 <!-- Everything that is already in the shopping card (= previous orders) are displayed here -->
                 <div v-for="menuItem in this.shoppingCart.menuItems">
+                  <button class="remove-buttons" v-on:click="removeOrder()">X</button>
                   <div v-for="ingredient in menuItem.getPrintableIngredientList()">
                     <!-- TODO: account for language change here -->
 
@@ -228,6 +229,10 @@ export default {
 
     goBackFromCheckout: function() {
       this.state = "ordering";
+    },
+
+    removeOrder: function() {
+
     }
   }
 };
@@ -243,7 +248,10 @@ export default {
     display: flex;
     flex-direction: column;
   }
-
+  .remove-buttons{
+    height: 20px;
+    width: 20px;
+  }
   /* first screen */
   .top-container-1 {
     display: flex;
