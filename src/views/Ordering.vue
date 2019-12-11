@@ -95,7 +95,8 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" @goBack="goBackFromCheckout()" @cancelOrder="cancelOrder()" :lang="lang" :shoppingCart="this.shoppingCart" v-on: placedOrder="placedOrder"></Checkout>
+    <Checkout v-if="state === 'checkout'" :lang="lang" :shoppingCart="this.shoppingCart"
+              @goBack="goBackFromCheckout()" @cancelOrder="cancelOrder()" @orderPlaced="notifyBackend()"></Checkout>
 
   </div>
 </template>
@@ -192,12 +193,6 @@ export default {
       }
       */
     },
-    placedOrder: function(shoppingCart){
-      order = {ingredient: this.shoppingCart.menuItem};
-      this.$store.state.socket.emit('order',{order:order})
-
-
-    },
 
     setLocation: function(location) {
       this.location = location;
@@ -217,7 +212,12 @@ export default {
 
       this.shoppingCart = new ShoppingCart();
       this.currentMenuItem = new MenuItem();
+    },
 
+    notifyBackend: function() {
+
+      // reset the view
+      this.cancelOrder();
     },
 
     goToCheckout: function() {

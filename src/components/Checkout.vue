@@ -54,11 +54,18 @@ export default {
 
     goToPaymentPage: function(shoppingCart) {
       this.paid = true;
-      this.$emit('placedOrder', shoppingCart);
+      
+      // not sure if this is the way we're supposed to send the info, but otherwise the backend crashes
+      this.shoppingCart.menuItems.forEach(menuItem => {
+        this.$store.state.socket.emit('order', {order: menuItem});
+      });
+
+      // tell the Ordering view to reset and go back to the language selection
+      this.$emit('orderPlaced', shoppingCart);
     },
 
     cancelOrder: function() {
-      this.$emit("cancelOrder");
+      this.$emit('cancelOrder');
     }
   }
 }
