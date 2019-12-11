@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" @goBack="goBackFromCheckout()" @cancelOrder="cancelOrder()" :lang="lang" :shoppingCart="this.shoppingCart"></Checkout>
+    <Checkout v-if="state === 'checkout'" @goBack="goBackFromCheckout()" @cancelOrder="cancelOrder()" :lang="lang" :shoppingCart="this.shoppingCart" v-on: placedOrder="placedOrder"></Checkout>
 
   </div>
 </template>
@@ -191,6 +191,12 @@ export default {
         this.$refs.ingredient[i].resetCounter();
       }
       */
+    },
+    placedOrder: function(shoppingCart){
+      order = {ingredient: this.shoppingCart.menuItem};
+      this.$store.state.socket.emit('order',{order:order})
+
+
     },
 
     setLocation: function(location) {

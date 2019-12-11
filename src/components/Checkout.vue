@@ -52,8 +52,9 @@ export default {
         this.$emit('goBack');
     },
 
-    goToPaymentPage: function() {
+    goToPaymentPage: function(shoppingCart) {
       this.paid = true;
+      this.$emit('placedOrder', shoppingCart);
     },
 
     cancelOrder: function() {
