@@ -1,4 +1,4 @@
-import { isEqual } from "lodash";
+import { isEqual, uniqBy } from "lodash";
 
 export class ShoppingCart {
 
@@ -19,10 +19,10 @@ export class ShoppingCart {
         this.menuItems.push(menuItem);
         this.totalPrice += menuItem.totalPrice;
     }
-  //ASK tysk
+
     removeMenuItem(menuItem) {
-        for (let i = 0; i < this.menu.length; i++) {
-            let current = this.ingredients[i];
+        for (let i = 0; i < this.menuItems.length; i++) {
+            let current = this.menuItems[i];
 
             if (isEqual(current, menuItem)) {
                 this.menuItems.splice(i, 1);
@@ -67,8 +67,6 @@ export class MenuItem {
         for (let ingredient of this.ingredients) {
             let id = ingredient.ingredient_id;
 
-            let foo = countPerIngredientId[id];
-
             // if we haven't seen this ingredient, set the count to 1
             if (typeof(countPerIngredientId[id]) === 'undefined') {
                 countPerIngredientId[id] = 1;
@@ -79,7 +77,7 @@ export class MenuItem {
             countPerIngredientId[id] += 1;
         }
 
-        let uniqueIngredients = _.uniqBy(this.ingredients, 'ingredient_id');
+        let uniqueIngredients = uniqBy(this.ingredients, 'ingredient_id');
 
         // set the count as an additional field for every unique ingredient
         for (let uq of uniqueIngredients) {

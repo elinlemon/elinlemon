@@ -178,9 +178,9 @@ export default {
       // TODO: do we need this?
       this.orderNumber +=1;
     },
-    /*Does not work hehe*/
+
     removeOrder: function(menuItem) {
-    this.shoppingCart.removeMenuItem(this.currentMenuItem);
+      this.shoppingCart.removeMenuItem(menuItem);
     },
 
     placeOrder: function() {
