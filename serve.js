@@ -53,6 +53,7 @@ io.on('connection', function (socket) {
   socket.on('switchLang', function (lang) {
     socket.emit('switchLang', data.getUILabels(lang));
   });
+
   // when order is marked as done, send updated queue to all connected clients
   socket.on('orderDone', function (orderId) {
     data.markOrderDone(orderId);

@@ -60,7 +60,10 @@
 
                 <!-- Everything that is already in the shopping card (= previous orders) are displayed here -->
                 <div v-for="menuItem in this.shoppingCart.menuItems">
-                  <button class="remove-buttons" v-on:click="removeOrder()">X</button>
+                  <button class="remove-buttons" v-on:click="removeOrder(menuItem)">X</button>
+                  <button class="remove-buttons" v-on:click="editOrder(menuItem)">Edit</button>
+
+                  <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
                   <div v-for="ingredient in menuItem.getPrintableIngredientList()">
                     <!-- TODO: account for language change here -->
 
@@ -174,6 +177,10 @@ export default {
       // TODO: do we need this?
       this.orderNumber +=1;
     },
+    /*Does not work hehe*/
+    removeOrder: function(menuItem) {
+    this.shoppingCart.removeMenuItem(this.currentMenuItem);
+    },
 
     placeOrder: function() {
       this.shoppingCart = new ShoppingCart();
@@ -231,7 +238,7 @@ export default {
       this.state = "ordering";
     },
 
-    removeOrder: function() {
+    editOrder: function(menuItem) {
 
     }
   }

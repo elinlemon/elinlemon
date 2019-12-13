@@ -6,7 +6,7 @@ export class ShoppingCart {
         this.menuItems = [];
         this.totalPrice = 0;
 
-        this.menuItemId = 0;
+        this.menuItemId = 1;
     }
 
     addMenuItem(menuItem) {
@@ -19,7 +19,7 @@ export class ShoppingCart {
         this.menuItems.push(menuItem);
         this.totalPrice += menuItem.totalPrice;
     }
-
+  //ASK tysk
     removeMenuItem(menuItem) {
         for (let i = 0; i < this.menu.length; i++) {
             let current = this.ingredients[i];

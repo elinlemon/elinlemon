@@ -6,16 +6,24 @@
       <div class="shopping-cart-container">
 
         <div v-for="menuItem of this.shoppingCart.menuItems" class="stylemenu">
-          <button class="remove-buttons" v-on:click="removeOrder()">Remove</button>
+          <button class="remove-buttons" v-on:click="removeOrder(menuItem)">X</button>
+          <button class="remove-buttons" v-on:click="editOrder(menuItem)">Edit</button>
+          <h2>Order: {{menuItem.id}}</h2>
           <div v-for="ingredient of menuItem.getPrintableIngredientList()">
-              <h3> {{ingredient.count}}
-            <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
+              <h3> {{ingredient.count}} x {{ingredient.selling_price}}:-
+                <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
             <span v-if = "lang ==='sv'"> {{ingredient.ingredient_sv}} </span>
-            x {{ingredient.selling_price}}:- </h3>
+             </h3>
           </div>
-          <h4> Tot: {{menuItem.totalPrice}}:- </h4>
         </div>
 
+      </div>
+      <div>Tot: {{ this.shoppingCart.totalPrice }}:- </div>
+      <div class="reciet" id="pressedPayButton" style="display:none;">
+       <h4>Thank you for your order! <br>
+         Your order number: {{counter}}
+       </h4>
+        <button class="reciet-buttons" v-on:click="backToStartPage()">Go to start page</button>
       </div>
 
       <div class="controls-container">
@@ -34,17 +42,20 @@
 </template>
 
 <script>
-import { ShoppingCart } from '../ShoppingCart';
+import { ShoppingCart, MenuItem } from '../ShoppingCart';
+
 export default {
   name: 'Checkout',
   props: {
     lang: String,
     shoppingCart: ShoppingCart,
+    menuItem: MenuItem,
     uiLabels: Object
   },
     data: function () {
     return {
-      paid: false
+      paid: false,
+      counter: 0
     };
   },
   methods: {
@@ -53,18 +64,35 @@ export default {
     },
 
     goToPaymentPage: function(shoppingCart) {
-      this.paid = true;
-      
-      // not sure if this is the way we're supposed to send the info, but otherwise the backend crashes
-      this.shoppingCart.menuItems.forEach(menuItem => {
+     // this.paid = true;
+
+        // not sure if this is the way we're supposed to send the info, but otherwise the backend crashes
+        this.shoppingCart.menuItems.forEach(menuItem => {
         this.$store.state.socket.emit('order', {order: menuItem});
+
+          this.counter +=1;
+          document.getElementById("pressedPayButton").style.display = "block";
+
+
       });
 
-      // tell the Ordering view to reset and go back to the language selection
-      this.$emit('orderPlaced', shoppingCart);
+        // tell the Ordering view to reset and go back to the language selection
+        //this.$emit('orderPlaced', shoppingCart);
     },
 
-    removeOrder: function() {
+    backToStartPage: function(shoppingCart) {
+      this.paid = true;
+      this.$emit('orderPlaced', shoppingCart);
+
+    },
+
+    /*Does not work :-)*/
+    removeOrder: function(menuItem) {
+      this.shoppingCart.removeMenuItem(menuItem)
+    },
+
+    editOrder: function(menuItem) {
+
     },
 
     cancelOrder: function() {

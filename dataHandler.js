@@ -5,6 +5,7 @@ let csv = require("csvtojson");
 let ingredientsDataName = "ingredients";
 let transactionsDataName = "transactions";
 let defaultLanguage = "en";
+let defaultLocation = "eatIn";
 
 // Store data in an object to keep the global namespace clean
 function Data() {
@@ -17,6 +18,8 @@ Data.prototype.getUILabels = function (lang) {
   var ui = require("./data/ui_" + (lang || defaultLanguage) + ".json");
   return ui;
 };
+
+
 
 /*
   Returns a JSON object array of ingredients with the fields from
