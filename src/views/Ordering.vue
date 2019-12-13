@@ -4,7 +4,6 @@
 
     <div class="welcome-container" v-if="location === undefined">
 
-
       <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
         <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
@@ -88,8 +87,7 @@
                   <h5>{{uiLabels.order}}</h5>
 
                   <div class="menu-item-controls">
-                    <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
-                    <img class="remove-buttons" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
+                    <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
                   </div>
                 </div>
                 
@@ -199,6 +197,10 @@ export default {
 
     removeOrder: function(menuItem) {
       this.shoppingCart.removeMenuItem(menuItem);
+    },
+
+    removeCurrentOrder: function() {
+      this.currentMenuItem = new MenuItem();
     },
 
     setLocation: function(location) {
