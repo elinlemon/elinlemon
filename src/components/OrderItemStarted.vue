@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="style">
     <OrderItem
             :ui-labels="uiLabels"
             :lang="lang"
@@ -36,5 +36,11 @@
 </script>
 
 <style scoped>
+    .style{
+        width: 170px;
+        height: 210px;
+        margin: 10px;
+        float: left;
+    }
 
 </style>

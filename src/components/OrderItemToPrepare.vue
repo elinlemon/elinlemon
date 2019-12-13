@@ -1,6 +1,6 @@
 <template>
   <!-- Note in this component that it is using another component -->
-<div>
+<div class="style">
   <OrderItem
     :ui-labels="uiLabels"
     :lang="lang"
@@ -41,5 +41,10 @@ export default {
 }
 </script>
 <style scoped>
-	
+  .style {
+    width: 170px;
+    height: 210px;
+    margin: 10px;
+    float: left;
+  }
 </style>

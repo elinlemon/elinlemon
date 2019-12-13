@@ -23,7 +23,7 @@
       <div>Tot: {{ this.shoppingCart.totalPrice }}:- </div>
       <div class="reciet" id="pressedPayButton" style="display:none;">
        <h4>Thank you for your order! <br>
-         Your order number: {{counter}}
+         Your order consists of orders : {{orderNumber}}
        </h4>
         <button class="reciet-buttons" v-on:click="backToStartPage()">Go to start page</button>
       </div>
@@ -57,8 +57,15 @@ export default {
     data: function () {
     return {
       paid: false,
-      counter: 0
+      orderNumber: []
     };
+  },
+  //listening to orderNumber  from kitchen, printing in checkout after pay-button is pushed
+  created: function () {
+    this.$store.state.socket.on('orderNumber', function (orderNumber) {
+      console.log(orderNumber)
+      this.orderNumber.splice(0,0,orderNumber);
+    }.bind(this));
   },
   methods: {
     goBack: function() {
@@ -72,7 +79,7 @@ export default {
         this.shoppingCart.menuItems.forEach(menuItem => {
         this.$store.state.socket.emit('order', {order: menuItem});
 
-          this.counter +=1;
+
           document.getElementById("pressedPayButton").style.display = "block";
 
 

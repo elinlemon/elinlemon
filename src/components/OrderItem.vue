@@ -1,6 +1,10 @@
 <template>
-	<div class = "orderstyle">
-		 {{order.type}} {{uiLabels.order}} {{orderId}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
+	<div class = "order-style">
+		{{order.type}} {{uiLabels.order}} {{orderId}}:
+		<li v-for="ingredient in order.ingredients">
+			{{ingredient["ingredient_"+lang]}}
+		</li>
+
 	</div>
 </template>
 <script>
@@ -15,5 +19,12 @@ export default {
 }
 </script>
 <style scoped>
+	.order-style{
+		width: 170px;
+		height: 210px;
+		margin: 10px;
+		float: left;
+
+	}
 	
 </style>

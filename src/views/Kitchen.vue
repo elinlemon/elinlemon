@@ -82,21 +82,20 @@ export default {
   }
 
   #orders-to-prepare{
-    border: dashed;
-    height: 450px;
-    widht: 100%;
+    height: 33vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   #orders-started {
-    border: dashed;
-    height: 450px;
-    widht: 100%;
+    height: 33vh;
+    width: 100%;
 
   }
 
   #orders-done{
-    border: dashed;
-    widht: 100%;
-    height: 450px;
+    width: 100%;
+    height: 33vh;
   }
 </style>
