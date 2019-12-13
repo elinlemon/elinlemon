@@ -41,6 +41,10 @@ export class MenuItem {
         this.ingredients = [];
     }
 
+    isEmpty() {
+        return this.ingredients.length == 0;
+    }
+
     addIngredient(ingredient) {
         this.ingredients.push(ingredient);
         this.totalPrice += ingredient.selling_price;

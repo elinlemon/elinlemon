@@ -181,33 +181,14 @@ export default {
 
     removeOrder: function(menuItem) {
       this.shoppingCart.removeMenuItem(menuItem);
-    },
-
-    placeOrder: function() {
-      this.shoppingCart = new ShoppingCart();
-      this.currentMenuItem = new MenuItem();
-
-      /*
-      var i,
-        //Wrap the order in an object
-        order = {
-          ingredients: this.chosenIngredients,
-          price: this.price
-        };
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      this.$store.state.socket.emit("order", { order: order });
-      //set all counters to 0. Notice the use of $refs
-      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
-      }
-      */
+      this.shoppingCart.menuItems.forEach(mi => mi.id -= 1);
     },
 
     setLocation: function(location) {
       this.location = location;
       this.uniqueIng = {};
       this.price = 0;
-               // Is conected to the final_page
+      // Is connected to the final_page
     },
 
     setCurrentCategory: function(category) {
@@ -224,13 +205,15 @@ export default {
     },
 
     notifyBackend: function() {
-
       // reset the view
       this.cancelOrder();
     },
 
     goToCheckout: function() {
-      this.shoppingCart.addMenuItem(this.currentMenuItem);
+      if (!this.currentMenuItem.isEmpty()) {
+          this.shoppingCart.addMenuItem(this.currentMenuItem);
+      }
+
       this.currentMenuItem = new MenuItem();
       this.state = "checkout";
     },
