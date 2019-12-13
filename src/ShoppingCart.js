@@ -3,20 +3,26 @@ import { isEqual, uniqBy } from "lodash";
 export class ShoppingCart {
 
     constructor() {
+        // TODO: add order location to shopping basket
         this.menuItems = [];
         this.totalPrice = 0;
+    }
 
-        this.menuItemId = 1;
+    // being able to edit orders may cause IDs that are all over the place
+    // but we want them to be in ascending order: 1, 2, 3, ...
+    refreshMenuItemIds() {
+        let id = 1;
+
+        for (let i = 0; i < this.menuItems.length; i++) {
+            this.menuItems[i].id = id;
+            id += 1;
+        }
     }
 
     addMenuItem(menuItem) {
         menuItem.order = this.menuItems.length + 1;
-        
-        // assign an id to this menu item so that we can separate between identical ingredients among different menu items
-        menuItem.id = this.menuItemId;
-        this.menuItemId += 1;
-
         this.menuItems.push(menuItem);
+        this.refreshMenuItemIds();
         this.totalPrice += menuItem.totalPrice;
     }
 
@@ -26,6 +32,7 @@ export class ShoppingCart {
 
             if (isEqual(current, menuItem)) {
                 this.menuItems.splice(i, 1);
+                this.refreshMenuItemIds();
                 this.totalPrice -= menuItem.totalPrice;
                 break;
             }
@@ -39,6 +46,7 @@ export class MenuItem {
     constructor() {
         this.totalPrice = 0;
         this.ingredients = [];
+        this.id = null;
     }
 
     isEmpty() {

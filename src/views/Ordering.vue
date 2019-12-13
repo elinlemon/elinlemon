@@ -174,14 +174,10 @@ export default {
       this.shoppingCart.addMenuItem(this.currentMenuItem);
       this.currentMenuItem = new MenuItem();
       this.currentCategory = 4;
-
-      // TODO: do we need this?
-      this.orderNumber +=1;
     },
 
     removeOrder: function(menuItem) {
       this.shoppingCart.removeMenuItem(menuItem);
-      this.shoppingCart.menuItems.forEach(mi => mi.id -= 1);
     },
 
     setLocation: function(location) {
@@ -223,7 +219,12 @@ export default {
     },
 
     editOrder: function(menuItem) {
+      // save current order if not empty
+      if (!this.currentMenuItem.isEmpty()) {
+        this.shoppingCart.addMenuItem(this.currentMenuItem);
+      }
 
+      this.currentMenuItem = menuItem;
     }
   }
 };
