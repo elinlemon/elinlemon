@@ -65,8 +65,8 @@
                     <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
 
                     <div class="menu-item-controls">
-                      <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
                       <img class="remove-buttons" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
+                      <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
                     </div>
                   </div>
 
@@ -107,7 +107,7 @@
           <!-- Is conected to the final_page -->
           <div class="checkout-controls-container">
             <button class="checkout-buttons" v-on:click="goToCheckout()" :disabled="!checkoutPossible()">{{uiLabels.placeOrder}} </button>
-            <button class="checkout-buttons" v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
+            <button class="checkout-buttons" v-on:click="addNewOrder()" :disabled="!newOrderPossible()">{{uiLabels.newOrder}}</button>
           </div>
 
         </div>
@@ -179,6 +179,10 @@ export default {
     checkoutPossible: function() {
       return !this.currentMenuItem.isEmpty() || !this.shoppingCart.isEmpty();
     }, 
+
+    newOrderPossible: function() {
+      return !this.currentMenuItem.isEmpty();
+    },
 
     ingredientAdded: function(ingredient) {
       this.currentMenuItem.addIngredient(ingredient)
@@ -267,9 +271,14 @@ export default {
     display: flex;
     flex-direction: column;
   }
-  .remove-buttons:hover {
-    opacity: 40%;
+
+  .remove-buttons {
+    opacity: 0.4;
   }
+  .remove-buttons:hover {
+    opacity: 1;
+  }
+
   /* first screen */
   .top-container-1 {
     display: flex;
