@@ -59,13 +59,13 @@
               <div class="previous-order-items-container">
 
                 <!-- Everything that is already in the shopping card (= previous orders) are displayed here -->
-                <div v-for="menuItem in this.shoppingCart.menuItems">
+                <div v-for="menuItem in this.shoppingCart.menuItems" v-bind:key="menuItem.id">
                   <h5>{{uiLabels.order}} {{menuItem.id}}
                   <img class="remove-buttons" src="delete-symbol.png" height= 20 widht = auto v-on:click="removeOrder(menuItem)">
                   <img class="remove-buttons" src="edit.png" height = 20 width="auto" v-on:click="editOrder(menuItem)"></h5>
 
 
-                  <div v-for="ingredient in menuItem.getPrintableIngredientList()">
+                  <div v-for="ingredient in menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
                     <!-- TODO: account for language change here -->
 
                     <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
@@ -78,7 +78,7 @@
               </div>
 
               <!-- The current menu item and all of its ingredients are displayed here -->
-              <div class="current-order-items-container" v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()">
+              <div class="current-order-items-container" v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
                 <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
                 <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
               </div>

@@ -1,6 +1,6 @@
 <template>
 	<div class = "orderstyle">
-		 {{order.type}} {{uiLabels.order}} {{orderId}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
+    {{order.type}} {{uiLabels.order}} {{orderId}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
 	</div>
 </template>
 <script>
