@@ -2,8 +2,7 @@
   <div>
     <!-- Welcome view -->
 
-    <div class="welcome-container" v-if="location === undefined">
-
+    <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
 
       <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
@@ -20,7 +19,7 @@
 
 
     <!-- Main view -->
-      <div class="top-container-2" v-if="location !== undefined">
+      <div class="top-container-2" v-if="this.shoppingCart.orderLocation !== undefined">
 
         <div class="language-container">
           <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
@@ -29,9 +28,10 @@
 
         <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
-    <div class="ordering-container" v-if="location !== undefined && state === 'ordering'">
-      <div class="main-container" >
-                <!-- Is conected to the final_page -->
+    <div class="ordering-container" v-if="this.shoppingCart.orderLocation !== undefined && state === 'ordering'">
+      <div class="main-container">
+        <!-- Is conected to the final_page -->
+
         <div class="category-buttons-container">
           <button class="category-button" v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
           <button class="category-button" v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
@@ -59,15 +59,18 @@
               <div class="previous-order-items-container">
 
                 <!-- Everything that is already in the shopping card (= previous orders) are displayed here -->
-                <div v-for="menuItem in this.shoppingCart.menuItems">
-                  <h5>{{uiLabels.order}} {{menuItem.id}}
-                  <img class="remove-buttons" src="delete-symbol.png" height= 20 widht = auto v-on:click="removeOrder(menuItem)">
-                  <img class="remove-buttons" src="edit.png" height = 20 width="auto" v-on:click="editOrder(menuItem)"></h5>
+                <div v-for="menuItem in this.shoppingCart.menuItems" v-bind:key="menuItem.id">
 
+                  <div class="menu-item-container">
+                    <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
 
-                  <div v-for="ingredient in menuItem.getPrintableIngredientList()">
-                    <!-- TODO: account for language change here -->
+                    <div class="menu-item-controls">
+                      <img class="remove-buttons" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
+                      <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
+                    </div>
+                  </div>
 
+                  <div v-for="ingredient in menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
                     <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
                     <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
                   </div>
@@ -78,9 +81,20 @@
               </div>
 
               <!-- The current menu item and all of its ingredients are displayed here -->
-              <div class="current-order-items-container" v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()">
-                <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
-                <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
+              <div class="current-order-items-container">
+
+                <div class="menu-item-container" v-if="!this.currentMenuItem.isEmpty()">
+                  <h5>{{uiLabels.order}}</h5>
+
+                  <div class="menu-item-controls">
+                    <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
+                  </div>
+                </div>
+                
+                <div v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
+                  <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
+                  <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
+                </div>
               </div>
 
             </div>
@@ -92,8 +106,8 @@
 
           <!-- Is conected to the final_page -->
           <div class="checkout-controls-container">
-            <button class="checkout-buttons" v-on:click="goToCheckout()">{{uiLabels.placeOrder}} </button>
-            <button class="checkout-buttons" v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
+            <button class="checkout-buttons" v-on:click="goToCheckout()" :disabled="!checkoutPossible()">{{uiLabels.placeOrder}} </button>
+            <button class="checkout-buttons" v-on:click="addNewOrder()" :disabled="!newOrderPossible()">{{uiLabels.newOrder}}</button>
           </div>
 
         </div>
@@ -161,6 +175,15 @@ export default {
     );
   },
   methods: {
+
+    checkoutPossible: function() {
+      return !this.currentMenuItem.isEmpty() || !this.shoppingCart.isEmpty();
+    }, 
+
+    newOrderPossible: function() {
+      return !this.currentMenuItem.isEmpty();
+    },
+
     ingredientAdded: function(ingredient) {
       this.currentMenuItem.addIngredient(ingredient)
     },
@@ -174,40 +197,21 @@ export default {
       this.shoppingCart.addMenuItem(this.currentMenuItem);
       this.currentMenuItem = new MenuItem();
       this.currentCategory = 4;
-
-      // TODO: do we need this?
-      this.orderNumber +=1;
     },
-    /*Does not work hehe*/
+
     removeOrder: function(menuItem) {
-    this.shoppingCart.removeMenuItem(this.currentMenuItem);
+      this.shoppingCart.removeMenuItem(menuItem);
     },
 
-    placeOrder: function() {
-      this.shoppingCart = new ShoppingCart();
+    removeCurrentOrder: function() {
       this.currentMenuItem = new MenuItem();
-
-      /*
-      var i,
-        //Wrap the order in an object
-        order = {
-          ingredients: this.chosenIngredients,
-          price: this.price
-        };
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      this.$store.state.socket.emit("order", { order: order });
-      //set all counters to 0. Notice the use of $refs
-      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
-      }
-      */
     },
 
     setLocation: function(location) {
-      this.location = location;
-      this.uniqueIng = {};
+      this.shoppingCart.orderLocation = location;
+
       this.price = 0;
-               // Is conected to the final_page
+      // Is connected to the final_page
     },
 
     setCurrentCategory: function(category) {
@@ -216,7 +220,6 @@ export default {
 
     cancelOrder: function () {
       this.state = "ordering"
-      this.location = undefined;
       this.currentCategory = 4;
 
       this.shoppingCart = new ShoppingCart();
@@ -224,13 +227,15 @@ export default {
     },
 
     notifyBackend: function() {
-
       // reset the view
       this.cancelOrder();
     },
 
     goToCheckout: function() {
-      this.shoppingCart.addMenuItem(this.currentMenuItem);
+      if (!this.currentMenuItem.isEmpty()) {
+          this.shoppingCart.addMenuItem(this.currentMenuItem);
+      }
+
       this.currentMenuItem = new MenuItem();
       this.state = "checkout";
     },
@@ -240,7 +245,12 @@ export default {
     },
 
     editOrder: function(menuItem) {
+      // save current order if not empty
+      if (!this.currentMenuItem.isEmpty()) {
+        this.shoppingCart.addMenuItem(this.currentMenuItem);
+      }
 
+      this.currentMenuItem = menuItem;
     }
   }
 };
@@ -248,6 +258,10 @@ export default {
 
 </script>
 <style scoped>
+  h5 {
+    margin: 0;
+  }
+
   .root-container {
     height: 100%;
   }
@@ -256,9 +270,14 @@ export default {
     display: flex;
     flex-direction: column;
   }
-  .remove-buttons:hover {
-    opacity: 40%;
+
+  .remove-buttons {
+    opacity: 0.4;
   }
+  .remove-buttons:hover {
+    opacity: 1;
+  }
+
   /* first screen */
   .top-container-1 {
     display: flex;
@@ -344,6 +363,14 @@ export default {
     flex-direction: column;
     min-height: 20em;
     min-width: 10em;
+  }
+
+  .menu-item-container {
+    display: flex;
+  }
+
+  .menu-item-controls {
+    margin-left: auto;
   }
 
   .ordered-items-container {

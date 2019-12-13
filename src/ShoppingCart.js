@@ -1,31 +1,42 @@
-import { isEqual } from "lodash";
+import { isEqual, uniqBy } from "lodash";
 
 export class ShoppingCart {
 
     constructor() {
         this.menuItems = [];
         this.totalPrice = 0;
+        this.orderLocation = undefined;
+    }
 
-        this.menuItemId = 1;
+    isEmpty() {
+        return this.menuItems.length === 0;
+    }
+
+    // being able to edit orders may cause IDs that are all over the place
+    // but we want them to be in ascending order: 1, 2, 3, ...
+    refreshMenuItemIds() {
+        let id = 1;
+
+        for (let i = 0; i < this.menuItems.length; i++) {
+            this.menuItems[i].id = id;
+            id += 1;
+        }
     }
 
     addMenuItem(menuItem) {
         menuItem.order = this.menuItems.length + 1;
-        
-        // assign an id to this menu item so that we can separate between identical ingredients among different menu items
-        menuItem.id = this.menuItemId;
-        this.menuItemId += 1;
-
         this.menuItems.push(menuItem);
+        this.refreshMenuItemIds();
         this.totalPrice += menuItem.totalPrice;
     }
 
     removeMenuItem(menuItem) {
-        for (let i = 0; i < this.menu.length; i++) {
-            let current = this.ingredients[i];
+        for (let i = 0; i < this.menuItems.length; i++) {
+            let current = this.menuItems[i];
 
             if (isEqual(current, menuItem)) {
                 this.menuItems.splice(i, 1);
+                this.refreshMenuItemIds();
                 this.totalPrice -= menuItem.totalPrice;
                 break;
             }
@@ -39,6 +50,11 @@ export class MenuItem {
     constructor() {
         this.totalPrice = 0;
         this.ingredients = [];
+        this.id = undefined;
+    }
+
+    isEmpty() {
+        return this.ingredients.length === 0;
     }
 
     addIngredient(ingredient) {
@@ -67,8 +83,6 @@ export class MenuItem {
         for (let ingredient of this.ingredients) {
             let id = ingredient.ingredient_id;
 
-            let foo = countPerIngredientId[id];
-
             // if we haven't seen this ingredient, set the count to 1
             if (typeof(countPerIngredientId[id]) === 'undefined') {
                 countPerIngredientId[id] = 1;
@@ -79,7 +93,7 @@ export class MenuItem {
             countPerIngredientId[id] += 1;
         }
 
-        let uniqueIngredients = _.uniqBy(this.ingredients, 'ingredient_id');
+        let uniqueIngredients = uniqBy(this.ingredients, 'ingredient_id');
 
         // set the count as an additional field for every unique ingredient
         for (let uq of uniqueIngredients) {

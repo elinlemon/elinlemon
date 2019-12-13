@@ -4,8 +4,8 @@
 		<li v-for="ingredient in order.ingredients">
 			{{ingredient["ingredient_"+lang]}}
 		</li>
-
 	</div>
+
 </template>
 <script>
 export default {
