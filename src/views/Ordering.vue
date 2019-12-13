@@ -84,7 +84,7 @@
               <div class="current-order-items-container">
 
                 <div class="menu-item-container" v-if="!this.currentMenuItem.isEmpty()">
-                  <h5>{{uiLabels.order}}</h5>
+                  <h5>{{uiLabels.currentOrder}}</h5>
 
                   <div class="menu-item-controls">
                     <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
@@ -115,7 +115,10 @@
     </div>
 
     <Checkout v-if="state === 'checkout'" :lang="lang" :shoppingCart="this.shoppingCart"
-              @goBack="goBackFromCheckout()" @cancelOrder="cancelOrder()" @orderPlaced="notifyBackend()"></Checkout>
+              @goBack="goBackFromCheckout()" 
+              @cancelOrder="cancelOrder()"
+              @orderPlaced="notifyBackend()"
+              @editOrder="editOrderFromCheckout"></Checkout>
 
   </div>
 </template>
@@ -250,7 +253,14 @@ export default {
         this.shoppingCart.addMenuItem(this.currentMenuItem);
       }
 
+      // take to be edited menu item out of the shopping cart
+      this.shoppingCart.removeMenuItem(menuItem);
       this.currentMenuItem = menuItem;
+    },
+
+    editOrderFromCheckout: function(menuItem) {
+      this.state = "ordering";
+      this.editOrder(menuItem);
     }
   }
 };

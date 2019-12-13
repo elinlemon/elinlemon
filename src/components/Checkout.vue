@@ -101,7 +101,7 @@ export default {
     },
 
     editOrder: function(menuItem) {
-
+      this.$emit('editOrder', menuItem);
     },
 
     cancelOrder: function() {
