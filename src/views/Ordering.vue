@@ -2,7 +2,7 @@
   <div>
     <!-- Welcome view -->
 
-    <div class="welcome-container" v-if="location === undefined">
+    <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
 
       <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
@@ -19,7 +19,7 @@
 
 
     <!-- Main view -->
-      <div class="top-container-2" v-if="location !== undefined">
+      <div class="top-container-2" v-if="this.shoppingCart.orderLocation !== undefined">
 
         <div class="language-container">
           <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
@@ -28,7 +28,7 @@
 
         <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
-    <div class="ordering-container" v-if="location !== undefined && state === 'ordering'">
+    <div class="ordering-container" v-if="this.shoppingCart.orderLocation !== undefined && state === 'ordering'">
       <div class="main-container">
         <!-- Is conected to the final_page -->
 
@@ -208,8 +208,8 @@ export default {
     },
 
     setLocation: function(location) {
-      this.location = location;
-      this.uniqueIng = {};
+      this.shoppingCart.orderLocation = location;
+
       this.price = 0;
       // Is connected to the final_page
     },
@@ -220,7 +220,6 @@ export default {
 
     cancelOrder: function () {
       this.state = "ordering"
-      this.location = undefined;
       this.currentCategory = 4;
 
       this.shoppingCart = new ShoppingCart();

@@ -3,9 +3,9 @@ import { isEqual, uniqBy } from "lodash";
 export class ShoppingCart {
 
     constructor() {
-        // TODO: add order location to shopping basket
         this.menuItems = [];
         this.totalPrice = 0;
+        this.orderLocation = undefined;
     }
 
     isEmpty() {
@@ -50,7 +50,7 @@ export class MenuItem {
     constructor() {
         this.totalPrice = 0;
         this.ingredients = [];
-        this.id = null;
+        this.id = undefined;
     }
 
     isEmpty() {
