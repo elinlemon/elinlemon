@@ -5,12 +5,12 @@
 
       <div class="shopping-cart-container">
 
-        <div v-for="menuItem of this.shoppingCart.menuItems" class="stylemenu">
+        <div v-for="menuItem of this.shoppingCart.menuItems" v-bind:key="menuItem.id" class="stylemenu">
           <div> Order: {{menuItem.id}}
           <img class="remove-buttons" src="delete-symbol.png" height = 20 width=20 v-on:click="removeOrder(menuItem)">
           <img class="remove-buttons" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
 
-          <div v-for="ingredient of menuItem.getPrintableIngredientList()">
+          <div v-for="ingredient of menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
               <h3> {{ingredient.count}} x {{ingredient.selling_price}}:-
                 <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
             <span v-if = "lang ==='sv'"> {{ingredient.ingredient_sv}} </span>
