@@ -30,8 +30,9 @@
         <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
     <div class="ordering-container" v-if="location !== undefined && state === 'ordering'">
-      <div class="main-container" >
-                <!-- Is conected to the final_page -->
+      <div class="main-container">
+        <!-- Is conected to the final_page -->
+
         <div class="category-buttons-container">
           <button class="category-button" v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
           <button class="category-button" v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
@@ -60,14 +61,17 @@
 
                 <!-- Everything that is already in the shopping card (= previous orders) are displayed here -->
                 <div v-for="menuItem in this.shoppingCart.menuItems" v-bind:key="menuItem.id">
-                  <h5>{{uiLabels.order}} {{menuItem.id}}
-                  <img class="remove-buttons" src="delete-symbol.png" height= 20 widht = auto v-on:click="removeOrder(menuItem)">
-                  <img class="remove-buttons" src="edit.png" height = 20 width="auto" v-on:click="editOrder(menuItem)"></h5>
 
+                  <div class="menu-item-container">
+                    <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
+
+                    <div class="menu-item-controls">
+                      <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
+                      <img class="remove-buttons" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
+                    </div>
+                  </div>
 
                   <div v-for="ingredient in menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-                    <!-- TODO: account for language change here -->
-
                     <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
                     <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
                   </div>
@@ -78,9 +82,21 @@
               </div>
 
               <!-- The current menu item and all of its ingredients are displayed here -->
-              <div class="current-order-items-container" v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-                <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
-                <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
+              <div class="current-order-items-container">
+
+                <div class="menu-item-container" v-if="!this.currentMenuItem.isEmpty()">
+                  <h5>{{uiLabels.order}}</h5>
+
+                  <div class="menu-item-controls">
+                    <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
+                    <img class="remove-buttons" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
+                  </div>
+                </div>
+                
+                <div v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
+                  <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
+                  <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
+                </div>
               </div>
 
             </div>
@@ -232,6 +248,10 @@ export default {
 
 </script>
 <style scoped>
+  h5 {
+    margin: 0;
+  }
+
   .root-container {
     height: 100%;
   }
@@ -328,6 +348,14 @@ export default {
     flex-direction: column;
     min-height: 20em;
     min-width: 10em;
+  }
+
+  .menu-item-container {
+    display: flex;
+  }
+
+  .menu-item-controls {
+    margin-left: auto;
   }
 
   .ordered-items-container {
