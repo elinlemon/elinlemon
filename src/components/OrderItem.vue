@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class = "orderstyle">
 		 {{order.type}} {{uiLabels.order}} {{orderId}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
 	</div>
 </template>
