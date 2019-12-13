@@ -6,9 +6,10 @@
       <div class="shopping-cart-container">
 
         <div v-for="menuItem of this.shoppingCart.menuItems" class="stylemenu">
-          <button class="remove-buttons" v-on:click="removeOrder(menuItem)">X</button>
-          <button class="remove-buttons" v-on:click="editOrder(menuItem)">Edit</button>
-          <h2>Order: {{menuItem.id}}</h2>
+          <div> Order: {{menuItem.id}}
+          <img class="remove-buttons" src="delete-symbol.png" height = 20 width=20 v-on:click="removeOrder(menuItem)">
+          <img class="remove-buttons" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
+
           <div v-for="ingredient of menuItem.getPrintableIngredientList()">
               <h3> {{ingredient.count}} x {{ingredient.selling_price}}:-
                 <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
@@ -16,6 +17,7 @@
              </h3>
           </div>
         </div>
+      </div>
 
       </div>
       <div>Tot: {{ this.shoppingCart.totalPrice }}:- </div>
@@ -38,7 +40,7 @@
       </div>
 
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -107,6 +109,9 @@ export default {
     display: flex;
     flex-direction: column;
 }
+.remove-buttons:hover {
+  opacity: 40%;
+}
 
 .top-container {
     display: flex;
@@ -164,9 +169,9 @@ export default {
   padding: 10px;
   border: 3px dashed;
   display: flex;
-  flex-direction: column;
   height: 20em;
-  width: 10em;
+  flex-direction: column;
+  width: auto;
 }
 
 </style>

@@ -1,5 +1,6 @@
 <template>
 <div id="orders">
+  <div id="orders_to-prepare">
   <h1>{{ uiLabels.ordersInQueue }}</h1>
   <div>
     <OrderItemToPrepare
@@ -13,8 +14,10 @@
       :key="key">
     </OrderItemToPrepare>
   </div>
+  </div>
+
+  <div id="orders_done">
   <h1>{{ uiLabels.ordersFinished }}</h1>
-  <div>
     <OrderItem
       v-for="(order, key) in orders"
       v-if="order.status === 'done'"
@@ -25,8 +28,9 @@
       :key="key">
     </OrderItem>
   </div>
-</div>
+  </div>
 </template>
+
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'

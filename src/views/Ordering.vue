@@ -60,10 +60,11 @@
 
                 <!-- Everything that is already in the shopping card (= previous orders) are displayed here -->
                 <div v-for="menuItem in this.shoppingCart.menuItems">
-                  <button class="remove-buttons" v-on:click="removeOrder(menuItem)">X</button>
-                  <button class="remove-buttons" v-on:click="editOrder(menuItem)">Edit</button>
+                  <h5>{{uiLabels.order}} {{menuItem.id}}
+                  <img class="remove-buttons" src="delete-symbol.png" height= 20 widht = auto v-on:click="removeOrder(menuItem)">
+                  <img class="remove-buttons" src="edit.png" height = 20 width="auto" v-on:click="editOrder(menuItem)"></h5>
 
-                  <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
+
                   <div v-for="ingredient in menuItem.getPrintableIngredientList()">
                     <!-- TODO: account for language change here -->
 
@@ -255,9 +256,8 @@ export default {
     display: flex;
     flex-direction: column;
   }
-  .remove-buttons{
-    height: 20px;
-    width: 20px;
+  .remove-buttons:hover {
+    opacity: 40%;
   }
   /* first screen */
   .top-container-1 {
