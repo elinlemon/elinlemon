@@ -108,7 +108,7 @@
 
           <!-- Is conected to the final_page -->
           <div class="checkout-controls-container">
-            <button class="checkout-buttons" v-on:click="goToCheckout()">{{uiLabels.placeOrder}} </button>
+            <button class="checkout-buttons" v-on:click="goToCheckout()" :disabled="!checkoutPossible()">{{uiLabels.placeOrder}} </button>
             <button class="checkout-buttons" v-on:click="addNewOrder()">{{uiLabels.newOrder}}</button>
           </div>
 
@@ -177,6 +177,11 @@ export default {
     );
   },
   methods: {
+
+    checkoutPossible: function() {
+      return !this.currentMenuItem.isEmpty() || !this.shoppingCart.isEmpty();
+    }, 
+
     ingredientAdded: function(ingredient) {
       this.currentMenuItem.addIngredient(ingredient)
     },

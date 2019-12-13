@@ -8,6 +8,10 @@ export class ShoppingCart {
         this.totalPrice = 0;
     }
 
+    isEmpty() {
+        return this.menuItems.length === 0;
+    }
+
     // being able to edit orders may cause IDs that are all over the place
     // but we want them to be in ascending order: 1, 2, 3, ...
     refreshMenuItemIds() {
@@ -50,7 +54,7 @@ export class MenuItem {
     }
 
     isEmpty() {
-        return this.ingredients.length == 0;
+        return this.ingredients.length === 0;
     }
 
     addIngredient(ingredient) {
