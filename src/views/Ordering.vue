@@ -12,8 +12,8 @@
       <center><h1>{{uiLabels.welcome}}</h1></center>
 
       <div class="order-option-container">
-        <button v-on:click="setLocation('eatIn')">{{uiLabels.eatIn}}</button>
-        <button v-on:click="setLocation('takeout')">{{uiLabels.eatOut}}</button>
+        <button class = "location-button" v-on:click="setLocation('eatIn')">{{uiLabels.eatIn}}</button>
+        <button class = "location-button" v-on:click="setLocation('takeout')">{{uiLabels.eatOut}}</button>
       </div>
     </div>
 
@@ -326,13 +326,22 @@ export default {
   .order-option-container {
     display: flex;
     justify-content: space-around;
+
+  }
+  .location-button{
+    border-radius: 25px;
+    height: 200px;
+    width: 500px;
+    font-size: 30px;
+    margin-top: 50px;
+
   }
 
   .ordering-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 500%;
   }
 
   .header-container {
@@ -353,7 +362,6 @@ export default {
 
   .category-buttons-container {
     flex: 0.2;
-    justify-content: space-evenly;
     max-width: 300px;
     padding-right: 3em;
     padding-left: 2em;
@@ -364,11 +372,14 @@ export default {
 
   .category-button {
     font-size: 1.2em;
+    border-radius: 20px;
+    height: 80px;
+    margin-top: 10px;
   }
 
   .your-order-container {
     padding: 10px;
-    border: 3px dashed;
+    border: 3px solid;
     display: flex;
     flex-direction: column;
     min-height: 20em;

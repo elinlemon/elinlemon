@@ -13,7 +13,9 @@
             <div v-if = "ingredient.vegan"> <img class="allergy-icons-pic" src="vegan-symbol.png"> </div>
           </div>
 
-          {{ingredient["ingredient_" + lang ]}},{{ ingredient.selling_price}}:-
+            {{ingredient["ingredient_" + lang ]}}
+          <br/>
+            {{ ingredient.selling_price}}:-
         </center>
 
 
@@ -65,16 +67,18 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 10px;
+  border: 1px solid;
 }
 
 .ingredient-controls {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 .wrapperButton {
-  height: 20px;
-  width: 20px;
-  background-color: blueviolet;
+  height: 25px;
+  width: 40px;
+
 }
 
 .allergy-icons-container {
