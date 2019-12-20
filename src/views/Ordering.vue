@@ -26,7 +26,7 @@
           <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
         </div>
 
-        <button v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
+        <button class="cancel-order" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
     <div class="ordering-container" v-if="this.shoppingCart.orderLocation !== undefined && state === 'ordering'">
       <div class="main-container">
@@ -114,7 +114,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" :lang="lang" :shoppingCart="this.shoppingCart"
+    <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart"
               @goBack="goBackFromCheckout()" 
               @cancelOrder="cancelOrder()"
               @orderPlaced="notifyBackend()"
@@ -304,6 +304,11 @@ export default {
     justify-content: space-between;
   }
 
+  .cancel-order {
+    margin-right: 2px;
+    margin-top: 2px;
+  }
+
   .language-container {
     flex: 1;
     display: flex;
@@ -418,14 +423,11 @@ export default {
     cursor: pointer;
   }
 
-/*
   @media (max-width: 420px) {
-    .wrapper {
+    .category-container {
       grid-template-columns: 1fr;
     }
-    .ingredient {
-      width: calc(100% - 2em);
-    }
-  }*/
+
+  }
 
 </style>

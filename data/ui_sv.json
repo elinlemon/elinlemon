@@ -34,6 +34,10 @@
   "choose_6": "Välj din dryck",
   "current_order": "Den här beställningen",
   "thanks": "Tack för din beställning!",
+  "orderConsists": "Din beställning består av ordernummer",
   "goback": "Gå tillbaka",
-  "started": "Beställning påbörjad"
+  "startedOrders": "Påbörjade beställningar",
+  "started": "Påbörjad",
+  "backToStartPage": "Ta mig tillbaka till startsidan",
+  "totalPrice": "Summa"
 }

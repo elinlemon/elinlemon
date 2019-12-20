@@ -1,45 +1,49 @@
 <template>
   <div id="orders">
-  <div id="orders-to-prepare">
-  <h1>{{ uiLabels.ordersInQueue }}</h1>
-    <OrderItemToPrepare
-      v-for="(order, key) in orders"
-      v-if="order.status !== 'done' && order.status !== 'started'"
-      v-on:orderStarted="markStarted(key)"
-      :order-id="key"
-      :order="order"
-      :ui-labels="uiLabels"
-      :lang="lang"
-      :key="key">
-    </OrderItemToPrepare>
-  </div>
 
-    <div id="orders-started">
-      <h1>{{ uiLabels.started }}</h1>
-      <OrderItemStarted
-              v-for="(order, key) in orders"
-              v-if="order.status !== 'done' && order.status === 'started'"
-              v-on:done="markDone(key)"
-              :order-id="key"
-              :order="order"
-              :ui-labels="uiLabels"
-              :lang="lang"
-              :key="key">
+      <div id="orders-to-prepare">
+        <h1>{{ uiLabels.ordersInQueue }}:</h1>
+        <OrderItemToPrepare
+                v-for="(order, key) in orders"
+                v-if="order.status !== 'done' && order.status !== 'started'"
+                v-on:orderStarted="markStarted(key)"
+                :order-id="key"
+                :order="order"
+                :ui-labels="uiLabels"
+                :lang="lang"
+                :key="key">
+        </OrderItemToPrepare>
+      </div>
+
+
+
+      <div id="orders-started">
+        <h1>{{ uiLabels.startedOrders}}:</h1>
+        <OrderItemStarted
+                v-for="(order, key) in orders"
+                v-if="order.status !== 'done' && order.status === 'started'"
+                v-on:done="markDone(key)"
+                :order-id="key"
+                :order="order"
+                :ui-labels="uiLabels"
+                :lang="lang"
+                :key="key">
         </OrderItemStarted>
-    </div>
+      </div>
 
-  <div id="orders-done">
-  <h1>{{ uiLabels.ordersFinished }}</h1>
-    <OrderItem
-      v-for="(order, key) in orders"
-      v-if="order.status === 'done'"
-      :order-id="key"
-      :order="order"
-      :lang="lang"
-      :ui-labels="uiLabels"
-      :key="key">
-    </OrderItem>
-  </div>
+
+      <div id="orders-done">
+        <h1>{{ uiLabels.ordersFinished }}:</h1>
+        <OrderItem
+                v-for="(order, key) in orders"
+                v-if="order.status === 'done'"
+                :order-id="key"
+                :order="order"
+                :lang="lang"
+                :ui-labels="uiLabels"
+                :key="key">
+        </OrderItem>
+      </div>
   </div>
 </template>
 
@@ -78,24 +82,49 @@ export default {
 
   h1 {
     text-transform: uppercase;
-    font-size: 1.4em;
+    font-style: oblique;
+    font-size: 1.6em;
   }
 
+
+    /* A lot of repeating code here, but didn't work when I put everything under the orders-ID */
+
   #orders-to-prepare{
-    height: 33vh;
+    height: 40vh;
     width: 100%;
+    display: grid;
+    grid-gap: 6px;
+    padding: 6px;
+    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(160px,1fr);
+    overflow-x:auto;
     overflow-y: scroll;
-    overflow-x: hidden;
   }
 
   #orders-started {
-    height: 33vh;
+    height: 40vh;
     width: 100%;
-
+    display: grid;
+    grid-gap: 6px;
+    padding: 6px;
+    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(160px,1fr);
+    overflow-x:auto;
+    overflow-y: scroll;
   }
 
   #orders-done{
+    height: 40vh;
     width: 100%;
-    height: 33vh;
+    display: grid;
+    grid-gap: 6px;
+    padding: 6px;
+    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(160px,1fr);
+    overflow-x:auto;
+    overflow-y: scroll;
   }
 </style>

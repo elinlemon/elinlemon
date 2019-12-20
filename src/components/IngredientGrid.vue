@@ -92,4 +92,11 @@ export default {
   width: auto;
 
 }
+@media (max-width: 420px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+
+}
+
 </style>

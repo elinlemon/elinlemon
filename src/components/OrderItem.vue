@@ -1,6 +1,9 @@
 <template>
-	<div class = "order-style">
+	<div class = "style-done-item">
+		<h4>
 		{{order.type}} {{uiLabels.order}} {{orderId}}:
+		</h4>
+
 		<li v-for="ingredient in order.ingredients">
 			{{ingredient["ingredient_"+lang]}}
 		</li>
@@ -19,12 +22,18 @@ export default {
 }
 </script>
 <style scoped>
-	.order-style{
-		width: 170px;
-		height: 210px;
-		margin: 10px;
-		float: left;
-
+	h4 {
+		padding-left: 2em;
 	}
+	li {
+		padding-left: 0.15em;
+	}
+
+	.style-done-item{
+		background-color: beige;
+		color: black;
+		border-radius: 5px;
+	}
+
 	
 </style>

@@ -35,6 +35,10 @@
   "choose_6": "Choose your drinks",
   "current_order": "This order",
   "thanks": "Thank you for your order!",
+  "orderConsists": "Your order consists of order numbers",
   "goback": "Go back",
-  "started": "Order started"
+  "startedOrders": "Started orders",
+  "started": "Started",
+  "backToStartPage": "Take me back to the start page",
+  "totalPrice":"Total price"
 }

@@ -1,12 +1,13 @@
 <template>
   <!-- Note in this component that it is using another component -->
-<div class="style">
+<div class="style-prepare-item">
   <OrderItem
     :ui-labels="uiLabels"
     :lang="lang"
     :order-id="orderId"
     :order="order">
   </OrderItem>
+  <br>
   <button v-on:click="orderStarted">
     {{uiLabels.started}}
   </button>
@@ -33,18 +34,23 @@ export default {
     }, */
     orderStarted: function() {
       this.$emit('orderStarted');
-    },
-    cancelOrder: function () {
-      // not implemented
     }
   }
 }
 </script>
 <style scoped>
-  .style {
-    width: 170px;
-    height: 210px;
-    margin: 10px;
-    float: left;
+
+  .style-prepare-item {
+    background-color: beige;
+    color: black;
+    border-radius: 5px;
+  }
+
+  button:hover{
+    cursor: pointer;
+  }
+
+  button {
+    margin-left: 50px;
   }
 </style>

@@ -56,5 +56,11 @@ export default {
 }
 </script>
 <style scoped>
+
+  h1 {
+    text-align: center;
+    padding-right: 8em;
+    font-family: "Courier New";
+  }
   
 </style>

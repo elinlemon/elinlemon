@@ -43,12 +43,8 @@ var sharedVueStuff = {
     },
     getLang: function() {
       return this.lang;
-    },
-    sendLocation: function(loc) {
-      this.location = loc;
-      this.$store.state.socket.emit('sendLocation', this.location);
-
     }
+ 
   }
 };
 

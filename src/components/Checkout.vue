@@ -11,35 +11,32 @@
           <img class="remove-buttons" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
 
           <div v-for="ingredient of menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-              <h3> {{ingredient.count}} x {{ingredient.selling_price}}:-
+              <h4> {{ingredient.count}} x {{ingredient.selling_price}}:-
                 <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
             <span v-if = "lang ==='sv'"> {{ingredient.ingredient_sv}} </span>
-             </h3>
+             </h4>
           </div>
         </div>
       </div>
+      <div id="price-style">{{uiLabels.totalPrice}}: {{ this.shoppingCart.totalPrice }}:-</div>
 
-      </div>
-      <div>Tot: {{ this.shoppingCart.totalPrice }}:- </div>
-      <div class="reciet" id="pressedPayButton" style="display:none;">
-       <h4>Thank you for your order! <br>
-         Your order consists of orders : {{orderNumber}}
+      <div class="receipt" id="pressedPayButton" style="display:none;">
+       <h4>{{uiLabels.thanks}} <br>
+         {{uiLabels.orderConsists}}: {{orderNumber}}
        </h4>
-        <button class="reciet-buttons" v-on:click="backToStartPage()">Go to start page</button>
+        <button class="receipt-buttons" v-on:click="backToStartPage()">{{uiLabels.backToStartPage}}</button>
       </div>
+
 
       <div class="controls-container">
-        <button class="control-buttons" v-on:click="goBack()">Go back</button>
-        <button class="control-buttons" v-on:click="goToPaymentPage()">Pay</button>
+        <button class="control-buttons" v-on:click="goBack()">{{uiLabels.goback}}</button>
+        <button class="control-buttons" v-on:click="goToPaymentPage()">{{uiLabels.pay}}</button>
 
       </div>
 
-      <div class="thank-you-container" v-if="this.paid">
-        Thank you for your order!
-        <!-- {{uiLabels.thanks}} -->
-      </div>
 
     </div>
+  </div>
 
 </template>
 
@@ -63,7 +60,7 @@ export default {
   //listening to orderNumber  from kitchen, printing in checkout after pay-button is pushed
   created: function () {
     this.$store.state.socket.on('orderNumber', function (orderNumber) {
-      console.log(orderNumber)
+
       this.orderNumber.splice(0,0,orderNumber);
     }.bind(this));
   },
@@ -95,7 +92,6 @@ export default {
 
     },
 
-    /*Does not work :-)*/
     removeOrder: function(menuItem) {
       this.shoppingCart.removeMenuItem(menuItem)
     },
@@ -150,14 +146,12 @@ export default {
   margin-left: auto;
 }
 
-.thank-you-container {
-  height: 100vh;
-  display: flex;
-}
 
 .shopping-cart-container {
   display: flex;
   flex: 2;
+  max-height: 27em;
+
 }
 
 
@@ -165,20 +159,61 @@ export default {
   height: 80px;
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 3em;
 }
 
 .control-buttons {
   font-size: 1.2em;
+  width: 90px;
+  background-color: white;
   margin-top: 1em;
+  border: 1px solid;
+  border-radius: 20px;
+}
+
+.control-buttons:hover {
+  opacity: 50%;
+  cursor: pointer;
 }
 
 .stylemenu {
   padding: 10px;
-  border: 3px dashed;
+  margin-left: 1em;
+  border: solid;
   display: flex;
-  height: 20em;
+  height: 25em;
+  overflow-y: auto;
   flex-direction: column;
-  width: auto;
+  width: 235px;
+  background-color: white;
 }
+
+#price-style {
+  font-size: 1.7em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.receipt {
+  font-size: 3em;
+  background-color: white;
+  text-align: center;
+  border: solid;
+  border-radius: 9px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
+
+  .receipt-buttons {
+    border-radius: 8px;
+    height: 32px;
+    margin-bottom: 4px;
+  }
+
+  h4 {
+    font-family: "Times New Roman";
+  }
 
 </style>

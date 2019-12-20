@@ -1,11 +1,12 @@
 <template>
-    <div class="style">
+    <div class="style-started-item">
     <OrderItem
             :ui-labels="uiLabels"
             :lang="lang"
             :order-id="orderId"
             :order="order">
     </OrderItem>
+        <br>
     <button v-on:click="orderDone">
         {{uiLabels.ready}}
     </button>
@@ -36,11 +37,18 @@
 </script>
 
 <style scoped>
-    .style{
-        width: 170px;
-        height: 210px;
-        margin: 10px;
-        float: left;
+
+    .style-started-item{
+        background-color: beige;
+        color: #fff;
+        border-radius: 5px;
     }
 
+    button:hover{
+        cursor: pointer;
+    }
+
+    button {
+        margin-left: 50px;
+    }
 </style>
