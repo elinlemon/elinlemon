@@ -40,5 +40,8 @@
   "startedOrders": "Started orders",
   "started": "Started",
   "backToStartPage": "Take me back to the start page",
-  "totalPrice":"Total price"
+  "totalPrice":"Total price",
+  "milkfree": "Milk free",
+  "glutenfree": "Gluten free",
+  "vegan": "Vegan"
 }

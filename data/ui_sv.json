@@ -39,5 +39,8 @@
   "startedOrders": "Påbörjade beställningar",
   "started": "Påbörjad",
   "backToStartPage": "Ta mig tillbaka till startsidan",
-  "totalPrice": "Summa"
+  "totalPrice": "Summa",
+  "milkfree": "Mjölkfri",
+  "glutenfree": "Glutenfri",
+  "vegan": "Vegansk"
 }
