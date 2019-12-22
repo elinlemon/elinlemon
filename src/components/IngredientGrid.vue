@@ -121,6 +121,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   width: 250px;
+  align-items: end;
 
 }
 .symbol{
