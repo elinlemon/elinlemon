@@ -41,6 +41,9 @@
           <button class="category-button" v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
         </div>
 
+
+
+
         <!--Contacting component bread with the right category-->
         <!-- Is conected to the final_page -->
         <div class="category-container">
@@ -90,7 +93,7 @@
                     <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
                   </div>
                 </div>
-                
+
                 <div v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
                   <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
                   <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
@@ -100,7 +103,7 @@
             </div>
           </div>
 
-          <div>
+          <div class="your-order-container-totprice">
             <span>Tot: {{ totalPrice }} kr</span>
           </div>
 
@@ -115,7 +118,7 @@
     </div>
 
     <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart"
-              @goBack="goBackFromCheckout()" 
+              @goBack="goBackFromCheckout()"
               @cancelOrder="cancelOrder()"
               @orderPlaced="notifyBackend()"
               @editOrder="editOrderFromCheckout"></Checkout>
@@ -181,7 +184,7 @@ export default {
 
     checkoutPossible: function() {
       return !this.currentMenuItem.isEmpty() || !this.shoppingCart.isEmpty();
-    }, 
+    },
 
     newOrderPossible: function() {
       return !this.currentMenuItem.isEmpty();
@@ -302,6 +305,7 @@ export default {
     /* justify-content: center; */
     padding-bottom: 1em;
     justify-content: space-between;
+    padding-right: 4em;
   }
 
   .cancel-order {
@@ -357,6 +361,8 @@ export default {
 
   .main-container {
     padding-top: 3em;
+    padding-left: 4em;
+    padding-right: 4em;
     flex: 0.9;
     display: flex;
   }
@@ -382,13 +388,18 @@ export default {
     margin-top: 10px;
   }
 
+  .category-button:focus {
+    background-color: grey;
+    color: white;
+  }
+
   .your-order-container {
     padding: 10px;
     border: 3px solid;
     display: flex;
     flex-direction: column;
     min-height: 20em;
-    min-width: 10em;
+    min-width: 15em;
   }
 
   .menu-item-container {
@@ -417,7 +428,18 @@ export default {
   }
   .checkout-buttons {
     font-size: 1em;
+    border-radius: 10px;
+    height: 30px;
+    width: auto;
   }
+  .your-order-container-totprice{
+    padding-top : 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+
+
 
   button:hover {
     cursor: pointer;
