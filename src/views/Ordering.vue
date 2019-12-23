@@ -51,7 +51,7 @@
           <div class="ordered-items-container">
 
             <div class="top-line-container">
-              <span>{{uiLabels.yourOrder}}</span>
+              <h4>{{uiLabels.yourOrder}}</h4>
             </div>
 
             <div class="added-items-container">
@@ -101,7 +101,7 @@
           </div>
 
           <div>
-            <span>Tot: {{ totalPrice }} kr</span>
+            <h4>{{uiLabels.totalPrice}}: {{ totalPrice }} kr</h4>
           </div>
 
           <!-- Is conected to the final_page -->
@@ -272,10 +272,6 @@ export default {
     margin: 0;
   }
 
-  .root-container {
-    height: 100%;
-  }
-
   .welcome-container {
     display: flex;
     flex-direction: column;
@@ -339,7 +335,11 @@ export default {
     width: 500px;
     font-size: 30px;
     margin-top: 50px;
+  }
 
+  .location-button:hover {
+    opacity: 40%;
+    cursor: pointer;
   }
 
   .ordering-container {
@@ -349,12 +349,7 @@ export default {
     height: 500%;
   }
 
-  .header-container {
-    flex: 0.1;
-    max-height: 80px;
-    align-self: center;
-  }
-
+  /*Are main-container the same as ordering-container? */
   .main-container {
     padding-top: 3em;
     flex: 0.9;
@@ -370,7 +365,6 @@ export default {
     max-width: 300px;
     padding-right: 3em;
     padding-left: 2em;
-    padding-top: 5em;
     display: flex;
     flex-direction: column;
   }
@@ -382,17 +376,21 @@ export default {
     margin-top: 10px;
   }
 
+
   .your-order-container {
     padding: 10px;
+    margin-right: 0.5em;
     border: 3px solid;
     display: flex;
     flex-direction: column;
     min-height: 20em;
-    min-width: 10em;
+    min-width: 13em;
+    max-height: 30em;
   }
 
   .menu-item-container {
     display: flex;
+    padding-right: 2px;
   }
 
   .menu-item-controls {
@@ -401,6 +399,7 @@ export default {
 
   .ordered-items-container {
     flex: 1;
+    overflow-y: scroll;
   }
 
   .top-line-container {
@@ -420,6 +419,7 @@ export default {
   }
 
   button:hover {
+    opacity: 60%;
     cursor: pointer;
   }
 

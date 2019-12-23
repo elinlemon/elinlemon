@@ -182,10 +182,10 @@ export default {
   border: solid;
   display: flex;
   height: 25em;
-  overflow-y: auto;
-  flex-direction: column;
   width: 235px;
+  flex-direction: column;
   background-color: white;
+  overflow-y: auto;
 }
 
 #price-style {
@@ -210,6 +210,11 @@ export default {
     border-radius: 8px;
     height: 32px;
     margin-bottom: 4px;
+  }
+
+  .receipt-buttons:hover{
+    cursor:pointer;
+    opacity: 60%;
   }
 
   h4 {
