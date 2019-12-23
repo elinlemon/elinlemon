@@ -3,7 +3,7 @@
   <div>
     <h1>{{uiLabels["choose_"+categoryNumber]}}</h1>
 
-    <IngredientGrid :ingredients="relevantIngredients" :ui-labels="uiLabels" :lang="lang" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved">
+    <IngredientGrid :currentMenuItem ="currentMenuItem" :ingredients="relevantIngredients" :ui-labels="uiLabels" :lang="lang" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved">
     </IngredientGrid>
   </div>
 
@@ -11,6 +11,7 @@
 <script>
 
     import IngredientGrid from "../IngredientGrid";
+
 
 
 export default {
@@ -24,6 +25,7 @@ export default {
     ingredients: Array,
       categoryNumber: Number,
       uiLabels: Object,
+      currentMenuItem: Object,
       lang: String
   },
   data: function () {
@@ -34,6 +36,7 @@ export default {
     computed: {
         // from all ingredients, get only the ones that match our categoryNumber
         relevantIngredients: function() {
+
             return this.ingredients.filter(i => i.category === this.categoryNumber); //we want to write this.categorynumber instead of 6, but is undefined
         }
     },

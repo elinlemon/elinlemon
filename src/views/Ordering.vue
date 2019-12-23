@@ -44,7 +44,7 @@
         <!--Contacting component bread with the right category-->
         <!-- Is conected to the final_page -->
         <div class="category-container">
-          <IngredientCategory :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
+          <IngredientCategory :currentMenuItem ="currentMenuItem" :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
         </div>
 
         <div class="your-order-container">
