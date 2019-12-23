@@ -3,7 +3,7 @@
   <div>
     <h1>{{uiLabels["choose_"+categoryNumber]}}</h1>
 
-    <IngredientGrid :ingredients="relevantIngredients" :lang="lang" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved">
+    <IngredientGrid :ingredients="relevantIngredients" :ui-labels="uiLabels" :lang="lang" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved">
     </IngredientGrid>
   </div>
 

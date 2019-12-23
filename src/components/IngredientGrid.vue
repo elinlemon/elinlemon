@@ -9,7 +9,7 @@
 
           <div class="allergy-icons-container">
             <div v-if = "ingredient.milk_free"> <img class="allergy-icons-pic" src="milk-free-symbol.png"> </div>
-            <div v-if = "ingredient.gluten_free"> <img class="allergy-icons-pic" src="gluten-free-symbol.jpg"> </div>
+            <div v-if = "ingredient.gluten_free"> <img class="allergy-icons-pic" src="gluten-free-symbol.png"> </div>
             <div v-if = "ingredient.vegan"> <img class="allergy-icons-pic" src="vegan-symbol.png"> </div>
           </div>
 
@@ -25,15 +25,37 @@
           <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
         </dt>
       </div>
+
     </div>
+      <div class = "symbol-wrapper" >
+        <div class = "symbol">
+          <img width="50px" height="50px" src="milk-free-symbol.png">
+          <div>{{uiLabels.milkfree}}</div>
+        </div>
+        <div class = "symbol">
+          <img width="50px" height="50px" src="gluten-free-symbol.png">
+          <div>{{uiLabels.glutenfree}}</div>
+        </div>
+        <div class = "symbol">
+          <img width="50px" height="50px" src="vegan-symbol.png">
+          <div>{{uiLabels.vegan}}</div>
+        </div>
+
+
+
+      </div>
+
   </div>
+
 </template>
+
 
 <script>
 export default {
   name: "IngredientGrid",
   props: {
     item: Object,
+      uiLabels: Object,
     lang: String,
     ingredients: Array
   },
@@ -92,6 +114,25 @@ export default {
   width: auto;
 
 }
+.symbol-wrapper{
+  display: flex;
+  margin-top: 50px;
+  margin-left: 50px;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 250px;
+  align-items: end;
+
+}
+.symbol{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70px;
+  align-content: center;
+
+}
+
 @media (max-width: 420px) {
   .wrapper {
     grid-template-columns: 1fr;
@@ -100,3 +141,4 @@ export default {
 }
 
 </style>
+
