@@ -97,10 +97,14 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
 .wrapperButton {
   height: 25px;
   width: 40px;
+}
 
+.wrapperButton:hover {
+  cursor: pointer;
 }
 
 .allergy-icons-container {
