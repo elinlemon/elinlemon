@@ -21,7 +21,7 @@
         <dt class="ingredient-controls">
           <button class="wrapperButton" v-on:click="addIngredient(ingredient)">+</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-              <div v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
+              <div class="wrapperCounter" v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
                 {{currentIngredient.count}}
               </div>
             </div>
@@ -89,29 +89,34 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     justify-content: space-between;
     padding: 10px;
     border: 1px solid;
+    font-size: large;
   }
 
   .ingredient-controls {
     display: flex;
     justify-content: space-between;
-    justify-items: auto;
 
   }
   .wrapperButton {
     height: 25px;
     width: 40px;
     cursor: pointer;
-
+  }
+  .wrapperCounter{
+    displaY: flex;
+    width: 54px;
+    justify-content: center;
+    font-size: larger;
   }
 
   .allergy-icons-container {
     display: flex;
-    justify-content: center;
-    height: 25px;
+    justify-content: end;
+    height: 20px;
   }
 
   .allergy-icons-pic {
-    height: 20px;
+    height: 15px;
     width: auto;
 
   }

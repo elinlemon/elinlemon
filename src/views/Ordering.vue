@@ -453,9 +453,6 @@ export default {
     justify-content: center;
   }
 
-
-
-
   button:hover {
     opacity: 60%;
     cursor: pointer;
