@@ -182,13 +182,13 @@ export default {
 .stylemenu {
   padding: 10px;
   margin-left: 1em;
-  border: solid;
   display: flex;
   height: 25em;
   width: 235px;
   flex-direction: column;
   background-color: white;
   overflow-y: auto;
+  box-shadow: 1px 1px 30px grey;
 }
 
 #price-style {

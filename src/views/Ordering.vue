@@ -290,6 +290,7 @@ export default {
   .welcome-container {
     display: flex;
     flex-direction: column;
+    background-color: lightgray;
 
   }
 
@@ -320,8 +321,12 @@ export default {
   }
 
   .cancel-order {
-    margin-right: 2px;
+    margin-right: 1.5px;
     margin-top: 2px;
+    font-size: 1em;
+    border-radius: 10px;
+    height: 25px;
+    width: auto;
   }
 
   .language-container {
@@ -354,6 +359,8 @@ export default {
     width: 500px;
     font-size: 30px;
     margin-top: 50px;
+    margin-bottom: 10px;
+    font-family: "Courier New";
   }
 
   .location-button:hover {
