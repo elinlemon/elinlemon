@@ -112,8 +112,11 @@ export default {
     display: flex;
     flex-direction: column;
 }
+.remove-buttons {
+  opacity: 0.4;
+}
 .remove-buttons:hover {
-  opacity: 40%;
+  opacity: 1;
 }
 
 .top-container {
