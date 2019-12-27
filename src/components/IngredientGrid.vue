@@ -22,7 +22,7 @@
           <button class="wrapperButton" v-on:click="addIngredient(ingredient), colourIngredItem()">+</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
               <div v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
-                {{currentIngredient.count}} hejs
+                {{currentIngredient.count}}
               </div>
             </div>
             <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
