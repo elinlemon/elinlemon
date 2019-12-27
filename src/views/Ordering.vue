@@ -33,13 +33,14 @@
         <!-- Is conected to the final_page -->
 
         <div class="category-buttons-container">
-          <button class="category-button" v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
+          <button v-bind:class="{active:active[3], categorybutton:true}" v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
+          <button v-bind:class="{active:active[0], categorybutton:true}" v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
+          <button v-bind:class="{active:active[1], categorybutton:true}" v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
+          <button v-bind:class="{active:active[2], categorybutton:true}" v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
+          <button v-bind:class="{active:active[4], categorybutton:true}" v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
+          <button v-bind:class="{active:active[5], categorybutton:true}" v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
         </div>
+
 
 
 
@@ -47,14 +48,14 @@
         <!--Contacting component bread with the right category-->
         <!-- Is conected to the final_page -->
         <div class="category-container">
-          <IngredientCategory :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
+          <IngredientCategory :currentMenuItem ="currentMenuItem" :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
         </div>
 
         <div class="your-order-container">
           <div class="ordered-items-container">
 
             <div class="top-line-container">
-              <span>{{uiLabels.yourOrder}}</span>
+              <h4>{{uiLabels.yourOrder}}</h4>
             </div>
 
             <div class="added-items-container">
@@ -103,8 +104,8 @@
             </div>
           </div>
 
-          <div class="your-order-container-totprice">
-            <span>Tot: {{ totalPrice }} kr</span>
+          <div>
+            <h4>{{uiLabels.totalPrice}}: {{ totalPrice }} kr</h4>
           </div>
 
           <!-- Is conected to the final_page -->
@@ -151,6 +152,7 @@ export default {
   data: function() {
     //Not that data is a function!
     return {
+      active:[false,false, false, true, false, false],
       location: undefined,
       price: 0,
       orderNumber: 0,
@@ -163,6 +165,7 @@ export default {
       currentMenuItem: new MenuItem()
     };
   },
+
 
   computed: {
     totalPrice: function() {
@@ -222,6 +225,10 @@ export default {
 
     setCurrentCategory: function(category) {
       this.currentCategory = category;
+      this.active=[false,false,false,false,false,false];
+      this.active[category-1]=true;
+
+
     },
 
     cancelOrder: function () {
@@ -269,14 +276,11 @@ export default {
 };
 
 
+
 </script>
 <style scoped>
   h5 {
     margin: 0;
-  }
-
-  .root-container {
-    height: 100%;
   }
 
   .welcome-container {
@@ -343,7 +347,11 @@ export default {
     width: 500px;
     font-size: 30px;
     margin-top: 50px;
+  }
 
+  .location-button:hover {
+    opacity: 40%;
+    cursor: pointer;
   }
 
   .ordering-container {
@@ -353,12 +361,7 @@ export default {
     height: 500%;
   }
 
-  .header-container {
-    flex: 0.1;
-    max-height: 80px;
-    align-self: center;
-  }
-
+  /*Are main-container the same as ordering-container? */
   .main-container {
     padding-top: 3em;
     padding-left: 4em;
@@ -376,34 +379,37 @@ export default {
     max-width: 300px;
     padding-right: 3em;
     padding-left: 2em;
-    padding-top: 5em;
     display: flex;
     flex-direction: column;
   }
 
-  .category-button {
+  .categorybutton {
     font-size: 1.2em;
     border-radius: 20px;
     height: 80px;
     margin-top: 10px;
   }
 
-  .category-button:focus {
-    background-color: grey;
-    color: white;
-  }
+  .active, .categorybutton:hover {
+  background-color: #666;
+  color: white;
+}
+
 
   .your-order-container {
     padding: 10px;
-    border: 3px solid;
+    margin-right: 0.5em;
     display: flex;
     flex-direction: column;
     min-height: 20em;
-    min-width: 15em;
+    min-width: 20em;
+    max-height: 30em;
+    box-shadow: 1px 1px 30px grey;
   }
 
   .menu-item-container {
     display: flex;
+    padding-right: 2px;
   }
 
   .menu-item-controls {
@@ -412,11 +418,13 @@ export default {
 
   .ordered-items-container {
     flex: 1;
+    overflow-y: scroll;
   }
 
   .top-line-container {
-    display: flex;
+    text-align: center;
     justify-content: space-between;
+
   }
   .added-items-container {
     padding-top: 1em;
@@ -442,6 +450,7 @@ export default {
 
 
   button:hover {
+    opacity: 60%;
     cursor: pointer;
   }
 
