@@ -3,7 +3,7 @@
     <!-- need to decide where the number 'counter' should be displayed -->
 
     <div class="wrapper">
-      <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
+      <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" v-bind:class="{ingredItem:true, active:active}">
 
         <center>
 
@@ -19,10 +19,10 @@
         </center>
 
         <dt class="ingredient-controls">
-          <button class="wrapperButton" v-on:click="addIngredient(ingredient)">+</button>
+          <button class="wrapperButton" v-on:click="addIngredient(ingredient), colourIngredItem()">+</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
               <div v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
-                {{currentIngredient.count}}
+                {{currentIngredient.count}} hejs
               </div>
             </div>
             <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
@@ -59,7 +59,8 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
         },
         data: function() {
             return {
-                counter: 0
+                counter: 0,
+                active: false,
             };
         },
         methods: {
@@ -70,6 +71,10 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
             removeIngredient: function(ingredient) {
                 this.counter -= 1;
                 this.$emit('ingredientRemoved', ingredient);
+            },
+            colourIngredItem: function(){
+              this.active=true;
+
             }
         }
     };
@@ -89,6 +94,10 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     justify-content: space-between;
     padding: 10px;
     border: 1px solid;
+  }
+
+  .active {
+    background-color: lightgrey;
   }
 
   .ingredient-controls {
