@@ -37,13 +37,17 @@
         <!-- Is conected to the final_page -->
 
         <div class="category-buttons-container">
-          <button class="category-button" v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
-          <button class="category-button" v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
+          <button v-bind:class="{active:active[3], categorybutton:true}" v-on:click="setCurrentCategory(4)">{{uiLabels.bread}}</button>
+          <button v-bind:class="{active:active[0], categorybutton:true}" v-on:click="setCurrentCategory(1)">{{uiLabels.protein}}</button>
+          <button v-bind:class="{active:active[1], categorybutton:true}" v-on:click="setCurrentCategory(2)">{{uiLabels.toppings}}</button>
+          <button v-bind:class="{active:active[2], categorybutton:true}" v-on:click="setCurrentCategory(3)">{{uiLabels.dressing}}</button>
+          <button v-bind:class="{active:active[4], categorybutton:true}" v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
+          <button v-bind:class="{active:active[5], categorybutton:true}" v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
         </div>
+
+
+
+
 
         <!--Contacting component bread with the right category-->
         <!-- Is conected to the final_page -->
@@ -94,7 +98,7 @@
                     <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
                   </div>
                 </div>
-                
+
                 <div v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
                   <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
                   <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
@@ -119,7 +123,7 @@
     </div>
 
     <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart"
-              @goBack="goBackFromCheckout()" 
+              @goBack="goBackFromCheckout()"
               @cancelOrder="cancelOrder()"
               @orderPlaced="notifyBackend()"
               @editOrder="editOrderFromCheckout"></Checkout>
@@ -152,6 +156,7 @@ export default {
   data: function() {
     //Not that data is a function!
     return {
+      active:[false,false, false, true, false, false],
       location: undefined,
       price: 0,
       orderNumber: 0,
@@ -164,6 +169,7 @@ export default {
       currentMenuItem: new MenuItem()
     };
   },
+
 
   computed: {
     totalPrice: function() {
@@ -185,7 +191,7 @@ export default {
 
     checkoutPossible: function() {
       return !this.currentMenuItem.isEmpty() || !this.shoppingCart.isEmpty();
-    }, 
+    },
 
     newOrderPossible: function() {
       return !this.currentMenuItem.isEmpty();
@@ -223,6 +229,10 @@ export default {
 
     setCurrentCategory: function(category) {
       this.currentCategory = category;
+      this.active=[false,false,false,false,false,false];
+      this.active[category-1]=true;
+
+
     },
 
     cancelOrder: function () {
@@ -270,6 +280,7 @@ export default {
 };
 
 
+
 </script>
 <style scoped>
   h5 {
@@ -305,6 +316,7 @@ export default {
     /* justify-content: center; */
     padding-bottom: 1em;
     justify-content: space-between;
+    padding-right: 4em;
   }
 
   .cancel-order {
@@ -359,6 +371,8 @@ export default {
   /*Are main-container the same as ordering-container? */
   .main-container {
     padding-top: 3em;
+    padding-left: 4em;
+    padding-right: 4em;
     flex: 0.9;
     display: flex;
   }
@@ -376,23 +390,28 @@ export default {
     flex-direction: column;
   }
 
-  .category-button {
+  .categorybutton {
     font-size: 1.2em;
     border-radius: 20px;
     height: 80px;
     margin-top: 10px;
   }
 
+  .active, .categorybutton:hover {
+  background-color: #666;
+  color: white;
+}
+
 
   .your-order-container {
     padding: 10px;
     margin-right: 0.5em;
-    border: 3px solid;
     display: flex;
     flex-direction: column;
     min-height: 20em;
-    min-width: 13em;
+    min-width: 20em;
     max-height: 30em;
+    box-shadow: 1px 1px 30px grey;
   }
 
   .menu-item-container {
@@ -410,8 +429,9 @@ export default {
   }
 
   .top-line-container {
-    display: flex;
+    text-align: center;
     justify-content: space-between;
+
   }
   .added-items-container {
     padding-top: 1em;
@@ -423,7 +443,18 @@ export default {
   }
   .checkout-buttons {
     font-size: 1em;
+    border-radius: 10px;
+    height: 30px;
+    width: auto;
   }
+  .your-order-container-totprice{
+    padding-top : 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+
+
 
   button:hover {
     opacity: 60%;
