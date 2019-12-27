@@ -4,12 +4,16 @@
 
     <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
 
+
       <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
         <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
+
       </div>
 
-      <center><h1>{{uiLabels.welcome}}</h1></center>
+      <center><h1>{{uiLabels.welcome}}</h1>
+        <img src="frontpage3.0.png" height="200px">
+      </center>
 
       <div class="order-option-container">
         <button class = "location-button" v-on:click="setLocation('eatIn')">{{uiLabels.eatIn}}</button>
@@ -275,10 +279,12 @@ export default {
   .welcome-container {
     display: flex;
     flex-direction: column;
+
   }
 
   .remove-buttons {
     opacity: 0.4;
+    cursor: pointer;
   }
   .remove-buttons:hover {
     opacity: 1;
@@ -288,8 +294,9 @@ export default {
   .top-container-1 {
     display: flex;
     padding-bottom: 1em;
-    justify-content: center;
+    justify-content: end;
     margin-top: 20px;
+    margin-right: 1em;
   }
 
   /* second screen */

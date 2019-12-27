@@ -95,10 +95,12 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     display: flex;
     justify-content: space-between;
     justify-items: auto;
+
   }
   .wrapperButton {
     height: 25px;
     width: 40px;
+    cursor: pointer;
 
   }
 
@@ -120,7 +122,6 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     flex-direction: row;
     justify-content: space-between;
     width: 250px;
-    align-items: end;
 
   }
   .symbol{
