@@ -30,7 +30,7 @@
           <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
         </div>
 
-        <button class="cancel-order" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
+        <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
     <div class="ordering-container" v-if="this.shoppingCart.orderLocation !== undefined && state === 'ordering'">
       <div class="main-container">
@@ -293,6 +293,7 @@ export default {
     display: flex;
     flex-direction: column;
     background-color: lightgray;
+    font-family: "Courier New";
 
   }
 
@@ -322,10 +323,11 @@ export default {
     padding-right: 4em;
   }
 
-  .cancel-order {
+  .cancel-order-button {
     margin-right: 1.5px;
     margin-top: 2px;
     font-size: 1em;
+    font-family: "Courier New";
     border-radius: 10px;
     height: 25px;
     width: auto;
@@ -404,6 +406,7 @@ export default {
     border-radius: 20px;
     height: 80px;
     margin-top: 10px;
+    font-family: "Courier New";
   }
 
   .active, .categorybutton:hover {
@@ -421,6 +424,7 @@ export default {
     min-width: 20em;
     max-height: 30em;
     box-shadow: 1px 1px 30px grey;
+    font-family: "Courier New";
   }
 
   .menu-item-container {
@@ -455,6 +459,7 @@ export default {
     border-radius: 10px;
     height: 30px;
     width: auto;
+    font-family: "Courier New";
   }
   .your-order-container-totprice{
     padding-top : 20px;

@@ -6,7 +6,7 @@
       <div class="shopping-cart-container">
 
         <div v-for="menuItem of this.shoppingCart.menuItems" v-bind:key="menuItem.id" class="stylemenu">
-          <div> Order: {{menuItem.id}}
+          <div> {{uiLabels.order}}: {{menuItem.id}}
           <img class="remove-buttons" src="delete-symbol.png" height = 20 width=20 v-on:click="removeOrder(menuItem)">
           <img class="remove-buttons" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
 
@@ -167,11 +167,12 @@ export default {
 
 .control-buttons {
   font-size: 1.2em;
-  width: 90px;
+  width: 103px;
   background-color: white;
   margin-top: 1em;
   border: 1px solid;
   border-radius: 20px;
+  font-family: "Courier New";
 }
 
 .control-buttons:hover {
@@ -189,22 +190,25 @@ export default {
   background-color: white;
   overflow-y: auto;
   box-shadow: 1px 1px 30px grey;
+  font-family: "Courier New";
 }
 
 #price-style {
   font-size: 1.7em;
   text-transform: uppercase;
   text-align: center;
+  font-family: "Courier New";
 }
 
 .receipt {
   font-size: 3em;
+  font-family: "Courier New";
   background-color: white;
   text-align: center;
   border: solid;
   border-radius: 9px;
   position: fixed;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   }
@@ -213,6 +217,7 @@ export default {
     border-radius: 8px;
     height: 32px;
     margin-bottom: 4px;
+    font-family: "Courier New";
   }
 
   .receipt-buttons:hover{
@@ -221,7 +226,7 @@ export default {
   }
 
   h4 {
-    font-family: "Times New Roman";
+    font-family: "Courier New";
   }
 
 </style>

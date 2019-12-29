@@ -82,7 +82,7 @@ export default {
 
   h1 {
     text-transform: uppercase;
-    font-style: oblique;
+    font-family: "Courier New";
     font-size: 1.6em;
   }
 
