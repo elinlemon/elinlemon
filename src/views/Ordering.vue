@@ -210,6 +210,7 @@ export default {
       this.shoppingCart.addMenuItem(this.currentMenuItem);
       this.currentMenuItem = new MenuItem();
       this.currentCategory = 4;
+      this.active = [false,false, false, true, false, false];
     },
 
     removeOrder: function(menuItem) {
@@ -236,8 +237,9 @@ export default {
     },
 
     cancelOrder: function () {
-      this.state = "ordering"
+      this.state = "ordering";
       this.currentCategory = 4;
+      this.active = [false,false, false, true, false, false];
 
       this.shoppingCart = new ShoppingCart();
       this.currentMenuItem = new MenuItem();
