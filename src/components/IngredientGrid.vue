@@ -1,9 +1,24 @@
 <template>
   <div>
     <!-- need to decide where the number 'counter' should be displayed -->
-
+    <div class = "symbol-wrapper" >
+      <h1>{{uiLabels["choose_"+categoryNumber]}}</h1>
+      <div class = "symbol">
+        <img width="50px" height="50px" src="milk-free-symbol.png">
+        <div>{{uiLabels.milkfree}}</div>
+      </div>
+      <div class = "symbol">
+        <img width="50px" height="50px" src="gluten-free-symbol.png">
+        <div>{{uiLabels.glutenfree}}</div>
+      </div>
+      <div class = "symbol">
+        <img width="50px" height="50px" src="vegan-symbol.png">
+        <div>{{uiLabels.vegan}}</div>
+      </div>
+    </div>
     <div class="wrapper">
-      <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" v-bind:class="{ingredItem:true, active:active}">
+
+      <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
 
         <center>
 
@@ -18,31 +33,18 @@
           {{ ingredient.selling_price}}:-
         </center>
 
-        <dt class="ingredient-controls">
+        <div class="ingredient-controls">
           <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-              <div v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
+              <div class="wrapperCounter" v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
                 {{currentIngredient.count}}
               </div>
             </div>
           <button class="wrapperButton" v-on:click="addIngredient(ingredient)">+</button>
-        </dt>
+        </div>
       </div>
     </div>
-    <div class = "symbol-wrapper" >
-      <div class = "symbol">
-        <img width="50px" height="50px" src="milk-free-symbol.png">
-        <div>{{uiLabels.milkfree}}</div>
-      </div>
-      <div class = "symbol">
-        <img width="50px" height="50px" src="gluten-free-symbol.png">
-        <div>{{uiLabels.glutenfree}}</div>
-      </div>
-      <div class = "symbol">
-        <img width="50px" height="50px" src="vegan-symbol.png">
-        <div>{{uiLabels.vegan}}</div>
-      </div>
-    </div>
+
   </div>
 </template>
 
@@ -55,6 +57,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
             uiLabels: Object,
             lang: String,
             ingredients: Array,
+            categoryNumber: Number,
              currentMenuItem: Object
         },
         data: function() {
@@ -84,17 +87,18 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   .wrapper {
     display: grid;
     grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit, calc(9em));
+    grid-template-columns: repeat(auto-fit, calc(9em + 12px));
     overflow: auto;
   }
 
   .ingredItem {
     display: flex;
+    margin-top: 10px;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
     border: 1px solid;
-
+    font-family: "Courier New";
   }
 
   .active {
@@ -103,15 +107,22 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 
   .ingredient-controls {
     display: flex;
+    width: 134px;
     justify-content: space-between;
-    justify-items: auto;
-
+    flex-direction: row;
   }
   .wrapperButton {
+    display: flex;
     height: 25px;
     width: 40px;
     cursor: pointer;
-
+    justify-content: center;
+  }
+  .wrapperCounter{
+    display: flex;
+    width: 54px;
+    font-size: large;
+    justify-content: center;
   }
 
   .allergy-icons-container {
@@ -127,22 +138,24 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   }
   .symbol-wrapper{
     display: flex;
-    margin-top: 50px;
-    margin-left: 50px;
     flex-direction: row;
     justify-content: space-between;
-    width: 250px;
+    width: 500px;
 
   }
   .symbol{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 100px;
-    align-content: center;
+    width: 70px;
     font-family: "Courier New";
-    font-size: 0.95em;
-
+    font-size: 0.65em;
+    justify-content: center;
+    align-items: center;
+  }
+  img{
+width: 35px;
+    height: 35px;
+    justify-items: center;
   }
 
   @media (max-width: 420px) {

@@ -1,9 +1,10 @@
 <template>
 
-  <div>
-    <h1>{{uiLabels["choose_"+categoryNumber]}}</h1>
+  <div class = "ingredientHeader">
 
-    <IngredientGrid :currentMenuItem ="currentMenuItem" :ingredients="relevantIngredients" :ui-labels="uiLabels" :lang="lang" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved">
+
+
+    <IngredientGrid :category-number="categoryNumber" :currentMenuItem ="currentMenuItem" :ingredients="relevantIngredients" :ui-labels="uiLabels" :lang="lang" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved">
     </IngredientGrid>
   </div>
 
@@ -65,5 +66,6 @@ export default {
     padding-right: 8em;
     font-family: "Courier New";
   }
+
   
 </style>
