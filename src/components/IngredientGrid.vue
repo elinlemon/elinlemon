@@ -139,6 +139,8 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     justify-content: space-between;
     width: 70px;
     align-content: center;
+    font-family: "Courier New";
+    font-size: 0.95em;
 
   }
 
