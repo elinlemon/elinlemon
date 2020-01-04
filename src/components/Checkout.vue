@@ -111,7 +111,6 @@ export default {
 </script>
 <style scoped>
 .main-container {
-    height: 100vh;
     display: flex;
     flex-direction: column;
 }

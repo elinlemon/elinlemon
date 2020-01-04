@@ -24,8 +24,8 @@
       <div class="top-container-2" v-if="this.shoppingCart.orderLocation !== undefined">
 
         <div class="language-container">
-          <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
-          <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
+          <img class="swedish-icon language-icon" src="sweden.png" height="40" width="auto" v-on:click="selectLang('sv')">
+          <img class="english-icon language-icon" src="united-kingdom.png" height="40" width="auto" v-on:click="selectLang('en')">
         </div>
 
         <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
@@ -293,13 +293,8 @@ export default {
   .welcome-container {
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    background-color: lightgray;
     font-family: "Courier New";
-=======
     background-color: #ffd699;
-    font-family: "komu-b",sans-serif;
->>>>>>> e2c951a2f8624db98273f15c4c4f18635d84a1c4
     font-style: normal;
     font-weight: 400;
     height: 850px;
@@ -507,12 +502,8 @@ export default {
     border-radius: 10px;
     height: 45px;
     width: auto;
-<<<<<<< HEAD
     font-family: "Courier New";
-=======
     background-color: #ffad33;
-    font-family: "komu-b",sans-serif;
->>>>>>> e2c951a2f8624db98273f15c4c4f18635d84a1c4
     font-style: normal;
     font-weight: 400;
   }
