@@ -117,8 +117,8 @@
 
           <!-- Is conected to the final_page -->
           <div class="checkout-controls-container">
+            <button class="neworder-buttons" v-on:click="addNewOrder()" :disabled="!newOrderPossible()">{{uiLabels.newOrder}}</button>
             <button class="checkout-buttons" v-on:click="goToCheckout()" :disabled="!checkoutPossible()">{{uiLabels.placeOrder}} </button>
-            <button class="checkout-buttons" v-on:click="addNewOrder()" :disabled="!newOrderPossible()">{{uiLabels.newOrder}}</button>
           </div>
 
         </div>
@@ -430,6 +430,10 @@ export default {
     font-family: "Courier New";
   }
 
+  .current-order-items-container{
+    background-color: #bfff80;
+  }
+
   .menu-item-container {
     display: flex;
     padding-right: 2px;
@@ -460,10 +464,21 @@ export default {
   .checkout-buttons {
     font-size: 1em;
     border-radius: 10px;
+    height: 45px;
+    width: auto;
+    font-family: "Courier New";
+    background-color: #bfff80;
+  }
+
+  .neworder-buttons{
+    font-size: 1em;
+    border-radius: 10px;
     height: 30px;
     width: auto;
     font-family: "Courier New";
+    margin-top: 12px;
   }
+
   .plusAndMinusButton{
     padding: 0;
     border: none;
@@ -472,6 +487,8 @@ export default {
     margin-left: 5px;
     font-size: large;
   }
+
+
   .your-order-container-totprice{
     padding-top : 20px;
     display: flex;
