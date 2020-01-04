@@ -86,6 +86,11 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 </script>
 
 <style scoped>
+
+  h1 {
+    font-family: "Courier New";
+  }
+
   .wrapper {
     display: grid;
     grid-gap: 1em;
