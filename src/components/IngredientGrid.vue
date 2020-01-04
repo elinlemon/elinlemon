@@ -147,6 +147,11 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     display: flex;
     flex-direction: column;
     width: 70px;
+
+    align-content: center;
+    font-family: "Courier New";
+
+
     font-family: "Courier New";
     font-size: 0.65em;
     justify-content: center;
@@ -156,6 +161,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 width: 35px;
     height: 35px;
     justify-items: center;
+
   }
 
   @media (max-width: 420px) {
