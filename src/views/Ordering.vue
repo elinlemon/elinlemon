@@ -341,7 +341,10 @@ export default {
     border-radius: 10px;
     height: 25px;
     width: auto;
+  }
 
+  .cancel-order-button:hover {
+    opacity: 70%;
   }
 
   .language-container {
@@ -488,6 +491,10 @@ export default {
     background-color: #bfff80;
   }
 
+  .checkout-buttons:hover{
+    opacity: 60%;
+  }
+
   .neworder-buttons{
     font-size: 1em;
     border-radius: 10px;
@@ -495,6 +502,10 @@ export default {
     width: auto;
     font-family: "Courier New";
     margin-top: 12px;
+  }
+
+  .neworder-buttons:hover{
+    opacity: 60%;
   }
 
   .plusAndMinusButton{
@@ -515,7 +526,6 @@ export default {
   }
 
   button:hover {
-    opacity: 60%;
     cursor: pointer;
   }
 
