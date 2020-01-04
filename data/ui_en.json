@@ -43,5 +43,6 @@
   "totalPrice":"Total price",
   "milkfree": "Milk free",
   "glutenfree": "Gluten free",
-  "vegan": "Vegan"
+  "vegan": "Vegan",
+  "location": "Location"
 }

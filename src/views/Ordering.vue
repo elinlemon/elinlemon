@@ -417,7 +417,7 @@ export default {
 
   .category-buttons-container {
     flex: 0.2;
-    max-width: 300px;
+    max-width: 400px;
     padding-right: 2em;
     padding-left: 2em;
     display: flex;
@@ -429,11 +429,12 @@ export default {
     border-radius: 20px;
     height: 80px;
     margin-top: 10px;
+    width: 180px;
     font-family: "Courier New";
   }
 
   .active, .categorybutton:hover {
-  background-color: #666;
+  background-color: #ffad33;
   color: white;
 }
 

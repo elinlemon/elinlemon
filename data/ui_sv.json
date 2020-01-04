@@ -42,5 +42,6 @@
   "totalPrice": "Summa",
   "milkfree": "Mjölkfri",
   "glutenfree": "Glutenfri",
-  "vegan": "Vegansk"
+  "vegan": "Vegansk",
+  "location": "Plats"
 }
