@@ -20,9 +20,11 @@
       <div id="price-style" >{{uiLabels.totalPrice}}: {{ this.shoppingCart.totalPrice }}:-</div>
 
       <div class="receipt" id="pressedPayButton" style="display:none;">
-       <h4>{{uiLabels.thanks}} <br>
-         {{uiLabels.orderConsists}}: {{orderNumber}}
-       </h4>
+       <h6>{{uiLabels.thanks}} <br>
+         {{uiLabels.orderConsists}}: {{orderNumber.join(", ")}}<br><br>
+         <span v-if = "location === 'eatIn'"> {{uiLabels.eatIn}} </span>
+         <span v-if = "location === 'takeout'"> {{uiLabels.eatOut}} </span>
+       </h6>
         <button class="receipt-buttons" v-on:click="backToStartPage()">{{uiLabels.backToStartPage}}</button>
       </div>
 
@@ -48,7 +50,8 @@ export default {
     lang: String,
     shoppingCart: ShoppingCart,
     menuItem: MenuItem,
-    uiLabels: Object
+    uiLabels: Object,
+    location: String
   },
     data: function () {
     return {
@@ -176,7 +179,6 @@ export default {
 }
 
 .control-buttons:hover {
-  opacity: 50%;
   cursor: pointer;
 }
 
@@ -229,9 +231,11 @@ export default {
 
   .receipt-buttons {
     border-radius: 8px;
-    height: 32px;
-    margin-bottom: 4px;
+    height: 40px;
+    margin-bottom: 30px;
+    background-color: #bfff80;
     font-family: "Courier New";
+    font-weight: bold;
   }
 
   .receipt-buttons:hover{

@@ -123,7 +123,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart"
+    <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart" :location="this.shoppingCart.orderLocation"
               @goBack="goBackFromCheckout()"
               @cancelOrder="cancelOrder()"
               @orderPlaced="notifyBackend()"
@@ -295,6 +295,7 @@ export default {
     flex-direction: column;
     background-color: lightgray;
     font-family: "Courier New";
+    height: 850px;
 
   }
   .backgroundpicture{
@@ -371,8 +372,8 @@ export default {
   }
   .location-button{
     border-radius: 10px;
-    height: 12%;
-    width: 24%;
+    height: 100%;
+    width: 30%;
     font-size: 30px;
     margin-top: 50px;
     margin-bottom: 10px;
@@ -394,8 +395,8 @@ export default {
   /*Are main-container the same as ordering-container? */
   .main-container {
     padding-top: 3em;
-    padding-left: 4em;
-    padding-right: 4em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
     flex: 0.9;
     display: flex;
   }
@@ -414,7 +415,7 @@ export default {
   .category-buttons-container {
     flex: 0.2;
     max-width: 300px;
-    padding-right: 3em;
+    padding-right: 2em;
     padding-left: 2em;
     display: flex;
     flex-direction: column;
