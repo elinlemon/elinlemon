@@ -29,10 +29,13 @@
             <div v-if = "ingredient.gluten_free"> <img class="allergy-icons-pic" src="gluten-free-symbol.png"> </div>
             <div v-if = "ingredient.vegan"> <img class="allergy-icons-pic" src="vegan-symbol.png"> </div>
           </div>
-
+        <div class = "ingredient-text">
           {{ingredient["ingredient_" + lang ]}}
-          <br/>
+        </div>
+
           {{ ingredient.selling_price}}:-
+
+          <br/>
         </center>
 
         <div class="ingredient-controls">
@@ -108,6 +111,9 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     font-family: "Courier New";
     border-radius: 10px;
   }
+  .ingredient-text{
+    font-weight: bold;
+  }
 
   .active {
     background-color: lightgrey;
@@ -118,6 +124,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     width: 172px;
     justify-content: space-between;
     flex-direction: row;
+    padding-top: 15px;
   }
   .wrapperButton {
     display: flex;

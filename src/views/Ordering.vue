@@ -296,9 +296,6 @@ export default {
     font-style: normal;
     font-weight: 400;
     height: 850px;
-
-
-
   }
   .backgroundpicture{
     background-image: url("/background.png");
@@ -348,6 +345,7 @@ export default {
     display: flex;
     justify-content: right;
     background-color: #ffad33;
+    color: white;
   }
 
   .cancel-order-button:hover {
@@ -504,6 +502,7 @@ export default {
     background-color: #ffad33;
     font-style: normal;
     font-weight: 400;
+    color: white;
   }
 
   .checkout-buttons:hover{

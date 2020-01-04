@@ -172,7 +172,6 @@ export default {
 .control-buttons {
   font-size: 1.2em;
   width: 103px;
-  background-color: white;
   margin-top: 1em;
   border: 1px solid;
   border-radius: 20px;
