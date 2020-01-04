@@ -10,7 +10,7 @@
       </div>
 
       <center><h1>{{uiLabels.welcome}}</h1>
-        <img src="frontpage3.0.png" height="200px">
+        <img src="frontpage3.0.png" height="300px" width="700px" style="background-color: white">
       </center>
 
       <div class="order-option-container">
@@ -24,10 +24,10 @@
       <div class="top-container-2" v-if="this.shoppingCart.orderLocation !== undefined">
 
         <div class="language-container">
-          <img class="swedish-icon language-icon" src="sweden.png" height="40" width="auto" v-on:click="selectLang('sv')">
-          <img class="english-icon language-icon" src="united-kingdom.png" height="40" width="auto" v-on:click="selectLang('en')">
-        </div>
+          <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
+          <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
 
+        </div>
         <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
     <div class="ordering-container" v-if="this.shoppingCart.orderLocation !== undefined && state === 'ordering'">
@@ -294,7 +294,6 @@ export default {
     display: flex;
     flex-direction: column;
     font-family: "Courier New";
-    background-color: #ffd699;
     font-style: normal;
     font-weight: 400;
     height: 850px;
@@ -368,11 +367,11 @@ export default {
     padding-right: 0.5em;
   }
   .language-icon {
-    opacity: 0.7;
+    opacity: 1;
   }
 
   .language-icon:hover {
-    opacity: 1;
+    opacity: 0.7;
 
   }
 
@@ -418,11 +417,11 @@ export default {
     flex: 0.8;
     background-color:white;
     margin: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
     display: flex;
     box-shadow: 1px 1px 30px grey;
     padding-bottom: 20px;
-    padding-right: 2em;
+    padding-right: 10px;
   }
 
   .category-buttons-container {
@@ -463,11 +462,11 @@ export default {
     font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
-    background-color:white;
+    background-color: #ffd699;
   }
 
   .current-order-items-container{
-    background-color: #ffd699;
+    background-color: white;
   }
 
   .menu-item-container {
@@ -534,7 +533,7 @@ export default {
     margin-right: 5px;
     margin-left: 5px;
     font-size: large;
-    background-color: #ffd699;
+    background-color: white;
   }
 
 

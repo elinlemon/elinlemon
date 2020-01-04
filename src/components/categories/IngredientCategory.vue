@@ -66,6 +66,5 @@ export default {
     padding-right: 8em;
     font-family: "Courier New";
   }
-
   
 </style>
