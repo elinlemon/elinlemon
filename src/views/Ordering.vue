@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class ="backgroundpicture">
     <!-- Welcome view -->
 
     <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
@@ -125,7 +125,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart"
+    <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart" :location="this.shoppingCart.orderLocation"
               @goBack="goBackFromCheckout()"
               @cancelOrder="cancelOrder()"
               @orderPlaced="notifyBackend()"
@@ -297,7 +297,15 @@ export default {
     flex-direction: column;
     background-color: lightgray;
     font-family: "Courier New";
+    height: 850px;
 
+  }
+  .backgroundpicture{
+    background-image: url("/background.png");
+    background-size: 500px;
+    background-attachment: fixed;
+    background-repeat: repeat;
+    position: relative;
   }
 
   .remove-buttons {
@@ -321,6 +329,7 @@ export default {
   .top-container-2 {
     display: flex;
     /* justify-content: center; */
+
     padding-bottom: 1em;
     justify-content: space-between;
     padding-right: 4em;
@@ -334,16 +343,19 @@ export default {
     border-radius: 10px;
     height: 25px;
     width: auto;
+
   }
 
   .language-container {
     flex: 1;
     display: flex;
     justify-content: center;
+
   }
 
   .swedish-icon {
     padding-right: 0.5em;
+
   }
 
   .language-icon {
@@ -362,8 +374,8 @@ export default {
   }
   .location-button{
     border-radius: 10px;
-    height: 12%;
-    width: 24%;
+    height: 100%;
+    width: 30%;
     font-size: 30px;
     margin-top: 50px;
     margin-bottom: 10px;
@@ -393,6 +405,12 @@ export default {
 
   .category-container {
     flex: 0.8;
+    -webkit-appearance: listbox;
+    margin: 20px;
+    padding-left: 20px;
+    display: flex;
+    box-shadow: 1px 1px 30px grey;
+    padding-bottom: 20px;
     padding-right: 2em;
   }
 
@@ -429,6 +447,7 @@ export default {
     max-height: 30em;
     box-shadow: 1px 1px 30px grey;
     font-family: "Courier New";
+    -webkit-appearance: listbox;
   }
 
   .current-order-items-container{
