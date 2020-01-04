@@ -27,7 +27,6 @@
           <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
           <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
         </div>
-
         <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
     <div class="ordering-container" v-if="this.shoppingCart.orderLocation !== undefined && state === 'ordering'">
@@ -418,11 +417,11 @@ export default {
     flex: 0.8;
     background-color:white;
     margin: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
     display: flex;
     box-shadow: 1px 1px 30px grey;
     padding-bottom: 20px;
-    padding-right: 2em;
+    padding-right: 10px;
   }
 
   .category-buttons-container {
@@ -463,11 +462,11 @@ export default {
     font-family: "komu-b",sans-serif;
     font-style: normal;
     font-weight: 400;
-    background-color:white;
+    background-color: #ffd699;
   }
 
   .current-order-items-container{
-    background-color: #ffd699;
+    background-color: white;
   }
 
   .menu-item-container {
@@ -534,7 +533,7 @@ export default {
     margin-right: 5px;
     margin-left: 5px;
     font-size: large;
-    background-color: #ffd699;
+    background-color: white;
   }
 
 
