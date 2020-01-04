@@ -100,8 +100,11 @@
                 </div>
 
                 <div v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-                  <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
-                  <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
+                  <button class="plusAndMinusButton" v-on:click="ingredientRemoved(ingredient)">-</button>
+                  <span>{{ingredient.count}}</span>
+                  <button class="plusAndMinusButton" v-on:click="ingredientAdded(ingredient)">+</button>
+                  <span v-if="getLang() === 'en'">{{ingredient.ingredient_en}}</span>
+                  <span v-if="getLang() === 'sv'">{{ingredient.ingredient_sv}}</span>
                 </div>
               </div>
 
@@ -460,6 +463,14 @@ export default {
     height: 30px;
     width: auto;
     font-family: "Courier New";
+  }
+  .plusAndMinusButton{
+    padding: 0;
+    border: none;
+    width: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: large;
   }
   .your-order-container-totprice{
     padding-top : 20px;

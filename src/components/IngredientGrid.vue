@@ -34,15 +34,15 @@
           {{ ingredient.selling_price}}:-
         </center>
 
-        <dt class="ingredient-controls">
+        <div class="ingredient-controls">
           <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-              <div v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
+              <div class="wrapperCounter" v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
                 {{currentIngredient.count}}
               </div>
             </div>
           <button class="wrapperButton" v-on:click="addIngredient(ingredient)">+</button>
-        </dt>
+        </div>
       </div>
     </div>
 
@@ -100,7 +100,6 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     padding: 10px;
     border: 1px solid;
     font-family: "Courier New";
-
   }
 
   .active {
@@ -109,15 +108,21 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 
   .ingredient-controls {
     display: flex;
+    width: 134px;
     justify-content: space-between;
-    justify-items: auto;
-
+    flex-direction: row;
   }
   .wrapperButton {
+    display: flex;
     height: 25px;
     width: 40px;
     cursor: pointer;
-
+  }
+  .wrapperCounter{
+    display: flex;
+    width: 54px;
+    font-size: large;
+    justify-content: center;
   }
 
   .allergy-icons-container {
@@ -145,7 +150,6 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     font-family: "Courier New";
     font-size: 0.65em;
     justify-content: center;
-    justify-items: center;
     align-items: center;
   }
   img{
