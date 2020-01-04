@@ -335,7 +335,7 @@ export default {
 
   .cancel-order-button {
     margin-right: 1.5px;
-    margin-top: 2px;
+    margin-top: 20px;
     font-size: 1em;
     font-family: "Courier New";
     font-style: normal;
@@ -421,6 +421,7 @@ export default {
     box-shadow: 1px 1px 30px grey;
     padding-bottom: 20px;
     padding-right: 10px;
+    border-radius: 30px;
   }
 
   .category-buttons-container {
@@ -462,6 +463,7 @@ export default {
     font-style: normal;
     font-weight: 400;
     background-color: #ffd699;
+    border-radius: 30px;
   }
 
   .current-order-items-container{
