@@ -94,7 +94,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   .wrapper {
     display: grid;
     grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit,calc(9em + 50px));
+    grid-template-columns: repeat(auto-fill, calc(9em + 50px));
     overflow: auto;
   }
 
