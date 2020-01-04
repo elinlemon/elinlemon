@@ -20,6 +20,7 @@
 
       <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
 
+
         <center>
 
           <div class="allergy-icons-container">
@@ -36,7 +37,7 @@
         <dt class="ingredient-controls">
           <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-              <div class="wrapperCounter" v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
+              <div v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
                 {{currentIngredient.count}}
               </div>
             </div>
@@ -62,7 +63,8 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
         },
         data: function() {
             return {
-                counter: 0
+                counter: 0,
+                active: false,
             };
         },
         methods: {
@@ -73,6 +75,10 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
             removeIngredient: function(ingredient) {
                 this.counter -= 1;
                 this.$emit('ingredientRemoved', ingredient);
+            },
+            colourIngredItem: function(){
+              this.active=true;
+
             }
         }
     };
@@ -94,33 +100,34 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     padding: 10px;
     border: 1px solid;
     font-family: "Courier New";
+
+  }
+
+  .active {
+    background-color: lightgrey;
   }
 
   .ingredient-controls {
     display: flex;
     justify-content: space-between;
+    justify-items: auto;
 
   }
   .wrapperButton {
     height: 25px;
     width: 40px;
     cursor: pointer;
-  }
-  .wrapperCounter{
-    displaY: flex;
-    width: 54px;
-    justify-content: center;
-    font-size: larger;
+
   }
 
   .allergy-icons-container {
     display: flex;
-    justify-content: end;
-    height: 20px;
+    justify-content: center;
+    height: 25px;
   }
 
   .allergy-icons-pic {
-    height: 15px;
+    height: 20px;
     width: auto;
 
   }
