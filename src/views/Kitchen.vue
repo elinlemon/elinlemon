@@ -1,7 +1,7 @@
 <template>
   <div id="orders" class ="backgroundpicture">
 
-      <div id="orders-to-prepare">
+      <div class="order-status">
         <h1>{{ uiLabels.ordersInQueue }}:</h1>
         <OrderItemToPrepare
                 v-for="(order, key) in orders"
@@ -17,7 +17,7 @@
 
 
 
-      <div id="orders-started">
+      <div class="order-status">
         <h1>{{ uiLabels.startedOrders}}:</h1>
         <OrderItemStarted
                 v-for="(order, key) in orders"
@@ -32,7 +32,7 @@
       </div>
 
 
-      <div id="orders-done">
+      <div class="order-status">
         <h1>{{ uiLabels.ordersFinished }}:</h1>
         <OrderItem
                 v-for="(order, key) in orders"
@@ -82,7 +82,10 @@ export default {
 
   h1 {
     text-transform: uppercase;
-    font-family: "Courier New";
+      font-family: "komu-b",sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-weight: bold;
     font-size: 1.6em;
   }
 
@@ -98,7 +101,7 @@ export default {
       position: relative;
   }
 
-  #orders-to-prepare{
+  .order-status{
     height: 40vh;
     width: 100%;
     display: grid;
@@ -109,85 +112,14 @@ export default {
     grid-auto-columns: minmax(160px,1fr);
     overflow-x:auto;
     overflow-y: scroll;
-      font-size: 1.7em;
-      text-transform: uppercase;
       text-align: center;
-      font-family: "Courier New";
-      font-weight: bold;
-      line-height: 20px;
-      padding-top: 6px;
-      padding-left: 6px;
-      padding-bottom: 6px;
-      padding-right: 6px;
-      align: center;
       font-size: 1.2em;
-      width:500px;
+      width:1200px;
       background-color:white;
       margin-top:1em;
       border: 1px solid;
       border-radius:20px;
       margin-left: 10px;
   }
-
-  #orders-started {
-    height: 40vh;
-    width: 100%;
-    display: grid;
-    grid-gap: 6px;
-    padding: 6px;
-    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(160px,1fr);
-    overflow-x:auto;
-    overflow-y: scroll;
-      font-size: 1.7em;
-      text-transform: uppercase;
-      text-align: center;
-      font-family: "Courier New";
-      font-weight: bold;
-      line-height: 20px;
-      padding-top: 6px;
-      padding-left: 6px;
-      padding-bottom: 6px;
-      padding-right: 6px;
-      align: center;
-      font-size: 1.2em;
-      width:500px;
-      background-color:white;
-      margin-top:1em;
-      border: 1px solid;
-      border-radius:20px;
-      margin-left: 10px;
-  }
-
-  #orders-done{
-    height: 40vh;
-    width: 100%;
-    display: grid;
-    grid-gap: 6px;
-    padding: 6px;
-    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(160px,1fr);
-    overflow-x:auto;
-    overflow-y: scroll;
-      font-size: 1.7em;
-      text-transform: uppercase;
-      text-align: center;
-      font-family: "Courier New";
-      font-weight: bold;
-      line-height: 20px;
-      padding-top: 6px;
-      padding-left: 6px;
-      padding-bottom: 6px;
-      padding-right: 6px;
-      align: center;
-      font-size: 1.2em;
-      width:500px;
-      background-color:white;
-      margin-top:1em;
-      border: 1px solid;
-      border-radius:20px;
-      margin-left: 10px;
-  }
+    
 </style>
