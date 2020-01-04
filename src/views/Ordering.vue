@@ -297,6 +297,7 @@ export default {
     flex-direction: column;
     background-color: lightgray;
     font-family: "Courier New";
+    height: 850px;
 
   }
 
@@ -362,8 +363,8 @@ export default {
   }
   .location-button{
     border-radius: 10px;
-    height: 12%;
-    width: 24%;
+    height: 100%;
+    width: 30%;
     font-size: 30px;
     margin-top: 50px;
     margin-bottom: 10px;
