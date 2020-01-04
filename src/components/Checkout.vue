@@ -176,7 +176,9 @@ export default {
   margin-top: 1em;
   border: 1px solid;
   border-radius: 20px;
-  font-family: "Courier New";
+  font-family: "komu-b",sans-serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .control-buttons:hover {
@@ -193,16 +195,29 @@ export default {
   background-color: white;
   overflow-y: auto;
   box-shadow: 1px 1px 30px grey;
-  font-family: "Courier New";
+  font-family: "komu-b",sans-serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 #price-style {
   font-size: 1.9em;
   text-transform: uppercase;
   text-align: center;
-  font-family: "Courier New";
+  font-family: "komu-b",sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-weight: bold;
   line-height: 20px;
+  align: center;
+  font-size: 1.2em;
+  width:300px;
+  height: 100px;
+  background-color:white;
+  margin-top:1em;
+  border: 1px solid;
+  border-radius:20px;
+  margin-left: 500px;
   padding: 6px;
   align: center;
   width: 340px;
@@ -213,7 +228,9 @@ export default {
 
 .receipt {
   font-size: 3em;
-  font-family: "Courier New";
+  font-family: "komu-b",sans-serif;
+  font-style: normal;
+  font-weight: 400;
   background-color: white;
   text-align: center;
   border: solid;
@@ -229,7 +246,9 @@ export default {
     height: 40px;
     margin-bottom: 30px;
     background-color: #bfff80;
-    font-family: "Courier New";
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
     font-weight: bold;
   }
 
@@ -239,7 +258,9 @@ export default {
   }
 
   h4 {
-    font-family: "Courier New";
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
   }
 
 </style>
