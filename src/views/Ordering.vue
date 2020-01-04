@@ -1,5 +1,5 @@
 <template>
-  <div class ="backgroundpicture">
+  <div class ="backgroundpicture" >
     <!-- Welcome view -->
 
     <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
@@ -297,6 +297,8 @@ export default {
     font-family: "Courier New";
     height: 850px;
 
+
+
   }
   .backgroundpicture{
     background-image: url("/background.png");
@@ -304,6 +306,7 @@ export default {
     background-attachment: fixed;
     background-repeat: repeat;
     position: relative;
+    min-height: 100%;
   }
 
   .remove-buttons {
