@@ -82,7 +82,7 @@ export default {
 
   h1 {
     text-transform: uppercase;
-      font-family: "komu-b",sans-serif;
+      font-family: "Courier New";
       font-style: normal;
       font-weight: 400;
       font-weight: bold;
@@ -112,9 +112,7 @@ export default {
     grid-auto-columns: minmax(160px,1fr);
     overflow-x:auto;
     overflow-y: scroll;
-      text-align: center;
-      font-size: 1.2em;
-      width:1200px;
+      width:1300px;
       background-color:white;
       margin-top:1em;
       border: 1px solid;

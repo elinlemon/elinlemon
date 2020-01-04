@@ -176,7 +176,7 @@ export default {
   margin-top: 1em;
   border: 1px solid;
   border-radius: 20px;
-  font-family: "komu-b",sans-serif;
+  font-family: "Courier New";
   font-style: normal;
   font-weight: 400;
 }
@@ -195,7 +195,7 @@ export default {
   background-color: white;
   overflow-y: auto;
   box-shadow: 1px 1px 30px grey;
-  font-family: "komu-b",sans-serif;
+  font-family: "Courier New";
   font-style: normal;
   font-weight: 400;
 }
@@ -204,31 +204,21 @@ export default {
   font-size: 1.9em;
   text-transform: uppercase;
   text-align: center;
-  font-family: "komu-b",sans-serif;
+  font-family: "Courier New";
   font-style: normal;
-  font-weight: 400;
   font-weight: bold;
   line-height: 20px;
-  align: center;
-  font-size: 1.2em;
-  width:300px;
-  height: 100px;
+  width:380px;
+  height: 45px;
   background-color:white;
-  margin-top:1em;
-  border: 1px solid;
-  border-radius:20px;
+  margin-top:2em;
   margin-left: 500px;
-  padding: 6px;
-  align: center;
-  width: 340px;
-  background-color:white;
-  margin-top:1em;
-  margin-left: 545px;
+  padding: 4px;
 }
 
 .receipt {
   font-size: 3em;
-  font-family: "komu-b",sans-serif;
+  font-family: "Courier New";
   font-style: normal;
   font-weight: 400;
   background-color: white;
@@ -245,8 +235,8 @@ export default {
     border-radius: 8px;
     height: 40px;
     margin-bottom: 30px;
-    background-color: #bfff80;
-    font-family: "komu-b",sans-serif;
+    background-color: #ffad33;
+    font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
     font-weight: bold;
@@ -258,7 +248,7 @@ export default {
   }
 
   h4 {
-    font-family: "komu-b",sans-serif;
+    font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
   }

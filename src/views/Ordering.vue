@@ -10,7 +10,7 @@
       </div>
 
       <center><h1>{{uiLabels.welcome}}</h1>
-        <img src="frontpage3.0.png" height="200px">
+        <img src="frontpage3.0.png" height="300px" width="700px" style="background-color: white">
       </center>
 
       <div class="order-option-container">
@@ -24,10 +24,9 @@
       <div class="top-container-2" v-if="this.shoppingCart.orderLocation !== undefined">
 
         <div class="language-container">
-          <img class="swedish-icon language-icon" src="sweden.png" height="30" width="auto" v-on:click="selectLang('sv')">
-          <img class="english-icon language-icon" src="united-kingdom.png" height="30" width="auto" v-on:click="selectLang('en')">
+          <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
+          <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
         </div>
-
         <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
     <div class="ordering-container" v-if="this.shoppingCart.orderLocation !== undefined && state === 'ordering'">
@@ -57,7 +56,7 @@
           <div class="ordered-items-container">
 
             <div class="top-line-container">
-              <h4>{{uiLabels.yourOrder}}</h4>
+              <h2>{{uiLabels.yourOrder}}</h2>
             </div>
 
             <div class="added-items-container">
@@ -68,7 +67,7 @@
                 <div v-for="menuItem in this.shoppingCart.menuItems" v-bind:key="menuItem.id">
 
                   <div class="menu-item-container">
-                    <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
+                    <h4>{{uiLabels.order}} {{menuItem.id}}</h4>
 
                     <div class="menu-item-controls">
                       <img class="remove-buttons" title="Edit" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
@@ -90,7 +89,7 @@
               <div class="current-order-items-container">
 
                 <div class="menu-item-container" v-if="!this.currentMenuItem.isEmpty()">
-                  <h5>{{uiLabels.currentOrder}}</h5>
+                  <h4>{{uiLabels.currentOrder}}</h4>
 
                   <div class="menu-item-controls">
                     <img class="remove-buttons" title="Delete" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
@@ -293,8 +292,7 @@ export default {
   .welcome-container {
     display: flex;
     flex-direction: column;
-    background-color: lightgray;
-    font-family: "komu-b",sans-serif;
+    font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
     height: 850px;
@@ -322,7 +320,6 @@ export default {
   /* first screen */
   .top-container-1 {
     display: flex;
-    padding-bottom: 1em;
     justify-content: end;
     margin-top: 20px;
     margin-right: 1em;
@@ -342,12 +339,15 @@ export default {
     margin-right: 1.5px;
     margin-top: 2px;
     font-size: 1em;
-    font-family: "komu-b",sans-serif;
+    font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
     border-radius: 20px;
     height: 50px;
     width: auto;
+    display: flex;
+    justify-content: right;
+    background-color: #ffad33;
   }
 
   .cancel-order-button:hover {
@@ -357,15 +357,14 @@ export default {
   .language-container {
     flex: 1;
     display: flex;
-    justify-content: center;
-
+    justify-content: left;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
-
   .swedish-icon {
     padding-right: 0.5em;
-
   }
-
   .language-icon {
     opacity: 0.7;
   }
@@ -387,7 +386,7 @@ export default {
     font-size: 30px;
     margin-top: 50px;
     margin-bottom: 10px;
-    font-family: "komu-b",sans-serif;
+    font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
   }
@@ -406,9 +405,9 @@ export default {
 
   /*Are main-container the same as ordering-container? */
   .main-container {
-    padding-top: 3em;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
+    padding-top: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
     flex: 0.9;
     display: flex;
   }
@@ -417,18 +416,18 @@ export default {
     flex: 0.8;
     background-color:white;
     margin: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
     display: flex;
     box-shadow: 1px 1px 30px grey;
     padding-bottom: 20px;
-    padding-right: 2em;
+    padding-right: 10px;
   }
 
   .category-buttons-container {
     flex: 0.2;
     max-width: 400px;
-    padding-right: 2em;
-    padding-left: 2em;
+    padding-right: 1em;
+    padding-left: 1em;
     display: flex;
     flex-direction: column;
   }
@@ -438,7 +437,7 @@ export default {
     border-radius: 20px;
     height: 80px;
     margin-top: 10px;
-    font-family: "komu-b",sans-serif;
+    font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
     width: 180px;
@@ -459,14 +458,14 @@ export default {
     min-width: 20em;
     max-height: 30em;
     box-shadow: 1px 1px 30px grey;
-    font-family: "komu-b",sans-serif;
+    font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
-    background-color:white;
+    background-color: #ffd699;
   }
 
   .current-order-items-container{
-    background-color: #bfff80;
+    background-color: white;
   }
 
   .menu-item-container {
@@ -501,10 +500,10 @@ export default {
     border-radius: 10px;
     height: 45px;
     width: auto;
-    font-family: "komu-b",sans-serif;
+    font-family: "Courier New";
+    background-color: #ffad33;
     font-style: normal;
     font-weight: 400;
-    background-color: #bfff80;
   }
 
   .checkout-buttons:hover{
@@ -516,7 +515,7 @@ export default {
     border-radius: 10px;
     height: 30px;
     width: auto;
-    font-family: "komu-b",sans-serif;
+    font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
     margin-top: 12px;
@@ -533,7 +532,7 @@ export default {
     margin-right: 5px;
     margin-left: 5px;
     font-size: large;
-    background-color: #bfff80;
+    background-color: white;
   }
 
 
