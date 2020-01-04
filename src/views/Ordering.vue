@@ -3,8 +3,6 @@
     <!-- Welcome view -->
 
     <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
-
-
       <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
         <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
@@ -405,7 +403,7 @@ export default {
 
   .category-container {
     flex: 0.8;
-    -webkit-appearance: listbox;
+    background-color:white;
     margin: 20px;
     padding-left: 20px;
     display: flex;
@@ -448,7 +446,7 @@ export default {
     max-height: 30em;
     box-shadow: 1px 1px 30px grey;
     font-family: "Courier New";
-    -webkit-appearance: listbox;
+    background-color:white;
   }
 
   .current-order-items-container{

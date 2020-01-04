@@ -20,8 +20,9 @@
       <div id="price-style" >{{uiLabels.totalPrice}}: {{ this.shoppingCart.totalPrice }}:-</div>
 
       <div class="receipt" id="pressedPayButton" style="display:none;">
-       <h6>{{uiLabels.thanks}} <br>
-         {{uiLabels.orderConsists}}: {{orderNumber.join(", ")}}<br><br>
+       <h4>{{uiLabels.thanks}} </h4>
+        <h6> {{uiLabels.orderConsists}}: {{orderNumber.join(", ")}}<br>
+          {{uiLabels.location}}:
          <span v-if = "location === 'eatIn'"> {{uiLabels.eatIn}} </span>
          <span v-if = "location === 'takeout'"> {{uiLabels.eatOut}} </span>
        </h6>
@@ -196,24 +197,18 @@ export default {
 }
 
 #price-style {
-  font-size: 1.7em;
+  font-size: 1.9em;
   text-transform: uppercase;
   text-align: center;
   font-family: "Courier New";
   font-weight: bold;
   line-height: 20px;
-  padding-top: 6px;
-  padding-left: 6px;
-  padding-bottom: 6px;
-  padding-right: 6px;
+  padding: 6px;
   align: center;
-  font-size: 1.2em;
-  width:103px;
+  width: 340px;
   background-color:white;
   margin-top:1em;
-  border: 1px solid;
-  border-radius:20px;
-  margin-left: 600px;
+  margin-left: 545px;
 }
 
 .receipt {
@@ -224,7 +219,7 @@ export default {
   border: solid;
   border-radius: 9px;
   position: fixed;
-  top: 60%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   }
