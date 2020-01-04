@@ -1,5 +1,5 @@
 <template>
-  <div class ="backgroundpicture">
+  <div class ="backgroundpicture" >
     <!-- Welcome view -->
 
     <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
@@ -294,8 +294,12 @@ export default {
     display: flex;
     flex-direction: column;
     background-color: lightgray;
-    font-family: "Courier New";
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
     height: 850px;
+
+
 
   }
   .backgroundpicture{
@@ -304,6 +308,7 @@ export default {
     background-attachment: fixed;
     background-repeat: repeat;
     position: relative;
+    min-height: 100%;
   }
 
   .remove-buttons {
@@ -337,9 +342,11 @@ export default {
     margin-right: 1.5px;
     margin-top: 2px;
     font-size: 1em;
-    font-family: "Courier New";
-    border-radius: 10px;
-    height: 25px;
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 20px;
+    height: 50px;
     width: auto;
   }
 
@@ -380,7 +387,9 @@ export default {
     font-size: 30px;
     margin-top: 50px;
     margin-bottom: 10px;
-    font-family: "Courier New";
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
   }
 
   .location-button:hover {
@@ -417,7 +426,7 @@ export default {
 
   .category-buttons-container {
     flex: 0.2;
-    max-width: 300px;
+    max-width: 400px;
     padding-right: 2em;
     padding-left: 2em;
     display: flex;
@@ -429,11 +438,14 @@ export default {
     border-radius: 20px;
     height: 80px;
     margin-top: 10px;
-    font-family: "Courier New";
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 180px;
   }
 
   .active, .categorybutton:hover {
-  background-color: #666;
+  background-color: #ffad33;
   color: white;
 }
 
@@ -447,7 +459,9 @@ export default {
     min-width: 20em;
     max-height: 30em;
     box-shadow: 1px 1px 30px grey;
-    font-family: "Courier New";
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
     background-color:white;
   }
 
@@ -487,7 +501,9 @@ export default {
     border-radius: 10px;
     height: 45px;
     width: auto;
-    font-family: "Courier New";
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
     background-color: #bfff80;
   }
 
@@ -500,7 +516,9 @@ export default {
     border-radius: 10px;
     height: 30px;
     width: auto;
-    font-family: "Courier New";
+    font-family: "komu-b",sans-serif;
+    font-style: normal;
+    font-weight: 400;
     margin-top: 12px;
   }
 
