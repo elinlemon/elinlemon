@@ -7,9 +7,8 @@
 
         <div v-for="menuItem of this.shoppingCart.menuItems" v-bind:key="menuItem.id" class="stylemenu">
           <div> {{uiLabels.order}}: {{menuItem.id}}
-          <img class="remove-buttons" src="delete-symbol.png" height = 20 width=20 v-on:click="removeOrder(menuItem)">
-          <img class="remove-buttons" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
-
+          <img class="remove-buttons" title="Delete" src="delete-symbol.png" height = 20 width=20 v-on:click="removeOrder(menuItem)">
+            <img class="remove-buttons" title="Edit" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
           <div v-for="ingredient of menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
               <h4> {{ingredient.count}} x {{ingredient.selling_price}}:-
                 <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
@@ -117,6 +116,7 @@ export default {
 }
 .remove-buttons:hover {
   opacity: 1;
+  cursor: pointer;
 }
 
 .top-container {

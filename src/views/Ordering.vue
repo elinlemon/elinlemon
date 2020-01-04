@@ -73,8 +73,8 @@
                     <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
 
                     <div class="menu-item-controls">
-                      <img class="remove-buttons" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
-                      <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
+                      <img class="remove-buttons" title="Edit" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
+                      <img class="remove-buttons" title="Delete" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
                     </div>
                   </div>
 
@@ -95,13 +95,16 @@
                   <h5>{{uiLabels.currentOrder}}</h5>
 
                   <div class="menu-item-controls">
-                    <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
+                    <img class="remove-buttons" title="Delete" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
                   </div>
                 </div>
 
                 <div v-for="ingredient in this.currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
-                  <span v-if="getLang() === 'en'">{{ingredient.count}} {{ingredient.ingredient_en}}</span>
-                  <span v-if="getLang() === 'sv'">{{ingredient.count}} {{ingredient.ingredient_sv}}</span>
+                  <button class="plusAndMinusButton" v-on:click="ingredientRemoved(ingredient)">-</button>
+                  <span>{{ingredient.count}}</span>
+                  <button class="plusAndMinusButton" v-on:click="ingredientAdded(ingredient)">+</button>
+                  <span v-if="getLang() === 'en'">{{ingredient.ingredient_en}}</span>
+                  <span v-if="getLang() === 'sv'">{{ingredient.ingredient_sv}}</span>
                 </div>
               </div>
 
@@ -114,8 +117,8 @@
 
           <!-- Is conected to the final_page -->
           <div class="checkout-controls-container">
+            <button class="neworder-buttons" v-on:click="addNewOrder()" :disabled="!newOrderPossible()">{{uiLabels.newOrder}}</button>
             <button class="checkout-buttons" v-on:click="goToCheckout()" :disabled="!checkoutPossible()">{{uiLabels.placeOrder}} </button>
-            <button class="checkout-buttons" v-on:click="addNewOrder()" :disabled="!newOrderPossible()">{{uiLabels.newOrder}}</button>
           </div>
 
         </div>
@@ -369,9 +372,9 @@ export default {
 
   }
   .location-button{
-    border-radius: 25px;
-    height: 200px;
-    width: 500px;
+    border-radius: 10px;
+    height: 12%;
+    width: 24%;
     font-size: 30px;
     margin-top: 50px;
     margin-bottom: 10px;
@@ -407,7 +410,7 @@ export default {
     display: flex;
     box-shadow: 1px 1px 30px grey;
     padding-bottom: 20px;
-
+    padding-right: 2em;
   }
 
   .category-buttons-container {
@@ -446,6 +449,10 @@ export default {
     -webkit-appearance: listbox;
   }
 
+  .current-order-items-container{
+    background-color: #bfff80;
+  }
+
   .menu-item-container {
     display: flex;
     padding-right: 2px;
@@ -476,10 +483,32 @@ export default {
   .checkout-buttons {
     font-size: 1em;
     border-radius: 10px;
+    height: 45px;
+    width: auto;
+    font-family: "Courier New";
+    background-color: #bfff80;
+  }
+
+  .neworder-buttons{
+    font-size: 1em;
+    border-radius: 10px;
     height: 30px;
     width: auto;
     font-family: "Courier New";
+    margin-top: 12px;
   }
+
+  .plusAndMinusButton{
+    padding: 0;
+    border: none;
+    width: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: large;
+    background-color: #bfff80;
+  }
+
+
   .your-order-container-totprice{
     padding-top : 20px;
     display: flex;
