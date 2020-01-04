@@ -3,8 +3,6 @@
     <!-- Welcome view -->
 
     <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
-
-
       <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
         <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
@@ -397,15 +395,15 @@ export default {
   /*Are main-container the same as ordering-container? */
   .main-container {
     padding-top: 3em;
-    padding-left: 4em;
-    padding-right: 4em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
     flex: 0.9;
     display: flex;
   }
 
   .category-container {
     flex: 0.8;
-    -webkit-appearance: listbox;
+    background-color:white;
     margin: 20px;
     padding-left: 20px;
     display: flex;
@@ -417,7 +415,7 @@ export default {
   .category-buttons-container {
     flex: 0.2;
     max-width: 300px;
-    padding-right: 3em;
+    padding-right: 2em;
     padding-left: 2em;
     display: flex;
     flex-direction: column;
@@ -447,7 +445,7 @@ export default {
     max-height: 30em;
     box-shadow: 1px 1px 30px grey;
     font-family: "Courier New";
-    -webkit-appearance: listbox;
+    background-color:white;
   }
 
   .current-order-items-container{
