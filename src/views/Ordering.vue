@@ -125,7 +125,7 @@
       </div>
     </div>
 
-    <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart"
+    <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart" :location="this.shoppingCart.orderLocation"
               @goBack="goBackFromCheckout()"
               @cancelOrder="cancelOrder()"
               @orderPlaced="notifyBackend()"
