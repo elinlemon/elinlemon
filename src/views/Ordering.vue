@@ -547,10 +547,16 @@ export default {
     cursor: pointer;
   }
 
-  @media (max-width: 420px) {
-    .category-container {
-      grid-template-columns: 1fr;
+  @media  {
+    .backgroundpicture {
+      /* grid-template-columns: 1fr; */
+      width: 100em;
     }
+
+    .welcome-container {
+      height: 1500px;
+    }
+
 
   }
 

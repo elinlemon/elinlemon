@@ -170,9 +170,9 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   }
 
 
-  @media (max-width: 420px) {
+  @media (max-width: 500px) {
     .wrapper {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit,calc(9em + 50px));
     }
 
   }
