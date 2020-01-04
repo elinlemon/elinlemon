@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div id="price-style">{{uiLabels.totalPrice}}: {{ this.shoppingCart.totalPrice }}:-</div>
+      <div id="price-style" >{{uiLabels.totalPrice}}: {{ this.shoppingCart.totalPrice }}:-</div>
 
       <div class="receipt" id="pressedPayButton" style="display:none;">
        <h4>{{uiLabels.thanks}} <br>
@@ -198,6 +198,20 @@ export default {
   text-transform: uppercase;
   text-align: center;
   font-family: "Courier New";
+  font-weight: bold;
+  line-height: 20px;
+  padding-top: 6px;
+  padding-left: 6px;
+  padding-bottom: 6px;
+  padding-right: 6px;
+  align: center;
+  font-size: 1.2em;
+  width:103px;
+  background-color:white;
+  margin-top:1em;
+  border: 1px solid;
+  border-radius:20px;
+  margin-left: 600px;
 }
 
 .receipt {

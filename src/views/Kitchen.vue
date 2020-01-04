@@ -1,5 +1,5 @@
 <template>
-  <div id="orders">
+  <div id="orders" class ="backgroundpicture">
 
       <div id="orders-to-prepare">
         <h1>{{ uiLabels.ordersInQueue }}:</h1>
@@ -89,6 +89,15 @@ export default {
 
     /* A lot of repeating code here, but didn't work when I put everything under the orders-ID */
 
+
+  .backgroundpicture{
+      background-image: url("/background.png");
+      background-size: 500px;
+      background-attachment: fixed;
+      background-repeat: repeat;
+      position: relative;
+  }
+
   #orders-to-prepare{
     height: 40vh;
     width: 100%;
@@ -100,6 +109,24 @@ export default {
     grid-auto-columns: minmax(160px,1fr);
     overflow-x:auto;
     overflow-y: scroll;
+      font-size: 1.7em;
+      text-transform: uppercase;
+      text-align: center;
+      font-family: "Courier New";
+      font-weight: bold;
+      line-height: 20px;
+      padding-top: 6px;
+      padding-left: 6px;
+      padding-bottom: 6px;
+      padding-right: 6px;
+      align: center;
+      font-size: 1.2em;
+      width:500px;
+      background-color:white;
+      margin-top:1em;
+      border: 1px solid;
+      border-radius:20px;
+      margin-left: 10px;
   }
 
   #orders-started {
@@ -113,6 +140,24 @@ export default {
     grid-auto-columns: minmax(160px,1fr);
     overflow-x:auto;
     overflow-y: scroll;
+      font-size: 1.7em;
+      text-transform: uppercase;
+      text-align: center;
+      font-family: "Courier New";
+      font-weight: bold;
+      line-height: 20px;
+      padding-top: 6px;
+      padding-left: 6px;
+      padding-bottom: 6px;
+      padding-right: 6px;
+      align: center;
+      font-size: 1.2em;
+      width:500px;
+      background-color:white;
+      margin-top:1em;
+      border: 1px solid;
+      border-radius:20px;
+      margin-left: 10px;
   }
 
   #orders-done{
@@ -126,5 +171,23 @@ export default {
     grid-auto-columns: minmax(160px,1fr);
     overflow-x:auto;
     overflow-y: scroll;
+      font-size: 1.7em;
+      text-transform: uppercase;
+      text-align: center;
+      font-family: "Courier New";
+      font-weight: bold;
+      line-height: 20px;
+      padding-top: 6px;
+      padding-left: 6px;
+      padding-bottom: 6px;
+      padding-right: 6px;
+      align: center;
+      font-size: 1.2em;
+      width:500px;
+      background-color:white;
+      margin-top:1em;
+      border: 1px solid;
+      border-radius:20px;
+      margin-left: 10px;
   }
 </style>
