@@ -137,7 +137,6 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   .allergy-icons-pic {
     height: 20px;
     width: auto;
-
   }
   .header-wrapper{
     flex-direction: row;
@@ -153,21 +152,16 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     display: flex;
     flex-direction: column;
     width: 70px;
-
     align-content: center;
-    font-family: "Courier New";
-
-
     font-family: "Courier New";
     font-size: 0.65em;
     justify-content: center;
     align-items: center;
   }
   img{
-width: 35px;
+    width: 35px;
     height: 35px;
     justify-items: center;
-
   }
 
 

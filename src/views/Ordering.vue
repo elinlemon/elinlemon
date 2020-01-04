@@ -57,7 +57,7 @@
           <div class="ordered-items-container">
 
             <div class="top-line-container">
-              <h4>{{uiLabels.yourOrder}}</h4>
+              <h2>{{uiLabels.yourOrder}}</h2>
             </div>
 
             <div class="added-items-container">
@@ -68,7 +68,7 @@
                 <div v-for="menuItem in this.shoppingCart.menuItems" v-bind:key="menuItem.id">
 
                   <div class="menu-item-container">
-                    <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
+                    <h4>{{uiLabels.order}} {{menuItem.id}}</h4>
 
                     <div class="menu-item-controls">
                       <img class="remove-buttons" title="Edit" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
@@ -90,7 +90,7 @@
               <div class="current-order-items-container">
 
                 <div class="menu-item-container" v-if="!this.currentMenuItem.isEmpty()">
-                  <h5>{{uiLabels.currentOrder}}</h5>
+                  <h4>{{uiLabels.currentOrder}}</h4>
 
                   <div class="menu-item-controls">
                     <img class="remove-buttons" title="Delete" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
@@ -293,7 +293,7 @@ export default {
   .welcome-container {
     display: flex;
     flex-direction: column;
-    background-color: lightgray;
+    background-color: #ffd699;
     font-family: "Courier New";
     height: 850px;
 
@@ -317,7 +317,6 @@ export default {
   /* first screen */
   .top-container-1 {
     display: flex;
-    padding-bottom: 1em;
     justify-content: end;
     margin-top: 20px;
     margin-right: 1em;
@@ -341,21 +340,22 @@ export default {
     border-radius: 10px;
     height: 25px;
     width: auto;
-
+    display: flex;
+    justify-content: right;
+    background-color: #ffad33;
   }
 
   .language-container {
     flex: 1;
     display: flex;
-    justify-content: center;
-
+    justify-content: left;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
-
   .swedish-icon {
     padding-right: 0.5em;
-
   }
-
   .language-icon {
     opacity: 0.7;
   }
@@ -394,9 +394,9 @@ export default {
 
   /*Are main-container the same as ordering-container? */
   .main-container {
-    padding-top: 3em;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
+    padding-top: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
     flex: 0.9;
     display: flex;
   }
@@ -415,8 +415,8 @@ export default {
   .category-buttons-container {
     flex: 0.2;
     max-width: 400px;
-    padding-right: 2em;
-    padding-left: 2em;
+    padding-right: 1em;
+    padding-left: 1em;
     display: flex;
     flex-direction: column;
   }
@@ -450,7 +450,7 @@ export default {
   }
 
   .current-order-items-container{
-    background-color: #bfff80;
+    background-color: #ffd699;
   }
 
   .menu-item-container {
@@ -486,7 +486,7 @@ export default {
     height: 45px;
     width: auto;
     font-family: "Courier New";
-    background-color: #bfff80;
+    background-color: #ffad33;
   }
 
   .neworder-buttons{
@@ -505,7 +505,7 @@ export default {
     margin-right: 5px;
     margin-left: 5px;
     font-size: large;
-    background-color: #bfff80;
+    background-color: #ffd699;
   }
 
 
