@@ -19,13 +19,13 @@
         </center>
 
         <dt class="ingredient-controls">
-          <button class="wrapperButton" v-on:click="addIngredient(ingredient), colourIngredItem()">+</button>
+          <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
               <div v-if = "ingredient.ingredient_en == currentIngredient.ingredient_en ">
                 {{currentIngredient.count}}
               </div>
             </div>
-            <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
+          <button class="wrapperButton" v-on:click="addIngredient(ingredient)">+</button>
         </dt>
       </div>
     </div>
