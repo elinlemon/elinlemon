@@ -73,8 +73,8 @@
                     <h5>{{uiLabels.order}} {{menuItem.id}}</h5>
 
                     <div class="menu-item-controls">
-                      <img class="remove-buttons" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
-                      <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
+                      <img class="remove-buttons" title="Edit" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
+                      <img class="remove-buttons" title="Delete" src="delete-symbol.png" height="20" width="auto" v-on:click="removeOrder(menuItem)">
                     </div>
                   </div>
 
@@ -95,7 +95,7 @@
                   <h5>{{uiLabels.currentOrder}}</h5>
 
                   <div class="menu-item-controls">
-                    <img class="remove-buttons" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
+                    <img class="remove-buttons" title="Delete" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
                   </div>
                 </div>
 
@@ -487,6 +487,7 @@ export default {
     margin-right: 5px;
     margin-left: 5px;
     font-size: large;
+    background-color: #bfff80;
   }
 
 
