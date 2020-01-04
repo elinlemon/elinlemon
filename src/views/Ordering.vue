@@ -26,6 +26,7 @@
         <div class="language-container">
           <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
           <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
+
         </div>
         <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
       </div>
@@ -364,11 +365,11 @@ export default {
     padding-right: 0.5em;
   }
   .language-icon {
-    opacity: 0.7;
+    opacity: 1;
   }
 
   .language-icon:hover {
-    opacity: 1;
+    opacity: 0.7;
 
   }
 
@@ -545,10 +546,16 @@ export default {
     cursor: pointer;
   }
 
-  @media (max-width: 420px) {
-    .category-container {
-      grid-template-columns: 1fr;
+  @media  {
+    .backgroundpicture {
+      /* grid-template-columns: 1fr; */
+      width: 100em;
     }
+
+    .welcome-container {
+      height: 1500px;
+    }
+
 
   }
 

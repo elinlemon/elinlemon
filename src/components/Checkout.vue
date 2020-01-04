@@ -111,7 +111,6 @@ export default {
 </script>
 <style scoped>
 .main-container {
-    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -173,6 +172,8 @@ export default {
   font-size: 1.2em;
   width: 103px;
   margin-top: 1em;
+  background-color: #ffad33;
+  color: white;
   border: 1px solid;
   border-radius: 20px;
   font-family: "Courier New";
@@ -188,7 +189,7 @@ export default {
   padding: 10px;
   margin-left: 1em;
   display: flex;
-  height: 25em;
+  height: 22em;
   width: 235px;
   flex-direction: column;
   background-color: white;
@@ -210,7 +211,7 @@ export default {
   width:380px;
   height: 45px;
   background-color:white;
-  margin-top:2em;
+  margin-top:1em;
   margin-left: 500px;
   padding: 4px;
 }
@@ -225,7 +226,7 @@ export default {
   border: solid;
   border-radius: 9px;
   position: fixed;
-  top: 55%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
   }
