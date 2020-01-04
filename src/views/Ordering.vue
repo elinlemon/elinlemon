@@ -388,10 +388,11 @@ export default {
     font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
+    background-color: #ffad33;
   }
 
   .location-button:hover {
-    opacity: 40%;
+    opacity: 70%;
     cursor: pointer;
   }
 
@@ -546,17 +547,10 @@ export default {
     cursor: pointer;
   }
 
-  @media  {
-    .backgroundpicture {
-      /* grid-template-columns: 1fr; */
-      width: 100em;
+  @media  (max-width: 420px) {
+    .category-container {
+      grid-template-columns: 1fr;
     }
-
-    .welcome-container {
-      height: 1500px;
-    }
-
-
   }
 
 </style>
