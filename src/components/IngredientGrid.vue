@@ -1,8 +1,9 @@
 <template>
   <div>
     <!-- need to decide where the number 'counter' should be displayed -->
-    <div class = "symbol-wrapper" >
+    <div class= "header-wrapper">
       <h1>{{uiLabels["choose_"+categoryNumber]}}</h1>
+    <div class = "symbol-wrapper" >
       <div class = "symbol">
         <img width="50px" height="50px" src="milk-free-symbol.png">
         <div>{{uiLabels.milkfree}}</div>
@@ -15,6 +16,7 @@
         <img width="50px" height="50px" src="vegan-symbol.png">
         <div>{{uiLabels.vegan}}</div>
       </div>
+    </div>
     </div>
     <div class="wrapper">
 
@@ -87,7 +89,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   .wrapper {
     display: grid;
     grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit, calc(9em + 12px));
+    grid-template-columns: repeat(auto-fit,calc(9em + 50px));
     overflow: auto;
   }
 
@@ -99,6 +101,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     padding: 10px;
     border: 1px solid;
     font-family: "Courier New";
+    border-radius: 10px;
   }
 
   .active {
@@ -107,7 +110,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 
   .ingredient-controls {
     display: flex;
-    width: 134px;
+    width: 172px;
     justify-content: space-between;
     flex-direction: row;
   }
@@ -120,7 +123,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   }
   .wrapperCounter{
     display: flex;
-    width: 54px;
+    width: 92px;
     font-size: large;
     justify-content: center;
   }
@@ -136,12 +139,15 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     width: auto;
 
   }
-  .symbol-wrapper{
+  .header-wrapper{
     flex-direction: row;
     display: flex;
     justify-content: space-between;
-    width: 500px;
-
+    width: 625px;
+  }
+  .symbol-wrapper{
+    display: flex;
+    justify-content: right;
   }
   .symbol{
     display: flex;
@@ -157,6 +163,7 @@ width: 35px;
     height: 35px;
     justify-items: center;
   }
+
 
   @media (max-width: 420px) {
     .wrapper {
