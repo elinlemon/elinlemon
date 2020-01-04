@@ -121,5 +121,5 @@ export default {
       border-radius:20px;
       margin-left: 10px;
   }
-    
+
 </style>

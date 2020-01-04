@@ -1,5 +1,5 @@
 <template>
-  <div class ="backgroundpicture">
+  <div class ="backgroundpicture" >
     <!-- Welcome view -->
 
     <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
@@ -299,6 +299,8 @@ export default {
     font-weight: 400;
     height: 850px;
 
+
+
   }
   .backgroundpicture{
     background-image: url("/background.png");
@@ -306,6 +308,7 @@ export default {
     background-attachment: fixed;
     background-repeat: repeat;
     position: relative;
+    min-height: 100%;
   }
 
   .remove-buttons {
@@ -420,7 +423,7 @@ export default {
 
   .category-buttons-container {
     flex: 0.2;
-    max-width: 300px;
+    max-width: 400px;
     padding-right: 2em;
     padding-left: 2em;
     display: flex;
@@ -435,10 +438,11 @@ export default {
     font-family: "komu-b",sans-serif;
     font-style: normal;
     font-weight: 400;
+    width: 180px;
   }
 
   .active, .categorybutton:hover {
-  background-color: #666;
+  background-color: #ffad33;
   color: white;
 }
 
