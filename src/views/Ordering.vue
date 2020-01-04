@@ -390,6 +390,7 @@ export default {
 
   .category-container {
     flex: 0.8;
+    padding-right: 2em;
   }
 
   .category-buttons-container {

@@ -84,7 +84,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   .wrapper {
     display: grid;
     grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit, calc(9em + 12px));
+    grid-template-columns: repeat(auto-fit, calc(9em));
     overflow: auto;
   }
 
@@ -94,6 +94,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     justify-content: space-between;
     padding: 10px;
     border: 1px solid;
+
   }
 
   .active {
@@ -137,7 +138,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 70px;
+    width: 100px;
     align-content: center;
     font-family: "Courier New";
     font-size: 0.95em;
