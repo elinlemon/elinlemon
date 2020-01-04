@@ -1,8 +1,23 @@
 <template>
   <div>
     <!-- need to decide where the number 'counter' should be displayed -->
-
+    <div class = "symbol-wrapper" >
+      <h1>{{uiLabels["choose_"+categoryNumber]}}</h1>
+      <div class = "symbol">
+        <img width="50px" height="50px" src="milk-free-symbol.png">
+        <div>{{uiLabels.milkfree}}</div>
+      </div>
+      <div class = "symbol">
+        <img width="50px" height="50px" src="gluten-free-symbol.png">
+        <div>{{uiLabels.glutenfree}}</div>
+      </div>
+      <div class = "symbol">
+        <img width="50px" height="50px" src="vegan-symbol.png">
+        <div>{{uiLabels.vegan}}</div>
+      </div>
+    </div>
     <div class="wrapper">
+
       <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
 
         <center>
@@ -29,20 +44,7 @@
         </dt>
       </div>
     </div>
-    <div class = "symbol-wrapper" >
-      <div class = "symbol">
-        <img width="50px" height="50px" src="milk-free-symbol.png">
-        <div>{{uiLabels.milkfree}}</div>
-      </div>
-      <div class = "symbol">
-        <img width="50px" height="50px" src="gluten-free-symbol.png">
-        <div>{{uiLabels.glutenfree}}</div>
-      </div>
-      <div class = "symbol">
-        <img width="50px" height="50px" src="vegan-symbol.png">
-        <div>{{uiLabels.vegan}}</div>
-      </div>
-    </div>
+
   </div>
 </template>
 
@@ -55,6 +57,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
             uiLabels: Object,
             lang: String,
             ingredients: Array,
+            categoryNumber: Number,
              currentMenuItem: Object
         },
         data: function() {
@@ -85,11 +88,12 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 
   .ingredItem {
     display: flex;
+    margin-top: 10px;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
     border: 1px solid;
-    font-size: large;
+    font-family: "Courier New";
   }
 
   .ingredient-controls {
@@ -122,22 +126,25 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   }
   .symbol-wrapper{
     display: flex;
-    margin-top: 50px;
-    margin-left: 50px;
     flex-direction: row;
     justify-content: space-between;
-    width: 250px;
+    width: 500px;
 
   }
   .symbol{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 70px;
-    align-content: center;
     font-family: "Courier New";
-    font-size: 0.95em;
-
+    font-size: 0.65em;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+  }
+  img{
+width: 35px;
+    height: 35px;
+    justify-items: center;
   }
 
   @media (max-width: 420px) {
