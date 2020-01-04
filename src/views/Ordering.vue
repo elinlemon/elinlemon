@@ -361,9 +361,9 @@ export default {
 
   }
   .location-button{
-    border-radius: 25px;
-    height: 200px;
-    width: 500px;
+    border-radius: 10px;
+    height: 12%;
+    width: 24%;
     font-size: 30px;
     margin-top: 50px;
     margin-bottom: 10px;

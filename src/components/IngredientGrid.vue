@@ -137,8 +137,8 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 
   }
   .symbol-wrapper{
-    display: flex;
     flex-direction: row;
+    display: flex;
     justify-content: space-between;
     width: 500px;
 
