@@ -1,17 +1,21 @@
 <template>
-  <div class ="backgroundpicture" >
+  <div class="backdrop">
     <!-- Welcome view -->
 
     <div class="welcome-container" v-if="this.shoppingCart.orderLocation === undefined">
       <div class="top-container-1">
         <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
         <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
-
       </div>
 
-      <center><h1>{{uiLabels.welcome}}</h1>
-        <img src="frontpage3.0.png" height="300px" width="700px" style="background-color: white">
-      </center>
+      <div class="labels-container">
+        <h1 class="welcome-label">{{uiLabels.welcome}}</h1>
+        <img class="welcome-image" src="frontpage3.0.png">
+      </div>
+
+      <!-- <center><h1>{{uiLabels.welcome}}</h1> -->
+        <!-- <img src="frontpage3.0.png" height="300px" width="700px" style="background-color: white"> -->
+      <!-- </center> -->
 
       <div class="order-option-container">
         <button class = "location-button" v-on:click="setLocation('eatIn')">{{uiLabels.eatIn}}</button>
@@ -287,6 +291,9 @@ export default {
 
 </script>
 <style scoped>
+  .backdrop {
+    height: 100%;
+  }
   h5 {
     margin: 0;
   }
@@ -297,9 +304,24 @@ export default {
     font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
-    height: 850px;
+    /* height: 850px; */
+    height: 100%;
   }
-  .backgroundpicture{
+  .labels-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .welcome-label {
+    display: inline;
+  }
+  .welcome-image {
+    width: 90%;
+    max-width: 600px;
+  }
+  
+
+  .backdrop-foo {
     background-image: url("/background.png");
     background-size: 500px;
     background-attachment: fixed;
@@ -321,7 +343,7 @@ export default {
     display: flex;
     justify-content: end;
     margin-top: 20px;
-    margin-right: 1em;
+    /* margin-right: 1em; */
   }
 
   /* second screen */
@@ -375,17 +397,21 @@ export default {
   }
 
   .order-option-container {
+    flex: 1;
     display: flex;
     justify-content: space-around;
+    margin-top: 10em;
 
   }
   .location-button{
     border-radius: 10px;
-    height: 100%;
+    max-height: 100px;
+    /* height: 100%; */
     width: 30%;
+    max-width: 280px;
     font-size: 30px;
-    margin-top: 50px;
-    margin-bottom: 10px;
+    /* margin-top: 50px; */
+    /* margin-bottom: 10px; */
     font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
@@ -551,9 +577,19 @@ export default {
   }
 
   @media  (max-width: 420px) {
+    .top-container-1 {
+      /* center language selection + add margin */
+      justify-content: center;
+      margin-bottom: 10%;
+    }
+    
     .category-container {
       grid-template-columns: 1fr;
     }
+
+
+
+
   }
 
 </style>
