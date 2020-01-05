@@ -198,20 +198,20 @@ export default {
 }
 
 #price-style {
-  font-size: 2.0em;
-  text-transform: uppercase;
-  text-align: center;
-  font-family: "Courier New";
-  color: #ffad33;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 20px;
-  width:380px;
-  height: 30px;
-  background-color: white;
-  margin-top:1em;
-  margin-left: 480px;
-  padding: 4px;
+    font-size: 2.0em;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "Courier New";
+    color: #ffad33;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 20px;
+    width: 380px;
+    height: 30px;
+    background-color: white;
+    margin-top: 1em;
+    margin-left: 480px;
+    padding: 4px;
 }
 
 .receipt {

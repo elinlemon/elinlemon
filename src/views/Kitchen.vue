@@ -2,7 +2,7 @@
   <div id="orders" class ="backgroundpicture">
 
       <div class="kitchen-container" v-if ="this.showStock === undefined">
-      <button class = "stock-button" v-on:click="setStock('showStock')">{{uiLabels.stock}}</button>
+      <button class = "stock-button" v-on:click="setStock('showStock')">Stock</button>
 
       <div class="order-status">
         <h1>{{ uiLabels.ordersInQueue }}:</h1>
@@ -17,6 +17,7 @@
                 :key="key">
         </OrderItemToPrepare>
       </div>
+
         <div class="order-status">
         <h1>{{ uiLabels.startedOrders}}:</h1>
         <OrderItemStarted
@@ -30,6 +31,7 @@
                 :key="key">
         </OrderItemStarted>
       </div>
+
       <div class="order-status">
         <h1>{{ uiLabels.ordersFinished }}:</h1>
         <OrderItem
@@ -43,11 +45,13 @@
         </OrderItem>
       </div>
       </div>
+
       <div v-if="this.showStock === 'showStock'" class = "stock-container">
-          <button class = "stock-button" v-on:click="setStock(undefined)">Kitchen</button>
+          <button class= "stock-button" v-on:click="setStock(undefined)">Kitchen</button>
         <div v-for = "item in ingredients" v-bind:key="item.ingredient_id">
           <h4>
-            {{item.ingredient_en}} {{item.stock}}
+            {{item.ingredient_en}} {{item.stock}} pcs.
+              <button class = "refill-button" v-on:click="refillStock(item, 50)">Refill</button>
           </h4>
         </div>
 
@@ -90,9 +94,9 @@ export default {
       setStock: function(show) {
         this.showStock = show
       },
-      changeStock: function(item, saldo){
-        this.$store.state.socket.emit("updateStock", item, saldo);
-      }
+      refillStock: function(item, saldo){
+        this.$store.state.socket.emit("updateStock", {item:item}, saldo);
+      },
   }
 }
 </script>
@@ -119,11 +123,11 @@ export default {
   .stock-container {
       text-align: center;
     background-color: #ffd699;
+      font-size: xx-large;
   }
 
   .stock-button {
-      margin-right: 1.5px;
-      margin-top: 20px;
+      margin-left: 1em;
       font-size: 1em;
       font-family: "Courier New";
       font-style: normal;
@@ -136,6 +140,16 @@ export default {
       background-color: #ffad33;
       color: white;
   }
+
+  .refill-button {
+      font-family: "Courier New";
+      font-style: normal;
+      height: 20px;
+      width: auto;
+      background-color: #ffad33;
+      color: white;
+  }
+
 
   .order-status{
     height: 40vh;
