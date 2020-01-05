@@ -1,62 +1,62 @@
-ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,selling_price,stock_quantity
-1,Bönburgare,Bean patty,1,1,1,1,40,40
-2,Nötfärsburgare 100g,Beef patty 100g,1,1,1,0,40,0
-3,Nötfärsburgare 200g,Beef patty 200g,1,1,1,0,60,40
-4,Kycklingburgare,Chicken patty,1,1,0,0,40,40
-5,Friterad halloumi,Feep-fried halloumi,1,0,0,0,40,40
-6,Fiskfilé,Fish filet,1,1,0,0,40,40
-7,Grillad aubergine,Grilled eggplant,1,1,1,1,30,40
-8,Hummer,Lobster,1,1,1,0,80,40
-9,Pulled jackfruit,Pulled jackfruit,1,1,1,1,40,40
-10,Pulled pork,Pulled pork,1,1,1,0,40,40
-11,Avocado,Avocado,2,1,1,1,10,40
-12,Bacon,Bacon,2,1,1,0,10,40
-13,Banan,Banana,2,1,1,1,5,40
-14,Löjrom,Bleak caviar,2,1,1,0,50,40
-15,Karamelliserad lök,Candied onions,2,1,1,1,5,40
-16,Cheddar,Cheddar cheese,2,0,1,0,10,40
-17,Koriander,Cilantro,2,1,1,1,5,40
-18,Coleslaw,Coleslaw,2,1,1,0,5,40
-19,Friterade lökringar,Deep-fried onion rings,2,1,0,1,15,40
-20,Stekt ägg,Fried egg,2,1,1,0,10,40
-21,Chèvre,Goat cheese,2,0,1,0,10,40
-22,Jalapeño,Jalapeño,2,1,1,1,5,40
-23,Kimchi,Kimchi,2,1,1,1,10,40
-24,Krispsallad,Lettuce,2,1,1,1,5,40
-25,Svampstuvning,Mushroom stew,2,0,1,0,15,40
-26,Pepper jack-ost,Pepper jack cheese,2,0,1,0,10,40
-27,Inlagd gurka,Pickled cucumber,2,1,1,1,5,40
-28,Inlagd rödlök,Pickled red onion,2,1,1,1,5,40
-29,Rå rödlök,Raw red onion,2,1,1,1,5,40
-30,Rå gul lök,Raw yellow onion,2,1,1,1,5,40
-31,Salami,Salami,2,1,1,0,10,40
-32,Surkål,Sauerkraut,2,1,1,1,5,40
-33,Tomat,Tomato,2,1,1,1,5,40
-34,Vegansk ost,Vegan cheese,2,1,1,1,10,40
-35,Aioli,Aioli,3,1,1,0,5,40
-36,Ajvar,Ajvar,3,1,1,1,5,40
-37,Barbecuesås,Barbecue sauce,3,1,1,1,0,40
-38,Klassisk hamburgarsås,Classic hamburger dressing,3,1,1,0,5,40
-39,Dijonsås,Dijon sauce,3,1,1,0,5,40
-40,Guacamole,Guacamole,3,1,1,1,10,40
-41,Hot salsa,Hot salsa,3,1,1,1,5,40
-42,Hummus,Hummus,3,1,1,1,10,40
-43,Ketchup,Ketchup,3,1,1,1,0,40
-44,Majonnäs,Mayonnaise,3,1,1,0,5,40
-45,Senap,Mustard,3,1,1,1,0,40
-46,Sriracha,Sriracha,3,1,1,1,0,40
-47,Teriyakisås,Teriyaki sauce,3,1,1,1,5,40
-48,Tryffelmajonnäs,Truffle mayonnaise,3,1,1,0,5,40
-49,Tzatziki,Tzatziki,3,0,1,0,5,40
-50,Brioche,Brioche,4,0,0,0,10,40
-51,Glutenfritt bröd,Gluten free bread,4,1,1,1,10,40
-52,Veganskt bröd,Vegan bun,4,0,0,1,10,40
-53,Fullkornsbrioche,Whole wheat brioche,4,0,0,0,10,40
-54,Nachochips,Nachos,5,1,0,1,20,40
-55,Potatisstrips,Potato fries,5,1,1,1,20,40
-56,Sötpotatisstrips,Sweet potato fries,5,1,1,1,30,40
-57,Chokladmilkshake,Chocolate milk shake,6,0,1,0,40,40
-58,Pucko,Pucko,6,0,1,0,25,40
-59,Läsk,Soda,6,1,1,1,20,40
-60,Jordgubbsmilkshake,Strawberry milk shake,6,0,1,0,40,40
-61,Vegansk mango lassi,Vegan mango lassi,6,1,1,1,40,40
+ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,selling_price
+1,Bönburgare,Bean patty,1,1,1,1,40
+2,Nötfärsburgare 100g,Beef patty 100g,1,1,1,0,40
+3,Nötfärsburgare 200g,Beef patty 200g,1,1,1,0,60
+4,Kycklingburgare,Chicken patty,1,1,0,0,40
+5,Friterad halloumi,Feep-fried halloumi,1,0,0,0,40
+6,Fiskfilé,Fish filet,1,1,0,0,40
+7,Grillad aubergine,Grilled eggplant,1,1,1,1,30
+8,Hummer,Lobster,1,1,1,0,80
+9,Pulled jackfruit,Pulled jackfruit,1,1,1,1,40
+10,Pulled pork,Pulled pork,1,1,1,0,40
+11,Avocado,Avocado,2,1,1,1,10
+12,Bacon,Bacon,2,1,1,0,10
+13,Banan,Banana,2,1,1,1,5
+14,Löjrom,Bleak caviar,2,1,1,0,50
+15,Karamelliserad lök,Candied onions,2,1,1,1,5
+16,Cheddar,Cheddar cheese,2,0,1,0,10
+17,Koriander,Cilantro,2,1,1,1,5
+18,Coleslaw,Coleslaw,2,1,1,0,5
+19,Friterade lökringar,Deep-fried onion rings,2,1,0,1,15
+20,Stekt ägg,Fried egg,2,1,1,0,10
+21,Chèvre,Goat cheese,2,0,1,0,10
+22,Jalapeño,Jalapeño,2,1,1,1,5
+23,Kimchi,Kimchi,2,1,1,1,10
+24,Krispsallad,Lettuce,2,1,1,1,5
+25,Svampstuvning,Mushroom stew,2,0,1,0,15
+26,Pepper jack-ost,Pepper jack cheese,2,0,1,0,10
+27,Inlagd gurka,Pickled cucumber,2,1,1,1,5
+28,Inlagd rödlök,Pickled red onion,2,1,1,1,5
+29,Rå rödlök,Raw red onion,2,1,1,1,5
+30,Rå gul lök,Raw yellow onion,2,1,1,1,5
+31,Salami,Salami,2,1,1,0,10
+32,Surkål,Sauerkraut,2,1,1,1,5
+33,Tomat,Tomato,2,1,1,1,5
+34,Vegansk ost,Vegan cheese,2,1,1,1,10
+35,Aioli,Aioli,3,1,1,0,5
+36,Ajvar,Ajvar,3,1,1,1,5
+37,Barbecuesås,Barbecue sauce,3,1,1,1,0
+38,Klassisk hamburgarsås,Classic hamburger dressing,3,1,1,0,5
+39,Dijonsås,Dijon sauce,3,1,1,0,5
+40,Guacamole,Guacamole,3,1,1,1,10
+41,Hot salsa,Hot salsa,3,1,1,1,5
+42,Hummus,Hummus,3,1,1,1,10
+43,Ketchup,Ketchup,3,1,1,1,0
+44,Majonnäs,Mayonnaise,3,1,1,0,5
+45,Senap,Mustard,3,1,1,1,0
+46,Sriracha,Sriracha,3,1,1,1,0
+47,Teriyakisås,Teriyaki sauce,3,1,1,1,5
+48,Tryffelmajonnäs,Truffle mayonnaise,3,1,1,0,5
+49,Tzatziki,Tzatziki,3,0,1,0,5
+50,Brioche,Brioche,4,0,0,0,10
+51,Glutenfritt bröd,Gluten free bread,4,1,1,1,10
+52,Veganskt bröd,Vegan bun,4,0,0,1,10
+53,Fullkornsbrioche,Whole wheat brioche,4,0,0,0,10
+54,Nachochips,Nachos,5,1,0,1,20
+55,Potatisstrips,Potato fries,5,1,1,1,20
+56,Sötpotatisstrips,Sweet potato fries,5,1,1,1,30
+57,Chokladmilkshake,Chocolate milk shake,6,0,1,0,40
+58,Pucko,Pucko,6,0,1,0,25
+59,Läsk,Soda,6,1,1,1,20
+60,Jordgubbsmilkshake,Strawberry milk shake,6,0,1,0,40
+61,Vegansk mango lassi,Vegan mango lassi,6,1,1,1,40

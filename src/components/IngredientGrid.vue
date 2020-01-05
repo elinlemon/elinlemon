@@ -34,8 +34,7 @@
           {{ingredient.selling_price}}:-
         </div>
 
-
-        <div v-if="ingredient.stock_quantity > 0">
+        <div v-if="ingredient.stock > 0">
         <div class="ingredient-controls">
           <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
@@ -47,7 +46,7 @@
         </div>
       </div>
 
-        <div v-if="ingredient.stock_quantity == 0" class="stock-info">
+        <div v-if="ingredient.stock <= 0" class="stock-info">
           {{uiLabels.outOfStock}}
         </div>
       </div>
