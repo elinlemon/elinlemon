@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Ordering from './views/Ordering.vue'
 import Kitchen from './views/Kitchen.vue'
-import Stock from './views/Stock.vue'
 
 
 Vue.use(Router)
@@ -27,18 +26,6 @@ let router = new Router({
       // this generates a separate chunk (read.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "read" */ './views/Kitchen.vue')
-    },
-    {
-      path: '/stock',
-      meta: {
-        title: 'Stock',
-      },
-      name: 'stock',
-      // route level code-splitting
-      // this generates a separate chunk (read.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "read" */ './views/Stock.vue')
-
     }
   ]
 })

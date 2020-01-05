@@ -1,6 +1,9 @@
 <template>
   <div id="orders" class ="backgroundpicture">
 
+      <div class="kitchen-container" v-if ="this.showStock === undefined">
+      <button class = "stock-button" v-on:click="setStock('showStock')">{{uiLabels.stock}}</button>
+
       <div class="order-status">
         <h1>{{ uiLabels.ordersInQueue }}:</h1>
         <OrderItemToPrepare
@@ -44,6 +47,16 @@
                 :key="key">
         </OrderItem>
       </div>
+      </div>
+
+      <div v-if="this.showStock === 'showStock'" class = "stock-container">
+          <div v-for = "ingredient in this.ingredients" v-bind:key="ingredient.id">
+
+              <h3> {{ingredient.ingredient_en}}: {{ingredient.stock_quantity}} pcs </h3>
+
+          </div>
+      </div>
+
   </div>
 </template>
 
@@ -65,7 +78,8 @@ export default {
   data: function(){
     return {
       chosenIngredients: [],
-      price: 0
+      price: 0,
+        showStock: undefined
     }
   },
   methods: {
@@ -74,7 +88,10 @@ export default {
     },
     markStarted: function(orderid) {
       this.$store.state.socket.emit("orderStarted", orderid);
-    }
+    },
+      setStock: function(show) {
+        this.showStock = show
+      }
   }
 }
 </script>
@@ -99,6 +116,10 @@ export default {
       background-attachment: fixed;
       background-repeat: repeat;
       position: relative;
+  }
+
+  .stock-container {
+      text-align: center;
   }
 
   .order-status{
