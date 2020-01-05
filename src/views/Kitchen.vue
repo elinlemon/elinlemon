@@ -44,6 +44,7 @@
       </div>
       </div>
       <div v-if="this.showStock === 'showStock'" class = "stock-container">
+          <button class = "stock-button" v-on:click="setStock(undefined)">Kitchen</button>
         <div v-for = "item in ingredients" v-bind:key="item.ingredient_id">
           <h4>
             {{item.ingredient_en}} {{item.stock}}
@@ -107,9 +108,6 @@ export default {
   }
 
 
-    /* A lot of repeating code here, but didn't work when I put everything under the orders-ID */
-
-
   .backgroundpicture{
       background-image: url("/background.png");
       background-size: 500px;
@@ -121,6 +119,22 @@ export default {
   .stock-container {
       text-align: center;
     background-color: #ffd699;
+  }
+
+  .stock-button {
+      margin-right: 1.5px;
+      margin-top: 20px;
+      font-size: 1em;
+      font-family: "Courier New";
+      font-style: normal;
+      font-weight: 400;
+      border-radius: 20px;
+      height: 50px;
+      width: auto;
+      display: flex;
+      justify-content: right;
+      background-color: #ffad33;
+      color: white;
   }
 
   .order-status{
