@@ -7,7 +7,8 @@ var sharedVueStuff = {
       orders: {},
       uiLabels: {},
       ingredients: {},
-      lang: "en"
+      lang: "en",
+      transactions: {}
     }
   },
   created: function () {
@@ -26,6 +27,7 @@ var sharedVueStuff = {
       if (typeof data.ingredients !== 'undefined') {
         this.ingredients = data.ingredients;
       }
+      this.transactions = data.transactions;
     }.bind(this));
   },
   methods: {

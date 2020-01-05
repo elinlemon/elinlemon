@@ -215,7 +215,7 @@ export default {
       this.shoppingCart.addMenuItem(this.currentMenuItem);
       this.currentMenuItem = new MenuItem();
       this.currentCategory = 4;
-      this.active = [false,false, false, true, false, false];
+      this.active = [false, false, false, true, false, false];
     },
 
     removeOrder: function(menuItem) {

@@ -19,8 +19,6 @@ Data.prototype.getUILabels = function (lang) {
   return ui;
 };
 
-
-
 /*
   Returns a JSON object array of ingredients with the fields from
   the CSV file, plus a calculated amount in stock, based on
@@ -84,7 +82,7 @@ Data.prototype.addOrder = function (order) {
     transId += 1;
     transactions.push({transaction_id: transId,
                        ingredient_id: i[k].ingredient_id,
-                       change: - 2});
+                       change: - 1});
   }
     return orderId;
 };

@@ -17,10 +17,7 @@
                 :key="key">
         </OrderItemToPrepare>
       </div>
-
-
-
-      <div class="order-status">
+        <div class="order-status">
         <h1>{{ uiLabels.startedOrders}}:</h1>
         <OrderItemStarted
                 v-for="(order, key) in orders"
@@ -33,8 +30,6 @@
                 :key="key">
         </OrderItemStarted>
       </div>
-
-
       <div class="order-status">
         <h1>{{ uiLabels.ordersFinished }}:</h1>
         <OrderItem
@@ -48,14 +43,15 @@
         </OrderItem>
       </div>
       </div>
-
       <div v-if="this.showStock === 'showStock'" class = "stock-container">
-          <div v-for = "ingredient in this.ingredients" v-bind:key="ingredient.id">
+        <div v-for = "item in ingredients" v-bind:key="item.ingredient_id">
+          <h4>
+            {{item.ingredient_en}} {{item.stock}}
+          </h4>
+        </div>
 
-              <h3> {{ingredient.ingredient_en}}: {{ingredient.stock_quantity}} pcs </h3>
-
-          </div>
       </div>
+
 
   </div>
 </template>
@@ -79,7 +75,8 @@ export default {
     return {
       chosenIngredients: [],
       price: 0,
-        showStock: undefined
+        showStock: undefined,
+        transactions: this.transactions
     }
   },
   methods: {
@@ -91,6 +88,9 @@ export default {
     },
       setStock: function(show) {
         this.showStock = show
+      },
+      changeStock: function(item, saldo){
+        this.$store.state.socket.emit("updateStock", item, saldo);
       }
   }
 }
@@ -120,6 +120,7 @@ export default {
 
   .stock-container {
       text-align: center;
+    background-color: #ffd699;
   }
 
   .order-status{

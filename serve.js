@@ -47,7 +47,8 @@ io.on('connection', function (socket) {
     // send updated info to all connected clients, note the use of io instead of socket
     socket.emit('orderNumber', orderIdAndName);
     io.emit('currentQueue', { orders: data.getAllOrders(),
-                          ingredients: data.getIngredients() });
+                          ingredients: data.getIngredients(),
+                            transactions: data.addOrder(order)});
   });
   // send UI labels in the chosen language
   socket.on('switchLang', function (lang) {
