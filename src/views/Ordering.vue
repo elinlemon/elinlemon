@@ -293,6 +293,12 @@ export default {
 <style scoped>
   .backdrop {
     height: 100%;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url("/background.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: white;
   }
   h5 {
     margin: 0;
@@ -393,15 +399,13 @@ export default {
 
   .language-icon:hover {
     opacity: 0.9;
-
   }
 
   .order-option-container {
     flex: 1;
     display: flex;
     justify-content: space-around;
-    margin-top: 10em;
-
+    padding-top: 10em;
   }
   .location-button{
     border-radius: 10px;
