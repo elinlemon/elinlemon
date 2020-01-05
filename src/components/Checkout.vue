@@ -1,23 +1,30 @@
 <template>
-  <div>
+  <div class="root-container">
     <div class="main-container" v-if="!this.paid">
 
 
       <div class="shopping-cart-container">
 
         <div v-for="menuItem of this.shoppingCart.menuItems" v-bind:key="menuItem.id" class="stylemenu">
-          <div> {{uiLabels.meal}}: {{menuItem.id}}
-          <img class="remove-buttons" title="Delete" src="delete-symbol.png" height = 20 width=20 v-on:click="removeOrder(menuItem)">
-            <img class="remove-buttons" title="Edit" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
-          <div v-for="ingredient of menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
+
+          <div> 
+
+            <div class="menu-item-header">
+              <span>{{uiLabels.meal}} {{menuItem.id}}</span>
+              
+              <div class="buttons-container">
+                <img class="remove-buttons delete-button" title="Delete" src="delete-symbol.png" height = 20 width=20 v-on:click="removeOrder(menuItem)">
+                <img class="remove-buttons" title="Edit" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
+              </div>
+            </div>
+            <div v-for="ingredient of menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
               <h4> {{ingredient.count}} x {{ingredient.selling_price}}:-
                 <span v-if = "lang ==='en'"> {{ingredient.ingredient_en}} </span>
-            <span v-if = "lang ==='sv'"> {{ingredient.ingredient_sv}} </span>
-             </h4>
+                <span v-if = "lang ==='sv'"> {{ingredient.ingredient_sv}} </span>
+              </h4>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="price-style" >{{uiLabels.totalPrice}}: {{ this.shoppingCart.totalPrice }}:-</div>
 
       <div class="receipt" id="pressedPayButton" style="display:none;">
        <h5>{{uiLabels.thanks}} </h5>
@@ -29,16 +36,20 @@
        </h6>
         <button class="receipt-buttons" v-on:click="backToStartPage()">{{uiLabels.backToStartPage}}</button>
       </div>
+    </div>
 
+    <div class="bottom-container">
+      <div id="price-style" >{{uiLabels.totalPrice}}: {{ this.shoppingCart.totalPrice }}:-</div>
 
       <div class="controls-container">
         <button class="control-buttons" v-on:click="goBack()">{{uiLabels.goback}}</button>
         <button class="control-buttons" v-on:click="goToPaymentPage()">{{uiLabels.pay}}</button>
-
       </div>
-
-
+    
     </div>
+    
+
+
   </div>
 
 </template>
@@ -108,8 +119,11 @@ export default {
 </script>
 <style scoped>
 .main-container {
-    display: flex;
-    flex-direction: column;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: scroll;
 }
 .remove-buttons {
   opacity: 0.4;
@@ -119,31 +133,9 @@ export default {
   cursor: pointer;
 }
 
-.top-container {
-    display: flex;
-    /* justify-content: center; */
-    padding-bottom: 1em;
-    justify-content: space-between;
-  }
-
-  .language-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
-
-  .swedish-icon {
-    padding-right: 0.5em;
-  }
-
-  .language-icon {
-    opacity: 0.7;
-  }
-
-  .language-icon:hover {
-    opacity: 1;
-
-  }
+.delete-button {
+  padding-right: 1.5em;
+}
 
 .cancel-order-button {
   margin-left: auto;
@@ -152,11 +144,11 @@ export default {
 
 .shopping-cart-container {
   display: flex;
-  flex: 2;
+  /* flex: 2; */
   /* max-height: 27em; */
   justify-content: center;
-
-
+  overflow-x: scroll;
+  padding: 2.5em;
 }
 
 
@@ -164,13 +156,14 @@ export default {
   height: 80px;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 3em;
+  /* margin-bottom: 3em; */
+  margin-top: 50px;
 }
 
 .control-buttons {
   font-size: 1.2em;
   width: 103px;
-  margin-top: 1em;
+  /* margin-top: 1em; */
   background-color: #ffad33;
   color: white;
   border: 1px solid;
@@ -208,12 +201,16 @@ export default {
     font-style: normal;
     font-weight: bold;
     line-height: 20px;
-    width: 380px;
-    height: 30px;
-    background-color: white;
-    margin-top: 1em;
-    margin-left: 480px;
-    padding: 4px;
+    -webkit-text-fill-color: #ffad33; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+    
+    /* width: 380px; */
+    /* height: 30px; */
+    /* background-color: white; */
+    /* margin-top: 1em; */
+    /* margin-left: 480px; */
+    /* padding: 4px; */
 }
 
 .receipt {
@@ -240,6 +237,9 @@ export default {
     font-style: normal;
     font-weight: 400;
     font-weight: bold;
+    font-size: 0.5em;
+    /* padding: 16px; */
+
   }
 
   .receipt-buttons:hover{
@@ -253,14 +253,36 @@ export default {
     font-weight: 400;
   }
 
+  .bottom-container {
+    margin-top: 10%;
+  }
+
+  .menu-item-header {
+    display: flex;
+  }
+
+  .buttons-container {
+    margin-left: auto;
+  }
 
   @media(max-width: 420px) { 
 
-  .shopping-cart-container {
-    flex-direction: column;
+    .shopping-cart-container {
+      flex-direction: column;
+    }
 
-  }
+    .stylemenu {
+      margin-left: 0;
+    }
 
+    .controls-container {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    #pressedPayButton {
+      width: 98%;
+    }
 
   }
 </style>

@@ -23,7 +23,6 @@
       </div>
     </div>
 
-
     <!-- Main view -->
     <div class="top-container-2" v-if="this.shoppingCart.orderLocation !== undefined">
         <div class="language-container">
@@ -46,10 +45,6 @@
           <button v-bind:class="{active:active[4], categorybutton:true}" v-on:click="setCurrentCategory(5)">{{uiLabels.sides}}</button>
           <button v-bind:class="{active:active[5], categorybutton:true}" v-on:click="setCurrentCategory(6)">{{uiLabels.drinks}}</button>
         </div>
-
-
-
-
 
         <!--Contacting component bread with the right category-->
         <!-- Is conected to the final_page -->
@@ -128,6 +123,7 @@
     </div>
 
     <Checkout v-if="state === 'checkout'" :ui-labels="uiLabels" :lang="lang" :shoppingCart="this.shoppingCart" :location="this.shoppingCart.orderLocation"
+              class="checkout-container"
               @goBack="goBackFromCheckout()"
               @cancelOrder="cancelOrder()"
               @orderPlaced="notifyBackend()"
@@ -324,16 +320,6 @@ export default {
   .welcome-image {
     width: 90%;
     max-width: 600px;
-  }
-  
-
-  .backdrop-foo {
-    background-image: url("/background.png");
-    background-size: 500px;
-    background-attachment: fixed;
-    background-repeat: repeat;
-    position: relative;
-    min-height: 100%;
   }
 
   .remove-buttons {
@@ -634,6 +620,10 @@ export default {
 
     .category-buttons-container {
       align-items: center;
+    }
+
+    .checkout-container {
+      height: 100%;
     }
   }
 
