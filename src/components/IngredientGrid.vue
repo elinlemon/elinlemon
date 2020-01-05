@@ -106,7 +106,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 
   .ingredItem {
     display: flex;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
@@ -119,6 +119,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     justify-content: center;
     font-weight: bold;
     align-self: center;
+    text-align: center;
   }
   .stock-info{
     display: flex;
@@ -131,7 +132,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
 
   .ingredient-controls {
     display: flex;
-    width: 172px;
+    /* width: 172px; */
     justify-content: space-between;
     flex-direction: row;
     padding-top: 15px;
@@ -164,7 +165,7 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     flex-direction: row;
     display: flex;
     justify-content: space-between;
-    width: 625px;
+    /* width: 625px; */
   }
   .symbol-wrapper{
     display: flex;
@@ -187,9 +188,14 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
   }
 
 
-  @media (max-width: 500px) {
+  @media(max-width: 420px) {
     .wrapper {
-      grid-template-columns: repeat(auto-fit,calc(9em + 50px));
+      grid-template-columns: repeat(auto-fit,calc(9em + 30px));
+      justify-content: center;
+    }
+
+    .wrapperButton {
+      background-color: white;
     }
 
   }

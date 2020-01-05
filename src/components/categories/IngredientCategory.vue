@@ -1,12 +1,9 @@
 <template>
 
-  <div class = "ingredientHeader">
-
-
-
+  <!-- <div class = "ingredientHeader"> -->
     <IngredientGrid :category-number="categoryNumber" :currentMenuItem ="currentMenuItem" :ingredients="relevantIngredients" :ui-labels="uiLabels" :lang="lang" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved">
     </IngredientGrid>
-  </div>
+  <!-- </div> -->
 
 </template>
 <script>
@@ -66,5 +63,9 @@ export default {
     padding-right: 8em;
     font-family: "Courier New";
   }
-  
+
+  IngredientGrid {
+    width: 100%;
+  }
+
 </style>

@@ -153,7 +153,9 @@ export default {
 .shopping-cart-container {
   display: flex;
   flex: 2;
-  max-height: 27em;
+  /* max-height: 27em; */
+  justify-content: center;
+
 
 }
 
@@ -251,4 +253,14 @@ export default {
     font-weight: 400;
   }
 
+
+  @media(max-width: 420px) { 
+
+  .shopping-cart-container {
+    flex-direction: column;
+
+  }
+
+
+  }
 </style>

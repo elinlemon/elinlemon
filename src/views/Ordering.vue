@@ -25,15 +25,15 @@
 
 
     <!-- Main view -->
-      <div class="top-container-2" v-if="this.shoppingCart.orderLocation !== undefined">
-
+    <div class="top-container-2" v-if="this.shoppingCart.orderLocation !== undefined">
         <div class="language-container">
           <img class="swedish-icon language-icon" src="sweden.png" height="80" width="auto" v-on:click="selectLang('sv')">
           <img class="english-icon language-icon" src="united-kingdom.png" height="80" width="auto" v-on:click="selectLang('en')">
 
         </div>
         <button class="cancel-order-button" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
-      </div>
+    </div>
+
     <div class="ordering-container" v-if="this.shoppingCart.orderLocation !== undefined && state === 'ordering'">
       <div class="main-container">
         <!-- Is conected to the final_page -->
@@ -54,7 +54,7 @@
         <!--Contacting component bread with the right category-->
         <!-- Is conected to the final_page -->
         <div class="category-container">
-          <IngredientCategory :currentMenuItem ="currentMenuItem" :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
+          <IngredientCategory class="ingredient-category" :currentMenuItem ="currentMenuItem" :ui-labels="uiLabels" :lang="lang" :ingredients="ingredients" :categoryNumber="currentCategory" v-on:ingredientAdded="ingredientAdded" v-on:ingredientRemoved="ingredientRemoved"/>
         </div>
 
         <div class="your-order-container">
@@ -114,7 +114,7 @@
           </div>
 
           <div>
-            <h4>{{uiLabels.totalPrice}}: {{ totalPrice }} kr</h4>
+            <h4 class="total-price-label">{{uiLabels.totalPrice}}: {{ totalPrice }} kr</h4>
           </div>
 
           <!-- Is conected to the final_page -->
@@ -355,6 +355,7 @@ export default {
   /* second screen */
   .top-container-2 {
     display: flex;
+    justify-content: end;
     /* justify-content: center; */
 
     padding-bottom: 1em;
@@ -363,7 +364,12 @@ export default {
   }
 
   .cancel-order-button {
-    margin-right: 1.5px;
+    /* margin-right: 1.5px; */
+    
+    /* mobile: to 0 */
+    margin-right: 16px; 
+
+
     margin-top: 20px;
     font-size: 1em;
     font-family: "Courier New";
@@ -386,9 +392,13 @@ export default {
     flex: 1;
     display: flex;
     justify-content: left;
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    
+    /* padding-left: 5px; */
+    /* padding-right: 5px; */
+
+    /* mobile: set to 0 */
+    padding-top: 16px;
+    padding-left: 16px;
   }
   .swedish-icon {
     padding-right: 0.5em;
@@ -429,34 +439,41 @@ export default {
 
   .ordering-container {
     /* flex: 1; */
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
-    height: 500%;
+    /* height: 500%; */
   }
 
   /*Are main-container the same as ordering-container? */
   .main-container {
     padding-top: 1em;
-    padding-left: 2em;
-    padding-right: 2em;
-    flex: 0.9;
+    margin-bottom: 16px;
+    /* padding-left: 2em; */
+    /* padding-right: 2em; */
+    /* flex: 0.9; */
     display: flex;
   }
 
   .category-container {
-    flex: 0.8;
-    background-color:white;
-    margin: 20px;
-    padding-left: 10px;
+    flex: 1;
+    /* max-width: 858px; */
+    background-color: white;
+    /* margin: 20px; */
+    /* padding-left: 10px; */
     display: flex;
     box-shadow: 1px 1px 30px grey;
-    padding-bottom: 20px;
-    padding-right: 10px;
+    /* padding-bottom: 20px; */
+    /* padding-right: 10px; */
     border-radius: 30px;
   }
 
+  .ingredient-category {
+    width: 100%;
+    padding: 0 16px 16px 16px;
+  }
+
   .category-buttons-container {
-    flex: 0.2;
+    /* flex: 0.2; */
     max-width: 400px;
     padding-right: 1em;
     padding-left: 1em;
@@ -468,7 +485,8 @@ export default {
     font-size: 1.2em;
     border-radius: 20px;
     height: 80px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    margin-bottom: 10px;
     font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
@@ -482,13 +500,25 @@ export default {
 
 
   .your-order-container {
-    padding: 10px;
-    margin-right: 0.5em;
+    flex: 0.1;
+    min-width: 300px;
+
+    /* padding: 10px; */
+    /* margin-right: 0.5em; */
+    
+    /* mobile: set to 0 */
+    /* margin: 0 16px 0 16px; */
+    margin: 0 auto 0 16px;
+    padding-bottom: 16px;
+
+    /* mobile: set to 0 */
+    margin-right: 16px;
+
     display: flex;
     flex-direction: column;
-    min-height: 20em;
-    min-width: 20em;
-    max-height: 30em;
+    /* min-height: 20em; */
+    /* min-width: 20em; */
+    /* max-height: 30em; */
     box-shadow: 1px 1px 30px grey;
     font-family: "Courier New";
     font-style: normal;
@@ -526,7 +556,10 @@ export default {
   .checkout-controls-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 1em;
+    padding: 0 8px 0 8px;
+  }
+  .total-price-label {
+    padding: 0 8px 0 8px;
   }
   .checkout-buttons {
     font-size: 1em;
@@ -547,12 +580,11 @@ export default {
   .neworder-buttons{
     font-size: 1em;
     border-radius: 10px;
-    height: 30px;
+    height: 45px;
     width: auto;
     font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
-    margin-top: 12px;
   }
 
   .neworder-buttons:hover{
@@ -580,7 +612,7 @@ export default {
     cursor: pointer;
   }
 
-  @media  (max-width: 420px) {
+  @media(max-width: 420px) {
     .top-container-1 {
       /* center language selection + add margin */
       justify-content: center;
@@ -591,9 +623,18 @@ export default {
       grid-template-columns: 1fr;
     }
 
+    .main-container {
+      flex-direction: column;
+      margin-bottom: 0;
+    }
 
+    .your-order-container {
+      margin: 16px 0 16px 0;
+    }
 
-
+    .category-buttons-container {
+      align-items: center;
+    }
   }
 
 </style>
