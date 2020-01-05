@@ -75,18 +75,15 @@ export default {
 
     goToPaymentPage: function() {
      // this.paid = true;
-
-        // not sure if this is the way we're supposed to send the info, but otherwise the backend crashes
-        this.shoppingCart.menuItems.forEach(menuItem => {
-        this.$store.state.socket.emit('order', {order: menuItem});
-        document.getElementById("pressedPayButton").style.display = "block";
-        menuItem.ingredients.forEach(ingredient => {
-                this.$store.state.socket.emit('updateStock', {item: ingredient, saldo: -1});
-            });
+     
+     // not sure if this is the way we're supposed to send the info, but otherwise the backend crashes
+     this.shoppingCart.menuItems.forEach(menuItem => {
+       this.$store.state.socket.emit('order', {order: menuItem});
+       document.getElementById("pressedPayButton").style.display = "block";
       });
 
-        // tell the Ordering view to reset and go back to the language selection
-        //this.$emit('orderPlaced', shoppingCart);
+      // tell the Ordering view to reset and go back to the language selection
+      //this.$emit('orderPlaced', shoppingCart);
     },
 
     backToStartPage: function(shoppingCart) {

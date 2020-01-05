@@ -359,7 +359,7 @@ export default {
 
     padding-bottom: 1em;
     justify-content: space-between;
-    padding-right: 4em;
+    /* padding-right: 4em; */
   }
 
   .cancel-order-button {
@@ -428,7 +428,7 @@ export default {
   }
 
   .ordering-container {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-direction: column;
     height: 500%;
