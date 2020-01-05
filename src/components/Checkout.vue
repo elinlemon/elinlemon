@@ -253,10 +253,6 @@ export default {
     font-weight: 400;
   }
 
-  .bottom-container {
-    margin-top: 10%;
-  }
-
   .menu-item-header {
     display: flex;
   }
