@@ -45,5 +45,6 @@
   "glutenfree": "Glutenfri",
   "vegan": "Vegansk",
   "location": "Plats",
-  "outOfStock": "Slutsåld"
+  "outOfStock": "Slutsåld",
+  "stock": "Lager"
 }
