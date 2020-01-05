@@ -43,5 +43,6 @@
   "milkfree": "Mjölkfri",
   "glutenfree": "Glutenfri",
   "vegan": "Vegansk",
-  "location": "Plats"
+  "location": "Plats",
+  "outOfStock": "Slutsåld"
 }

@@ -44,5 +44,6 @@
   "milkfree": "Milk free",
   "glutenfree": "Gluten free",
   "vegan": "Vegan",
-  "location": "Location"
+  "location": "Location",
+  "outOfStock": "Out of stock"
 }

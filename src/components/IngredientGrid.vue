@@ -22,7 +22,6 @@
 
       <div v-for="ingredient in this.ingredients" v-bind:key="ingredient.id" class="ingredItem">
 
-        <center>
 
           <div class="allergy-icons-container">
             <div v-if = "ingredient.milk_free"> <img class="allergy-icons-pic" src="milk-free-symbol.png"> </div>
@@ -31,13 +30,12 @@
           </div>
         <div class = "ingredient-text">
           {{ingredient["ingredient_" + lang ]}}
+          <br/>
+          {{ingredient.selling_price}}:-
         </div>
 
-          {{ ingredient.selling_price}}:-
 
-          <br/>
-        </center>
-
+        <div v-if="ingredient.stock_quantity > 0">
         <div class="ingredient-controls">
           <button class="wrapperButton" v-on:click="removeIngredient(ingredient)">-</button>
           <div v-for="currentIngredient in currentMenuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
@@ -48,9 +46,15 @@
           <button class="wrapperButton" v-on:click="addIngredient(ingredient)">+</button>
         </div>
       </div>
-    </div>
 
-  </div>
+        <div v-if="ingredient.stock_quantity == 0" class="stock-info">
+          {{uiLabels.outOfStock}}
+        </div>
+      </div>
+      </div>
+   </div>
+
+
 </template>
 
 import { ShoppingCart, MenuItem } from "../ShoppingCart";
@@ -112,9 +116,16 @@ import { ShoppingCart, MenuItem } from "../ShoppingCart";
     border-radius: 10px;
   }
   .ingredient-text{
+    display: flex;
+    justify-content: center;
     font-weight: bold;
+    align-self: center;
   }
-
+  .stock-info{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
   .active {
     background-color: lightgrey;
   }
