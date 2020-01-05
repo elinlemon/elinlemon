@@ -103,7 +103,6 @@ export default {
 
   .order-status{
     height: 40vh;
-    width: 100%;
     display: grid;
     grid-gap: 6px;
     padding: 6px;
