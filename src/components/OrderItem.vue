@@ -1,5 +1,7 @@
 <template>
 
+	<div>
+
 	<div class = "style-done-item">
 		<h4>
 		{{order.type}} {{uiLabels.order}} {{orderId}}:
@@ -8,6 +10,9 @@
 		<dt v-for="(ing, key2) in groupIngredients(order.ingredients)" :key="key2">
 			{{ ing.count + " x " + ing.ing["ingredient_" + lang] }}
 		</dt>
+
+	</div>
+
 
 	</div>
 

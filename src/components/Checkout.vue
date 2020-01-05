@@ -6,7 +6,7 @@
       <div class="shopping-cart-container">
 
         <div v-for="menuItem of this.shoppingCart.menuItems" v-bind:key="menuItem.id" class="stylemenu">
-          <div> {{uiLabels.order}}: {{menuItem.id}}
+          <div> {{uiLabels.meal}}: {{menuItem.id}}
           <img class="remove-buttons" title="Delete" src="delete-symbol.png" height = 20 width=20 v-on:click="removeOrder(menuItem)">
             <img class="remove-buttons" title="Edit" src="edit.png" height = 20 width=20 v-on:click="editOrder(menuItem)"></div>
           <div v-for="ingredient of menuItem.getPrintableIngredientList()" v-bind:key="ingredient.id">
@@ -20,8 +20,9 @@
       <div id="price-style" >{{uiLabels.totalPrice}}: {{ this.shoppingCart.totalPrice }}:-</div>
 
       <div class="receipt" id="pressedPayButton" style="display:none;">
-       <h4>{{uiLabels.thanks}} </h4>
+       <h5>{{uiLabels.thanks}} </h5>
         <h6> {{uiLabels.orderConsists}}: {{orderNumber.join(", ")}}<br>
+          {{uiLabels.totalPrice}}: {{this.shoppingCart.totalPrice }}:- <br>
           {{uiLabels.location}}:
          <span v-if = "location === 'eatIn'"> {{uiLabels.eatIn}} </span>
          <span v-if = "location === 'takeout'"> {{uiLabels.eatOut}} </span>
@@ -201,18 +202,19 @@ export default {
 }
 
 #price-style {
-  font-size: 1.9em;
+  font-size: 2.0em;
   text-transform: uppercase;
   text-align: center;
   font-family: "Courier New";
+  color: #ffad33;
   font-style: normal;
   font-weight: bold;
   line-height: 20px;
   width:380px;
-  height: 45px;
-  background-color:white;
+  height: 30px;
+  background-color: white;
   margin-top:1em;
-  margin-left: 500px;
+  margin-left: 480px;
   padding: 4px;
 }
 

@@ -68,7 +68,7 @@
                 <div v-for="menuItem in this.shoppingCart.menuItems" v-bind:key="menuItem.id">
 
                   <div class="menu-item-container">
-                    <h4>{{uiLabels.order}} {{menuItem.id}}</h4>
+                    <h4>{{uiLabels.meal}} {{menuItem.id}}</h4>
 
                     <div class="menu-item-controls">
                       <img class="remove-buttons" title="Edit" src="edit.png" height="20" width="auto" v-on:click="editOrder(menuItem)">
@@ -262,6 +262,7 @@ export default {
 
     goBackFromCheckout: function() {
       this.state = "ordering";
+      this.active = [false,false, false, true, false, false];
     },
 
     editOrder: function(menuItem) {
@@ -369,7 +370,7 @@ export default {
   }
 
   .language-icon:hover {
-    opacity: 0.7;
+    opacity: 0.9;
 
   }
 
@@ -392,7 +393,7 @@ export default {
   }
 
   .location-button:hover {
-    opacity: 70%;
+    opacity: 85%;
     cursor: pointer;
   }
 
