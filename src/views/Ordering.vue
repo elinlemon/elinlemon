@@ -13,10 +13,6 @@
         <img class="welcome-image" src="frontpage3.0.png">
       </div>
 
-      <!-- <center><h1>{{uiLabels.welcome}}</h1> -->
-        <!-- <img src="frontpage3.0.png" height="300px" width="700px" style="background-color: white"> -->
-      <!-- </center> -->
-
       <div class="order-option-container">
         <button class = "location-button" v-on:click="setLocation('eatIn')">{{uiLabels.eatIn}}</button>
         <button class = "location-button" v-on:click="setLocation('takeout')">{{uiLabels.eatOut}}</button>
@@ -306,7 +302,6 @@ export default {
     font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
-    /* height: 850px; */
     height: 100%;
   }
   .labels-container {
@@ -350,12 +345,8 @@ export default {
   }
 
   .cancel-order-button {
-    /* margin-right: 1.5px; */
-    
     /* mobile: to 0 */
-    margin-right: 16px; 
-
-
+    margin-right: 16px;
     margin-top: 20px;
     font-size: 1em;
     font-family: "Courier New";
@@ -378,7 +369,7 @@ export default {
     flex: 1;
     display: flex;
     justify-content: left;
-    
+
     /* padding-left: 5px; */
     /* padding-right: 5px; */
 
@@ -406,12 +397,9 @@ export default {
   .location-button{
     border-radius: 10px;
     max-height: 100px;
-    /* height: 100%; */
     width: 30%;
     max-width: 280px;
     font-size: 30px;
-    /* margin-top: 50px; */
-    /* margin-bottom: 10px; */
     font-family: "Courier New";
     font-style: normal;
     font-weight: 400;
@@ -424,32 +412,20 @@ export default {
   }
 
   .ordering-container {
-    /* flex: 1; */
-    /* display: flex; */
     flex-direction: column;
-    /* height: 500%; */
   }
 
-  /*Are main-container the same as ordering-container? */
   .main-container {
     padding-top: 1em;
     margin-bottom: 16px;
-    /* padding-left: 2em; */
-    /* padding-right: 2em; */
-    /* flex: 0.9; */
     display: flex;
   }
 
   .category-container {
     flex: 1;
-    /* max-width: 858px; */
     background-color: white;
-    /* margin: 20px; */
-    /* padding-left: 10px; */
     display: flex;
     box-shadow: 1px 1px 30px grey;
-    /* padding-bottom: 20px; */
-    /* padding-right: 10px; */
     border-radius: 30px;
   }
 
@@ -459,7 +435,6 @@ export default {
   }
 
   .category-buttons-container {
-    /* flex: 0.2; */
     max-width: 400px;
     padding-right: 1em;
     padding-left: 1em;
@@ -471,7 +446,6 @@ export default {
     font-size: 1.2em;
     border-radius: 20px;
     height: 80px;
-    /* margin-top: 10px; */
     margin-bottom: 10px;
     font-family: "Courier New";
     font-style: normal;
@@ -488,23 +462,11 @@ export default {
   .your-order-container {
     flex: 0.1;
     min-width: 300px;
-
-    /* padding: 10px; */
-    /* margin-right: 0.5em; */
-    
-    /* mobile: set to 0 */
-    /* margin: 0 16px 0 16px; */
     margin: 0 auto 0 16px;
     padding-bottom: 16px;
-
-    /* mobile: set to 0 */
     margin-right: 16px;
-
     display: flex;
     flex-direction: column;
-    /* min-height: 20em; */
-    /* min-width: 20em; */
-    /* max-height: 30em; */
     box-shadow: 1px 1px 30px grey;
     font-family: "Courier New";
     font-style: normal;
@@ -604,12 +566,12 @@ export default {
       justify-content: center;
       margin-bottom: 10%;
     }
-    
+
     .category-container {
       grid-template-columns: 1fr;
     }
 
-    .main-container {
+    .ordering-container {
       flex-direction: column;
       margin-bottom: 0;
     }
