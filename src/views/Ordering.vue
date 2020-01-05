@@ -571,7 +571,7 @@ export default {
       grid-template-columns: 1fr;
     }
 
-    .ordering-container {
+    .main-container {
       flex-direction: column;
       margin-bottom: 0;
     }
