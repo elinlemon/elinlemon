@@ -83,9 +83,8 @@
 
               <!-- The current menu item and all of its ingredients are displayed here -->
               <div class="current-order-items-container">
-
+                <h4>{{uiLabels.currentOrder}}</h4>
                 <div class="menu-item-container" v-if="!this.currentMenuItem.isEmpty()">
-                  <h4>{{uiLabels.currentOrder}}</h4>
 
                   <div class="menu-item-controls">
                     <img class="remove-buttons" title="Delete" src="delete-symbol.png" height="20" width="auto" v-on:click="removeCurrentOrder()">
@@ -465,6 +464,7 @@ export default {
     margin: 0 auto 0 16px;
     padding-bottom: 16px;
     margin-right: 16px;
+    padding-left: 5px;
     display: flex;
     flex-direction: column;
     box-shadow: 1px 1px 30px grey;
@@ -476,7 +476,7 @@ export default {
   }
 
   .current-order-items-container{
-    background-color: white;
+    background-color: #ffd699;
   }
 
   .menu-item-container {
@@ -546,7 +546,7 @@ export default {
     margin-right: 5px;
     margin-left: 5px;
     font-size: large;
-    background-color: white;
+    background-color: #ffd699;
   }
 
 

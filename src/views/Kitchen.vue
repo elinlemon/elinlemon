@@ -52,9 +52,7 @@
           <h4> Protein </h4>
           <div v-for = "item in ingredients" v-if = 'item.category == 1' :key="item.ingredient_id">
               <ul>
-                  {{item.ingredient_en}}:
-                  <span v-if="item.stock >= 0">{{item.stock}} pcs. </span>
-                  <span v-if="item.stock < 0"> 0 pcs. </span>
+                  {{item.ingredient_en}}: {{item.stock}} pcs.
                   <button class = "refill-button" v-on:click="refillStock(item)">Refill</button>
               </ul>
           </div>
@@ -62,9 +60,7 @@
           <h4> Topping </h4>
           <div v-for = "item in ingredients" v-if = 'item.category == 2' :key="item.ingredient_id">
               <ul>
-                  {{item.ingredient_en}}:
-                  <span v-if="item.stock >= 0">{{item.stock}} pcs. </span>
-                  <span v-if="item.stock < 0"> 0 pcs. </span>
+                  {{item.ingredient_en}}: {{item.stock}} pcs.
                   <button class = "refill-button" v-on:click="refillStock(item)">Refill</button>
               </ul>
           </div>
@@ -72,9 +68,7 @@
           <h4> Dressing </h4>
           <div v-for = "item in ingredients" v-if = 'item.category == 3' :key="item.ingredient_id">
               <ul>
-                  {{item.ingredient_en}}:
-                  <span v-if="item.stock >= 0">{{item.stock}} pcs. </span>
-                  <span v-if="item.stock < 0"> 0 pcs. </span>
+                  {{item.ingredient_en}}: {{item.stock}} pcs.
                   <button class = "refill-button" v-on:click="refillStock(item)">Refill</button>
               </ul>
           </div>
@@ -82,9 +76,7 @@
           <h4> Bread </h4>
           <div v-for = "item in ingredients" v-if = 'item.category == 4' :key="item.ingredient_id">
               <ul>
-                  {{item.ingredient_en}}:
-                  <span v-if="item.stock >= 0">{{item.stock}} pcs. </span>
-                  <span v-if="item.stock < 0"> 0 pcs. </span>
+                  {{item.ingredient_en}}: {{item.stock}} pcs.
                   <button class = "refill-button" v-on:click="refillStock(item)">Refill</button>
               </ul>
           </div>
@@ -92,9 +84,7 @@
           <h4> Sides </h4>
           <div v-for = "item in ingredients" v-if = 'item.category == 5' :key="item.ingredient_id">
               <ul>
-                  {{item.ingredient_en}}:
-                  <span v-if="item.stock >= 0">{{item.stock}} pcs. </span>
-                  <span v-if="item.stock < 0"> 0 pcs. </span>
+                  {{item.ingredient_en}}: {{item.stock}} pcs.
                   <button class = "refill-button" v-on:click="refillStock(item)">Refill</button>
               </ul>
           </div>
@@ -103,9 +93,7 @@
           <h4> Drinks </h4>
           <div v-for = "item in ingredients" v-if = 'item.category == 6' :key="item.ingredient_id">
               <ul>
-                  {{item.ingredient_en}}:
-                  <span v-if="item.stock >= 0">{{item.stock}} pcs. </span>
-                  <span v-if="item.stock < 0"> 0 pcs. </span>
+                  {{item.ingredient_en}}: {{item.stock}}
                   <button class = "refill-button" v-on:click="refillStock(item)">Refill</button>
               </ul>
           </div>
@@ -151,7 +139,7 @@ export default {
         this.showStock = show
       },
 
-      /*Sends info to dataHandler about refilling stock a bit randomly */
+      /*Sends info to dataHandler about refilling stock with 10 pcs */
       refillStock: function(item){
         this.$store.state.socket.emit("updateStock", {ingredient:item}, item.stock + 10)
       }
