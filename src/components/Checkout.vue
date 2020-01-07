@@ -155,7 +155,7 @@ export default {
 
 .control-buttons {
   font-size: 1.2em;
-  width: 103px;
+  min-width: 100px;
   background-color: #ffad33;
   color: white;
   border: 1px solid;
