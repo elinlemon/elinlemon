@@ -77,6 +77,6 @@ io.on('connection', function (socket) {
 });
 
 const port = 8080;
-http.listen(port, function() {
+http.listen(port, '0.0.0.0', function() {
     console.log("Developer server running on http://localhost:" + port);
 });
