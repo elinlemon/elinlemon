@@ -329,7 +329,7 @@ export default {
     display: flex;
     justify-content: end;
     margin-top: 20px;
-    /* margin-right: 1em; */
+    padding-left: 16px;
   }
 
   /* second screen */

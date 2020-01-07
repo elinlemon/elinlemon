@@ -1,8 +1,8 @@
 <template>
 
-	<div>
+	<!-- <div> -->
 
-	<div class = "style-done-item">
+	<div class="style-done-item">
 		<h4>
 		{{order.type}} {{uiLabels.order}} {{orderId}}:
 		</h4>
@@ -10,11 +10,10 @@
 		<dt v-for="(ing, key2) in groupIngredients(order.ingredients)" :key="key2">
 			{{ ing.count + " x " + ing.ing["ingredient_" + lang] }}
 		</dt>
-
 	</div>
 
 
-	</div>
+	<!-- </div> -->
 
 </template>
 <script>
@@ -59,7 +58,7 @@ export default {
 		background-color: beige;
 		color: black;
 		border-radius: 5px;
-	}
+	}	
 
 	
 </style>

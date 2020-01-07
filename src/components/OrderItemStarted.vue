@@ -42,6 +42,10 @@
         background-color: beige;
         color: #fff;
         border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     button:hover {
@@ -49,6 +53,6 @@
     }
 
     button {
-        margin-left: 50px;
+        margin: auto 10px 10px 10px;
     }
 </style>

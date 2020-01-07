@@ -44,6 +44,10 @@ export default {
     background-color: beige;
     color: black;
     border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   button:hover{
@@ -51,6 +55,7 @@ export default {
   }
 
   button {
-    margin-left: 50px;
+    /* margin-left: 50px; */
+    margin: auto 10px 10px 10px;
   }
 </style>
